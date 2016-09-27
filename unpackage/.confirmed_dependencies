@@ -1,0 +1,41 @@
+{
+  "index.html": {
+    "resources": [
+      "assets/eater.png",
+      "assets/null.png",
+      "assets/circledef.png",
+      "src/utils/engineUtil.js",
+      "lib/pixi.min.js",
+      "assets/box.jpg",
+      "assets/boxdef.png",
+      "lib/jquery-2.1.0.js",
+      "lib/Box2D.js",
+      "src/init.js",
+      "assets/sweet.png",
+      "lib/Stats.js",
+      "assets/ball.png",
+      "src/cutTheRope.js",
+      "assets/star.png",
+      "assets/bg.jpg",
+      "src/utils/structure.js"
+    ]
+  },
+  "pinball.html": {
+    "resources": [
+      "assets/eater.png",
+      "src/pinballInit.js",
+      "assets/null.png",
+      "assets/circledef.png",
+      "src/utils/engineUtil.js",
+      "lib/pixi.min.js",
+      "assets/box.jpg",
+      "assets/boxdef.png",
+      "lib/jquery-2.1.0.js",
+      "lib/Box2D.js",
+      "assets/sweet.png",
+      "lib/Stats.js",
+      "assets/ball.png",
+      "src/utils/structure.js"
+    ]
+  }
+}
