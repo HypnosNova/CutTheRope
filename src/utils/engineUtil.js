@@ -207,12 +207,8 @@ function createWorld(options) {
 	world.contactListener.BeginContact=function(e){
 		var bodyA=e.m_fixtureA.m_body;
 		var bodyB=e.m_fixtureB.m_body;
-		if((bodyA.name=="chain"&&bodyB.name=="cut")||(bodyB.name=="chain"&&bodyA.name=="cut")){
-			var chainBody=bodyA.name=="chain"?bodyA:bodyB;
-			if(chainBody.m_jointList&&chainBody.m_jointList.joint){
-				world.pWorld.DestroyJoint(chainBody.m_jointList.joint)
-			}
-		}
+		doContactBegin(bodyA,bodyB);//当物体碰撞，需要处理事情的话咋你这里处理
+		
 	}
 	world.contactListener.EndContact=function(e){
 
@@ -415,6 +411,44 @@ function createBoxObject(options, container) {
 	return pbox;
 }
 
+//创建方块物体
+function createInvisibleBoxObject(options, container) {
+	//--------------创建物理实体-------------
+	//设置对象的各个属性值
+	var theOption = $.extend({}, engine_static.boxObjectProperty, options);
+	var boxFixture = new Box2D.Dynamics.b2FixtureDef();
+	boxFixture.shape = new Box2D.Collision.Shapes.b2PolygonShape();
+	boxFixture.density = theOption.density;
+	boxFixture.friction = theOption.friction;
+	boxFixture.restitution = theOption.restitution;
+	boxFixture.shape.SetAsBox(theOption.width / engine_static.meter, theOption.height / engine_static.meter);
+	boxFixture.filter = createTouchFilter({
+		self: theOption.touchFilter.self,
+		other: theOption.touchFilter.other
+	});
+	boxFixture.name=theOption.name;
+	//定义刚体
+	var bodyDef = new Box2D.Dynamics.b2BodyDef();
+	//是否是静态刚体
+	if(theOption.isStatic) {
+		bodyDef.type = Box2D.Dynamics.b2Body.b2_staticBody;
+	} else {
+		bodyDef.type = Box2D.Dynamics.b2Body.b2_dynamicBody
+	}
+	//设置刚体位置
+	bodyDef.position.Set(theOption.position.x / engine_static.meter, theOption.position.y / engine_static.meter);
+	var pbox = world.pWorld.CreateBody(bodyDef);
+	pbox.CreateFixture(boxFixture);
+	pbox.isDragable = theOption.isDragable;
+	pbox.name=theOption.name;
+	//world.pArray.push(pbox); //将物理物体加入数组和视图物体进行绑定
+	if(container) {
+		container.AddBody(pbox);
+	}
+	return pbox;
+}
+
+
 //渲染循环
 function update() {
 	requestAnimationFrame(update);
@@ -455,7 +489,7 @@ function update() {
 		actor.rotation = body.GetAngle();
 	}
 	
-	sweetTouchStar();
+	doSpecialAction();//抽出来一个函数，各类游戏的专有轮询处理写在这个函数里
 	
 	renderObject.renderer.render(world.vWorld);
 	renderObject.stats.update();
@@ -504,16 +538,19 @@ function createWeld(obj1, obj2){
 //设置锁链链接
 function setChainJoint(options, array, obj1, obj2) {
 	var chain=[];
+	chain.push(obj1);
 	var theOption = $.extend({}, engine_static.chainProperty, options);
 	var tmp = obj1,tmp2;
 	for(var i = 0; i < array.length; i++) {
 		theOption.position=array[i];
-		tmp2=createBallObject(theOption,theOption.container);
+		tmp2=createInvisibleBoxObject(theOption,theOption.container);
+		tmp2.ropeId=theOption.ropeId;
 		setDistanceJoint(tmp,tmp2);
 		chain.push(tmp2)
 		tmp=tmp2;
 	}
 	setDistanceJoint(tmp,obj2);
+	chain.push(obj2);
 	return chain;
 }
 
