@@ -17,7 +17,12 @@
       "src/cutTheRope.js",
       "assets/star.png",
       "assets/bg.jpg",
-      "src/utils/structure.js"
+      "src/utils/structure.js",
+      "levels/1.html",
+      "levels/2.html"
+    ],
+    "refer": [
+      "levels/1.html"
     ]
   },
   "pinball.html": {
@@ -36,6 +41,51 @@
       "lib/Stats.js",
       "assets/ball.png",
       "src/utils/structure.js"
-    ]
+    ],
+    "refer": []
+  },
+  "levels/1.html": {
+    "resources": [
+      "src/cutTheRope.js",
+      "assets/eater.png",
+      "assets/star.png",
+      "assets/null.png",
+      "assets/circledef.png",
+      "src/utils/engineUtil.js",
+      "lib/pixi.min.js",
+      "assets/boxdef.png",
+      "assets/box.jpg",
+      "src/utils/MathUtil.js",
+      "lib/Box2D.js",
+      "src/utils/structure.js",
+      "src/init.js",
+      "assets/sweet.png",
+      "lib/Stats.js",
+      "assets/ball.png",
+      "levels/js/1.js"
+    ],
+    "refer": []
+  },
+  "levels/2.html": {
+    "resources": [
+      "assets/eater.png",
+      "src/cutTheRope.js",
+      "assets/star.png",
+      "assets/null.png",
+      "assets/circledef.png",
+      "levels/js/2.js",
+      "src/utils/engineUtil.js",
+      "lib/pixi.min.js",
+      "assets/boxdef.png",
+      "assets/box.jpg",
+      "src/utils/MathUtil.js",
+      "lib/Box2D.js",
+      "src/utils/structure.js",
+      "src/init.js",
+      "assets/sweet.png",
+      "lib/Stats.js",
+      "assets/ball.png"
+    ],
+    "refer": []
   }
 }

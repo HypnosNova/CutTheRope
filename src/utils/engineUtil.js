@@ -1,5 +1,6 @@
 var engine_static = {
 	//场景的长度单位，任何东西的长度放到场景里就要除以这个单位
+	renderPause:false,//是否需要暂停渲染
 	meter: 100,
 	worldWidth: window.innerHeight/16*9,
 	worldHeight: window.innerHeight,
@@ -452,6 +453,7 @@ function createInvisibleBoxObject(options, container) {
 //渲染循环
 function update() {
 	requestAnimationFrame(update);
+	if(engine_static.renderPause){return;}
 	//是否拖拽物体
 	if(touchObject.isBegin && !touchObject.mouseJoint) {
 		const dragBody = touchObject.getBodyAtMouse();

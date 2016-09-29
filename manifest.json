@@ -219,7 +219,9 @@
 					"assets/bg.jpg",
 					"src/utils/structure.js",
 					"assets/sweet.png",
-					"lib/Stats.js"
+					"lib/Stats.js",
+					"levels/1.html",
+					"levels/2.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -250,6 +252,52 @@
 					"lib/jquery-2.1.0.js",
 					"lib/Box2D.js",
 					"src/utils/structure.js",
+					"assets/sweet.png",
+					"lib/Stats.js",
+					"assets/ball.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"levels/1.html": {
+				"resources": [
+					"src/cutTheRope.js",
+					"assets/eater.png",
+					"assets/star.png",
+					"assets/null.png",
+					"assets/circledef.png",
+					"src/utils/engineUtil.js",
+					"lib/pixi.min.js",
+					"assets/boxdef.png",
+					"assets/box.jpg",
+					"src/utils/MathUtil.js",
+					"lib/Box2D.js",
+					"src/utils/structure.js",
+					"src/init.js",
+					"assets/sweet.png",
+					"lib/Stats.js",
+					"assets/ball.png",
+					"levels/js/1.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"levels/2.html": {
+				"resources": [
+					"assets/eater.png",
+					"src/cutTheRope.js",
+					"assets/star.png",
+					"assets/null.png",
+					"assets/circledef.png",
+					"levels/js/2.js",
+					"src/utils/engineUtil.js",
+					"lib/pixi.min.js",
+					"assets/boxdef.png",
+					"assets/box.jpg",
+					"src/utils/MathUtil.js",
+					"lib/Box2D.js",
+					"src/utils/structure.js",
+					"src/init.js",
 					"assets/sweet.png",
 					"lib/Stats.js",
 					"assets/ball.png"

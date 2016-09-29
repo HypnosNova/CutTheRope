@@ -25,14 +25,33 @@ function doContactBegin(bodyA, bodyB) {
 				world.vWorld.removeChild(ropes[ropeId].v);
 				ropes.push(ropeA);
 				for(var i = 0; i < ropeA.p.length; i++) {
-					ropeA.p[i].ropeId = ropes.length-1;
+					ropeA.p[i].ropeId = ropes.length - 1;
 				}
 				ropes.push(ropeB);
 				//world.pWorld.setDistanceJoint(ropeB.p[0],ropeB.p[1]);
 				for(var i = 0; i < ropeB.p.length; i++) {
-					ropeB.p[i].ropeId = ropes.length-1;
+					ropeB.p[i].ropeId = ropes.length - 1;
 				}
 				ropes[ropeId] = null;
+//
+//				var newChainPoint = createBallObject({
+//					position: {
+//						x: chainBody.GetPosition().x,
+//						y: chainBody.GetPosition().y
+//					},
+//					radius: 8,
+//					density: 1,
+//					touchFilter: {
+//						self: 8,
+//						other: 16
+//					},
+//					isDragable: true,
+//					restitution: 0.3,
+//					name: "chain"
+//				});
+//				newChainPoint.ropeId = 0;
+//				world.pWorld.setDistanceJoint(newChainPoint, ropeB.p[0]);
+//				ropeB.p.insert(newChainPoint, 0)
 			}
 		}
 
@@ -58,7 +77,7 @@ function sweetTouchStar() {
 //把绳子画出来，不再是一个个点
 function drawLineRope() {
 	for(var i = 0; i < ropes.length; i++) {
-		if(ropes[i]) {			
+		if(ropes[i]) {
 			ropes[i].v.clear();
 			ropes[i].v.lineStyle(2, 0x000000, 0.7);
 			ropes[i].v.beginFill(0x000000, 0);
@@ -99,7 +118,6 @@ document.addEventListener("mousedown", function(event) {
 				x: event.clientX,
 				y: event.clientY
 			},
-			//texture: "assets/eater.png",
 			radius: 8,
 			density: 1,
 			touchFilter: {
