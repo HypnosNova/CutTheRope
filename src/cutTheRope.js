@@ -8,7 +8,7 @@ function doContactBegin(bodyA, bodyB) {
 		var chainBody = bodyA.name == "chain" ? bodyA : bodyB;
 		var ropeId = chainBody.ropeId;
 		var ropePointId = ropes[ropeId].p.getIndex(chainBody);
-
+		ion.sound.play("cut");
 		if(ropePointId > 0 && ropePointId < ropes[ropeId].p.length - 1) {
 			if(chainBody.m_jointList && chainBody.m_jointList.joint) {
 				//断开一个距离链接，将绳子拆成2段
@@ -71,6 +71,9 @@ function sweetTouchStar() {
 		var distance = MathUtil.getDistanceFromTwoPoint(position, stars[i].position);
 		if(distance < 45) {
 			world.vWorld.removeChild(stars[i]);
+			stars.remove(i);
+			console.log(stars.length)
+			ion.sound.play("star_"+(3-stars.length));
 		}
 	}
 }

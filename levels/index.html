@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-		<title>Sweet</title>
+		<title>CutTheRope</title>
 		<style>
 			body {
 				margin: 0px;
@@ -11,20 +11,28 @@
 				background-image: url(../assets/bg.jpg);
 				background-size: cover;
 			}
+			/*canvas{
+				position: absolute;
+				left:50% ;
+				transform: translateX(-50%);
+			}*/
 		</style>
 	</head>
 	<body>
+		<a href="levels/1.html">开始</a>
+		<a href="levels/2.html">开始</a>
+		<a href="levels/3.html">开始</a>
+		<a href="levels/4.html">开始</a>
+		<button onclick='ion.sound.play("main",{loop:true});'>asdddddd</button>
 		<script src="../lib/jquery-2.1.0.js"></script>
-		<script src="../src/utils/structure.js"></script>
-		<script src="../src/utils/MathUtil.js"></script>
 		<script src="../lib/ion.sound.min.js"></script>
 		<script src="../src/sound.js"></script>
-		<script src="../lib/Box2D.js"></script>
-		<script src="../lib/pixi.min.js"></script>
-		<script src="../lib/Stats.js"></script>
-		<script src="../src/utils/engineUtil.js"></script>
-		<script src="../src/cutTheRope.js"></script>
-		<script src="js/1.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../src/init.js"></script>
+		<script type="text/javascript">
+			
+			function playSound(){
+				ion.sound.play("clear");
+				requestAnimationFrame(playSound);
+			}playSound()
+		</script>
 	</body>
 </html>

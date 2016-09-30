@@ -19,7 +19,9 @@
       "assets/bg.jpg",
       "src/utils/structure.js",
       "levels/1.html",
-      "levels/2.html"
+      "levels/2.html",
+      "lib/ion.sound.min.js",
+      "src/sound.js"
     ],
     "refer": [
       "levels/1.html"
@@ -62,7 +64,9 @@
       "assets/sweet.png",
       "lib/Stats.js",
       "assets/ball.png",
-      "levels/js/1.js"
+      "levels/js/1.js",
+      "lib/jquery-2.1.0.js",
+      "assets/bg.jpg"
     ],
     "refer": []
   },

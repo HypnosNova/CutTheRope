@@ -167,7 +167,8 @@ var touchObject = {
 var renderObject = {
 	renderer: PIXI.autoDetectRenderer(engine_static.worldWidth, engine_static.worldHeight, {
 		backgroundColor: engine_static.worldProperty.backgroundColor,
-		transparent:engine_static.worldProperty.transparentBackground
+		transparent:engine_static.worldProperty.transparentBackground,
+		antialias:true
 	}, false),
 	stats: new Stats(),
 	//将渲染后的画面放到页面里
@@ -198,7 +199,7 @@ function createWorld(options) {
 	}
 	var theOption = $.extend({}, engine_static.worldProperty, options);
 	//创建视图世界
-	world.vWorld = new PIXI.Stage(theOption.backgroundColor, true);
+	world.vWorld = new PIXI.Container();//(theOption.backgroundColor, true);
 	//创建物理世界
 	world.pWorld = new Box2D.Dynamics.b2World(new Box2D.Common.Math.b2Vec2(theOption.gravity.x, theOption.gravity.y), true);
 	//创建碰撞监听
