@@ -27,7 +27,7 @@ function makeGameScene() {
 			x: engine_static.worldWidth * 0.20,
 			y: engine_static.worldHeight * 0.15
 		},
-		texture: "../assets/circledef.png",
+		texture: "../assets/fix.png",
 		radius: 1,
 		height: 1,
 		isStatic: true,
@@ -42,7 +42,7 @@ function makeGameScene() {
 			x: engine_static.worldWidth * 0.8,
 			y: engine_static.worldHeight * 0.15
 		},
-		texture: "../assets/circledef.png",
+		texture: "../assets/fix.png",
 		radius: 1,
 		height: 1,
 		isStatic: true,
@@ -102,7 +102,7 @@ function makeGameScene() {
 		name: "star",
 	});
 
-	sweet = createBallObject({
+	sweets[0] = createBallObject({
 		position: {
 			x: engine_static.worldWidth / 2,
 			y: engine_static.worldHeight * 0.335
@@ -164,13 +164,13 @@ function makeGameScene() {
 		}, {
 			x: engine_static.worldWidth * 0.20 + engine_static.worldWidth * 0.275,
 			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.165
-		}], dz1, sweet),
+		}], dz1, sweets[0]),
 		v: new PIXI.Graphics()
 	};
 	world.vWorld.addChild(ropes[0].v)
 
 	/**/
-	var eater = createBallObject({
+	eaters[0] = createBallObject({
 		position: {
 			x: engine_static.worldWidth / 2,
 			y: engine_static.worldHeight - 75
@@ -179,14 +179,14 @@ function makeGameScene() {
 		radius: 37.5,
 		density: 0.5,
 		touchFilter: {
-			self: 1,
-			other: 1
+			self: 2,
+			other: 3
 		},
 		isDragable: false,
 		restitution: 0.3,
-		name: "sweet"
+		name: "eater",
 	}, airBuoyan);
-
+	eaters[0].hasEaten=1;
 	ropes[1] = {
 		p: setChainJoint({
 			radius: 2,
@@ -233,7 +233,7 @@ function makeGameScene() {
 		}, {
 			x: engine_static.worldWidth * 0.80 - engine_static.worldWidth * 0.275,
 			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.165
-		}], dz2, sweet),
+		}], dz2, sweets[0]),
 		v: new PIXI.Graphics()
 	};
 	world.vWorld.addChild(ropes[1].v)

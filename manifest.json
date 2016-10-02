@@ -228,7 +228,17 @@
 					"assets/ball.png",
 					"levels/js/1.js",
 					"lib/jquery-2.1.0.js",
-					"assets/bg.jpg"
+					"assets/bg.jpg",
+					"media/level.mp3",
+					"media/eat.mp3",
+					"media/click.mp3",
+					"media/cut.mp3",
+					"media/star_1.mp3",
+					"assets/fix.png",
+					"media/star_2.mp3",
+					"media/star_3.mp3",
+					"media/sad.mp3",
+					"media/main.mp3"
 				],
 				"refer": [],
 				"priority": 0
@@ -251,7 +261,17 @@
 					"src/init.js",
 					"assets/sweet.png",
 					"lib/Stats.js",
-					"assets/ball.png"
+					"assets/ball.png",
+					"media/level.mp3",
+					"media/eat.mp3",
+					"media/click.mp3",
+					"media/cut.mp3",
+					"media/star_1.mp3",
+					"assets/fix.png",
+					"media/star_2.mp3",
+					"media/star_3.mp3",
+					"media/sad.mp3",
+					"media/main.mp3"
 				],
 				"refer": [],
 				"priority": 0

@@ -3,7 +3,7 @@ function gameLoad() {
 	renderObject.addStatsView();
 	renderObject.addRenderView();
 
-	//加载图片资源
+	//加载资源
 	var loader = new PIXI.loaders.Loader();
 	loader.add('sweet', "../assets/sweet.png");
 	loader.add('box', "../assets/box.jpg");
@@ -13,7 +13,12 @@ function gameLoad() {
 	loader.add('boxdef', "../assets/boxdef.png");
 	loader.add('null', "../assets/null.png");
 	loader.add('star', "../assets/star.png");
+	loader.add('fix', "../assets/fix.png");
 	loader.add('bg', "../assets/bg.jpg");
+	loader.add('chair', "../assets/chair.png");
+	loader.add('char_animations', "../assets/movieClip/char_animations.json");
+	//loader.add('crystalball', "../assets/movieClip/crystalball.json");
+	//loader.add('fighter', "../assets/movieClip/fighter.json");
 	loader.once('complete', makeGameScene);
 	loader.load();
 }
