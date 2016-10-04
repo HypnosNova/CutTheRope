@@ -16,7 +16,9 @@ function gameLoad() {
 	loader.add('fix', "../assets/fix.png");
 	loader.add('bg', "../assets/bg.jpg");
 	loader.add('chair', "../assets/chair.png");
+	loader.add('obj_star_idle', "../assets/movieClip/star_animations.json");
 	loader.add('char_animations', "../assets/movieClip/char_animations.json");
+	loader.add('char_animations3', "../assets/movieClip/char_animations3.json");
 	//loader.add('crystalball', "../assets/movieClip/crystalball.json");
 	//loader.add('fighter', "../assets/movieClip/fighter.json");
 	loader.once('complete', makeGameScene);

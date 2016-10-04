@@ -17,6 +17,10 @@ ion.sound({
 		name:"star_2"
 	},{
 		name:"star_3"
+	},{
+		name:"openMouth"
+	},{
+		name:"closeMouth"
 	}],
 	volume: 1,
 	path: "../media/",

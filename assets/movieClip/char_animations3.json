@@ -1,0 +1,124 @@
+{"frames": {
+
+"sad0.png":
+{
+	"frame": {"x":0,"y":82,"w":88,"h":84},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":6,"y":15,"w":88,"h":84},
+    "sourceSize": {"w":100,"h":100}
+},
+"sad1.png":
+{
+    "frame": {"x":0,"y":0,"w":92,"h":82},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":4,"y":16,"w":92,"h":82},
+    "sourceSize": {"w":100,"h":100}
+},
+"sad2.png":
+{
+	"frame": {"x":0,"y":82,"w":88,"h":84},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":6,"y":15,"w":88,"h":84},
+    "sourceSize": {"w":100,"h":100}
+},
+"sad3.png":
+{
+	"frame": {"x":0,"y":165,"w":84,"h":87},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":8,"y":13,"w":84,"h":87},
+    "sourceSize": {"w":100,"h":100}
+},
+"sad4.png":
+{
+	"frame": {"x":0,"y":251,"w":82,"h":90},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":9,"y":10,"w":82,"h":87},
+    "sourceSize": {"w":100,"h":100}
+},
+"sad5.png":
+{
+	"frame": {"x":90,"y":0,"w":82,"h":91},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":9,"y":9,"w":82,"h":91},
+    "sourceSize": {"w":100,"h":100}
+},
+"sad6.png":
+{
+	"frame": {"x":90,"y":91,"w":82,"h":91},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":9,"y":9,"w":82,"h":91},
+    "sourceSize": {"w":100,"h":100}
+},
+"sad7.png":
+{
+	"frame": {"x":90,"y":181,"w":82,"h":87},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":9,"y":13,"w":82,"h":87},
+    "sourceSize": {"w":100,"h":100}
+},
+"sad8.png":
+{
+	"frame": {"x":90,"y":267,"w":84,"h":84},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":8,"y":16,"w":82,"h":84},
+    "sourceSize": {"w":100,"h":100}
+},
+"sad9.png":
+{
+	"frame": {"x":173,"y":0,"w":84,"h":83},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":8,"y":17,"w":84,"h":83},
+    "sourceSize": {"w":100,"h":100}
+},
+"sad10.png":
+{
+	"frame": {"x":173,"y":83,"w":86,"h":83},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":7,"y":17,"w":86,"h":83},
+    "sourceSize": {"w":100,"h":100}
+},
+"sad11.png":
+{
+	"frame": {"x":173,"y":165,"w":88,"h":85},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":6,"y":15,"w":88,"h":85},
+    "sourceSize": {"w":100,"h":100}
+},
+"sad12.png":
+{
+	"frame": {"x":173,"y":249,"w":90,"h":86},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":5,"y":14,"w":90,"h":86},
+    "sourceSize": {"w":100,"h":100}
+},
+"sad13.png":
+{
+	"frame": {"x":261,"y":0,"w":90,"h":87},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":5,"y":13,"w":90,"h":87},
+    "sourceSize": {"w":100,"h":100}
+}},
+"meta": {
+    "app": "",
+    "version": "1.0",
+    "image": "char_animations3.png",
+    "format": "RGBA8888",
+    "size": {"w":1024,"h":1024},
+    "scale": "1",
+    "smartupdate": "$TexturePacker:SmartUpdate:2f213a6b451f9f5719773418dfe80ae8$"
+}
+}

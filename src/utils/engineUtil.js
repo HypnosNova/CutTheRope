@@ -19,6 +19,8 @@ var engine_static = {
 			y: 0
 		}, //初始位置
 		rotation: 0, //初始旋转角度
+		scaleX:0.5,
+		scaleY:0.5,
 		isDragable: false, //是否可以被鼠标拖拽
 		touchFilter: {
 			self: 1,
@@ -40,6 +42,8 @@ var engine_static = {
 			x: 0,
 			y: 0
 		}, //初始位置
+		scaleX:0.5,
+		scaleY:0.5,
 		rotation: 0, //初始旋转角度
 		isDragable: false, //是否可以被鼠标拖拽
 		touchFilter: {
@@ -279,7 +283,8 @@ function createBallObject(options, container) {
 		world.vWorld.addChild(vball);
 		vball.i = i;
 		vball.anchor.x = vball.anchor.y = 0.5;
-		vball.scale.x = vball.scale.y = 0.5;
+		vball.scale.x = theOption.scaleX;
+		vball.scale.y = theOption.scaleY;
 		world.vArray.push(vball); //将视图物体加入数组和物理实体进行绑定
 	} else {
 		var vbox = new PIXI.Sprite();
@@ -308,7 +313,8 @@ function createMagicBall(options, container) {
 		world.vWorld.addChild(vball);
 		vball.i = i;
 		vball.anchor.x = vball.anchor.y = 0.5;
-		vball.scale.x = vball.scale.y = 0.5;
+		vball.scale.x = theOption.scaleX;
+		vball.scale.y = theOption.scaleY;
 		vball.position.x = theOption.position.x;
 		vball.position.y = theOption.position.y;
 	} else {
@@ -405,7 +411,8 @@ function createBoxObject(options, container) {
 		world.vWorld.addChild(vbox);
 		vbox.i = i;
 		vbox.anchor.x = vbox.anchor.y = 0.5;
-		vbox.scale.x = vbox.scale.y = 0.5;
+		vbox.scale.x = theOption.scaleX;
+		vbox.scale.y = theOption.scaleY;
 		world.vArray.push(vbox); //将视图物体加入数组和物理实体进行绑定
 	} else {
 		var vbox = new PIXI.Sprite();
@@ -424,8 +431,7 @@ function createBoxObject(options, container) {
 	return pbox;
 }
 //创建方块物体
-function createMagicBoxObject(options, container) {
-	//--------------创建物理实体-------------
+function createMagicBox(options) {
 	//设置对象的各个属性值
 	var theOption = $.extend({}, engine_static.boxObjectProperty, options);
 	var vbox;
@@ -435,7 +441,10 @@ function createMagicBoxObject(options, container) {
 		world.vWorld.addChild(vbox);
 		vbox.i = i;
 		vbox.anchor.x = vbox.anchor.y = 0.5;
-		vbox.scale.x = vbox.scale.y = 0.5;
+		vbox.scale.x = theOption.scaleX;
+		vbox.scale.y = theOption.scaleY;
+		vbox.position.x = theOption.position.x;
+		vbox.position.y = theOption.position.y;
 	} else {
 		vbox = new PIXI.Sprite();
 		var graphics = new PIXI.Graphics();
@@ -448,6 +457,8 @@ function createMagicBoxObject(options, container) {
 		world.vWorld.addChild(vbox);
 		vbox.i = i;
 		vbox.anchor.x = vbox.anchor.y = 0.5;
+		vbox.position.x = theOption.position.x;
+		vbox.position.y = theOption.position.y;
 	}
 	return vbox;
 }
@@ -616,7 +627,6 @@ function createMovieClip(options) {
 		movieTextures.push(texture);
 	}
 	var movieObj = new PIXI.extras.MovieClip(movieTextures);
-	world.vWorld.addChild(movieObj);
 	movieObj.animationSpeed = theOption.speed;
 	movieObj.position.x = theOption.position.x;
 	movieObj.position.y = theOption.position.y;

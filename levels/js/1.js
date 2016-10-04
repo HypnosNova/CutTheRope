@@ -1,10 +1,9 @@
 function makeGameScene() {
 	var bg = new PIXI.Sprite(PIXI.Texture.fromFrame("../assets/bg.jpg"));
-		world.vWorld.addChild(bg);
-		bg.anchor.x = bg.anchor.y = 0;
-		bg.scale.x = bg.scale.y = engine_static.worldHeight/1024;
-	
-	
+	world.vWorld.addChild(bg);
+	bg.anchor.x = bg.anchor.y = 0;
+	bg.scale.x = bg.scale.y = engine_static.worldHeight / 1024;
+
 	var airBuoyan = addBuoyancy({
 		position: 0,
 		density: 0.01,
@@ -15,18 +14,6 @@ function makeGameScene() {
 			y: 0
 		}
 	});
-	//down
-//	createBoxObject({
-//		position: {
-//			x: engine_static.worldWidth / 2,
-//			y: engine_static.worldHeight + 1
-//		},
-//		width: engine_static.worldWidth,
-//		height: 1,
-//		isStatic: true,
-//		friction: 0.8,
-//		restitution: 0.5,
-//	});
 
 	var dz = createBallObject({
 		position: {
@@ -43,55 +30,16 @@ function makeGameScene() {
 		}
 	});
 
-	stars[0] = createMagicBall({
-		position: {
-			x: engine_static.worldWidth / 2,
-			y: engine_static.worldHeight / 2.0
-		},
-		texture: "../assets/star.png",
-		radius: 20,
-		height: 1,
-		isStatic: true,
-		restitution: 0,
-		touchFilter: {
-			self: 1,
-			other: 1
-		},
-		name: "star",
-	});
-
-	stars[1] = createMagicBall({
-		position: {
-			x: engine_static.worldWidth / 2,
-			y: engine_static.worldHeight / 2.0 + 70
-		},
-		texture: "../assets/star.png",
-		radius: 20,
-		height: 1,
-		isStatic: true,
-		restitution: 0,
-		touchFilter: {
-			self: 1,
-			other: 1
-		},
-		name: "star",
-	});
-	stars[2] = createMagicBall({
-		position: {
-			x: engine_static.worldWidth / 2,
-			y: engine_static.worldHeight / 2.0 + 140
-		},
-		texture: "../assets/star.png",
-		radius: 20,
-		height: 1,
-		isStatic: true,
-		restitution: 0,
-		touchFilter: {
-			self: 1,
-			other: 1
-		},
-		name: "star",
-	});
+	stars = createStars([{
+		x: engine_static.worldWidth / 2,
+		y: engine_static.worldHeight / 2
+	}, {
+		x: engine_static.worldWidth / 2,
+		y: engine_static.worldHeight / 2 + 70
+	}, {
+		x: engine_static.worldWidth / 2,
+		y: engine_static.worldHeight / 2 + 140
+	}])
 
 	sweets[0] = createBallObject({
 		position: {
@@ -169,44 +117,25 @@ function makeGameScene() {
 	};
 
 	world.vWorld.addChild(ropes[0].v)
-	
-	 bg = new PIXI.Sprite(PIXI.Texture.fromFrame("../assets/chair.png"));
-		world.vWorld.addChild(bg);
-		bg.anchor.x = bg.anchor.y = 0.5;
-		bg.scale.x = bg.scale.y = 1.1;
-		bg.position.x=engine_static.worldWidth / 2;
-bg.position.y=engine_static.worldHeight - 105;
-	/**/
-	eaters[0] = createBallObject({
+
+	createMagicBox({
+		texture: "../assets/chair.png",
+		scaleX: 1.1,
+		scaleY: 1.1,
 		position: {
 			x: engine_static.worldWidth / 2,
-			y: engine_static.worldHeight - 125
+			y: engine_static.worldHeight - 105
 		},
-		texture: "../assets/null.png",
-		radius: 37.5,
-		density: 0.5,
-		isStatic:true,
-		touchFilter: {
-			self: 2,
-			other: 3
-		},
-		isDragable: false,
-		restitution: 0.3,
-		name: "eater"
-	}, airBuoyan);
-	eaters[0].hasEaten=1;
-	touchObject.createTouchListen();
-	
-	var mv=createMovieClip({
-		name:"normal",
-		movieLength:19,
-		speed:0.3,
-		position:{
-			x: engine_static.worldWidth / 2,
-			y: engine_static.worldHeight - 125
-		},
+		width:180,
+		height:180
 	})
-	mv.gotoAndPlay(0)
-	
+	eaters = createEaters([{
+		x: engine_static.worldWidth / 2,
+		y: engine_static.worldHeight - 125,
+		hasEaten: 1,
+		container: airBuoyan
+	}]);
+
+	touchObject.createTouchListen();
 	update();
 }

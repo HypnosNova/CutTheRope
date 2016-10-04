@@ -10,7 +10,7 @@
     "icons": {
         "72": "icon.png"
     },
-    "launch_path": "index.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+    "launch_path": "levels/1.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
     "developer": {
         "name": "",/*开发者名称*/
         "email": "",/*开发者邮箱地址*/
@@ -238,7 +238,16 @@
 					"media/star_2.mp3",
 					"media/star_3.mp3",
 					"media/sad.mp3",
-					"media/main.mp3"
+					"media/main.mp3",
+					"media/closeMouth.mp3",
+					"media/openMouth.mp3",
+					"assets/movieClip/char_animations.json",
+					"assets/chair.png",
+					"assets/movieClip/char_animations3.json",
+					"assets/movieClip/star_animations.json",
+					"assets/movieClip/obj_star_idle.png",
+					"assets/movieClip/char_animations.png",
+					"assets/movieClip/char_animations3.png"
 				],
 				"refer": [],
 				"priority": 0
