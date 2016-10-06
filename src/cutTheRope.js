@@ -1,8 +1,12 @@
+var inLevel = false; //是否进入游戏关卡
+var starsGet = 0;
+
 function doSpecialAction() {
 	sweetTouchStar();
 	drawLineRope();
 	eatCandy();
 	lostSweet();
+	winOrLost();
 }
 
 function doContactBegin(bodyA, bodyB) {
@@ -15,17 +19,66 @@ function doContactEnd(bodyA, bodyB) {
 	//eatCandy(bodyA, bodyB)
 }
 
+function winOrLost() {
+	if(gameResult == 0) {
+		$(".starContainer").empty();
+		gameResult = -2;
+		setTimeout(function() {
+			coverClose();
+			setTimeout(function() {
+				$(".scoreContainer").show();
+				for(var i = 0; i < starsGet; i++) {
+					var img = document.createElement("img");
+					img.src = "../assets/star.png";
+					img.style.visibility = "hidden";
+					img.classList = "starImg";
+					$(".starContainer").append(img);
+					(function(i) {
+						setTimeout(function() {
+							var il = $(".starImg")[i];
+							il.style.visibility = "visible";
+							$(il).animateCss("zoomIn");
+						}, i * 200 + 1);
+					})(i);
+				}
+			}, 500);
+		}, 1500);
+	} else if(gameResult == -1) {
+		gameResult = -2;
+		setTimeout(function() {
+			
+			$(".starContainer").empty();
+			$(".swiper-container").hide();
+			starsGet = 0;
+			ropes = [];
+			coverClose();
+			setTimeout(function() {
+				clearAllGameThings();
+				levelScript[currentLevel]();
+				setTimeout(function() {
+					coverOpen();
+					setTimeout(function() {
+						$(".coverDown").hide();
+						$(".coverUp").hide();
+						inLevel = true;
+					}, 500);
+				}, 100);
+			}, 500);
+		}, 1500);
+	}
+}
+
 //糖果掉落没有被吃掉
-var gameResult = false; //是否游戏胜利或失败
+var gameResult = -2; //是否游戏胜利或失败
 function lostSweet() {
-	if(!gameResult) {
+	if(gameResult > 0) {
 		for(var h = 0; h < sweets.length; h++) {
 			var position1 = {
 				x: 100 * sweets[h].GetPosition().x,
 				y: 100 * sweets[h].GetPosition().y
 			};
 			if(position1.y > engine_static.worldHeight + 200) {
-				gameResult = true;
+				gameResult = -1;
 				ion.sound.play("sad");
 				for(var i = 0; i < eaters.length; i++) {
 					eaters[i].currentAction.gotoAndStop(0);
@@ -112,6 +165,7 @@ function eatCandy() {
 					eaters[i].currentAction = eaters[i].chewAction;
 					world.vWorld.addChild(eaters[i].chewAction);
 					eaters[i].chewAction.gotoAndPlay(0);
+					gameResult--;
 				} else if(distance >= 100 && distance < 120 && (eaters[i].currentAction != eaters[i].closeMouthAction) && (eaters[i].currentAction != eaters[i].normalAction)) {
 					//bi嘴动画
 					eaters[i].currentAction.gotoAndStop(0);
@@ -148,7 +202,11 @@ function sweetTouchStar() {
 			if(distance < 40) {
 				world.vWorld.removeChild(stars[i]);
 				world.vWorld.removeChild(stars[i].light);
+
+				world.vWorld.addChild(stars[i].disappear);
+				stars[i].disappear.gotoAndPlay(0)
 				stars.remove(i);
+				starsGet++;
 				ion.sound.play("star_" + (3 - stars.length));
 			}
 		}
@@ -176,15 +234,19 @@ var sweet = {},
 	eaters = [];
 
 document.addEventListener("mouseup", function(event) {
-	cutBody = world.deleteObj(cutBody);
+	if(inLevel) {
+		cutBody = world.deleteObj(cutBody);
+	}
 }, true);
 document.addEventListener("touchend", function(event) {
-	cutBody = world.deleteObj(cutBody);
+	if(inLevel) {
+		cutBody = world.deleteObj(cutBody);
+	}
 }, true);
 
 var cutBody = null;
 document.addEventListener("mousedown", function(event) {
-	if(!cutBody) {
+	if(!cutBody && inLevel) {
 		cutBody = createBallObject({
 			position: {
 				x: event.clientX,
@@ -205,7 +267,7 @@ document.addEventListener("mousedown", function(event) {
 
 document.addEventListener("touchstart", function(event) {
 	event = event.changedTouches[0];
-	if(!cutBody) {
+	if(!cutBody && inLevel) {
 		cutBody = createBallObject({
 			position: {
 				x: event.clientX,
@@ -248,7 +310,18 @@ function createStars(arr) {
 			scaleY: 1,
 			name: "starLight",
 		});
+		stars[i].disappear = createMovieClip({
+			name: "starDisappear",
+			movieLength: 12,
+			speed: 0.65,
+			position: {
+				x: arr[i].x,
+				y: arr[i].y
+			},
+		});
+		stars[i].disappear.loop = false;
 		world.vWorld.addChild(stars[i]);
+
 		stars[i].gotoAndPlay(MathUtil.rndIntRange(0, 18));
 	}
 	return stars;

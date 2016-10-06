@@ -134,9 +134,26 @@ var touchObject = {
 				touchObject.isBegin = true;
 				touchObject.onMove(event);
 				document.addEventListener("mousemove", touchObject.onMove, true);
+				var obj=touchObject.getBodyAtMouse();
+				if(obj&&obj.touchDown){
+					touchObject.lastClickObj=obj;
+					obj.touchDown();
+				}
 			}, true);
 
 			document.addEventListener("mouseup", function(event) {
+				var obj=touchObject.getBodyAtMouse();
+				if(obj==touchObject.lastClickObj){
+					if(obj&&obj.touchEnd){
+						obj.touchEnd()
+					}
+					touchObject.lastClickObj=null;
+				}else{
+					if(touchObject.lastClickObj&&touchObject.lastClickObj.touchLost){
+						touchObject.lastClickObj.touchLost();
+					}
+					touchObject.lastClickObj=null;
+				}
 				document.removeEventListener("mousemove", touchObject.onMove, true);
 				touchObject.isBegin = false;
 				touchObject.touchX = undefined;
@@ -147,9 +164,26 @@ var touchObject = {
 				touchObject.isBegin = true;
 				touchObject.onMove(event);
 				renderObject.renderer.view.addEventListener("touchmove", touchObject.onMove, true);
+				var obj=touchObject.getBodyAtMouse();
+				if(obj&&obj.touchDown){
+					touchObject.lastClickObj=obj;
+					obj.touchDown();
+				}
 			}, true);
 
 			renderObject.renderer.view.addEventListener("touchend", function(event) {
+				var obj=touchObject.getBodyAtMouse();
+				if(obj==touchObject.lastClickObj){
+					if(obj&&obj.touchEnd){
+						obj.touchEnd()
+					}
+					touchObject.lastClickObj=null;
+				}else{
+					if(touchObject.lastClickObj&&touchObject.lastClickObj.touchLost){
+						touchObject.lastClickObj.touchLost();
+					}
+					touchObject.lastClickObj=null;
+				}
 				renderObject.renderer.view.removeEventListener("touchmove", touchObject.onMove, true);
 				touchObject.isBegin = false;
 				touchObject.touchX = undefined;
@@ -173,7 +207,6 @@ var touchObject = {
 					}
 					return true;
 				}, aabb);
-
 			return body;
 		}
 	}
@@ -286,6 +319,7 @@ function createBallObject(options, container) {
 		vball.scale.x = theOption.scaleX;
 		vball.scale.y = theOption.scaleY;
 		world.vArray.push(vball); //将视图物体加入数组和物理实体进行绑定
+		pball.v=vball;
 	} else {
 		var vbox = new PIXI.Sprite();
 		var graphics = new PIXI.Graphics();
@@ -298,6 +332,7 @@ function createBallObject(options, container) {
 		vbox.i = i;
 		vbox.anchor.x = vbox.anchor.y = 0.5;
 		world.vArray.push(vbox); //将视图物体加入数组和物理实体进行绑定
+		pball.v=vbox;
 	}
 	return pball;
 }
@@ -414,6 +449,7 @@ function createBoxObject(options, container) {
 		vbox.scale.x = theOption.scaleX;
 		vbox.scale.y = theOption.scaleY;
 		world.vArray.push(vbox); //将视图物体加入数组和物理实体进行绑定
+		pbox.v=vbox;
 	} else {
 		var vbox = new PIXI.Sprite();
 		var graphics = new PIXI.Graphics();
@@ -427,6 +463,7 @@ function createBoxObject(options, container) {
 		vbox.i = i;
 		vbox.anchor.x = vbox.anchor.y = 0.5;
 		world.vArray.push(vbox); //将视图物体加入数组和物理实体进行绑定
+		pbox.v=vbox;
 	}
 	return pbox;
 }
@@ -521,9 +558,9 @@ function update() {
 	}
 
 	if(touchObject.mouseJoint) {
-		if(touchObject.isBegin)
+		if(touchObject.isBegin){
 			touchObject.mouseJoint.SetTarget(new Box2D.Common.Math.b2Vec2(touchObject.touchX, touchObject.touchY));
-		else {
+		}else {
 			world.pWorld.DestroyJoint(touchObject.mouseJoint);
 			touchObject.mouseJoint = null;
 		}
@@ -594,9 +631,12 @@ world.deleteObj = function(obj) {
 	}
 	world.pWorld.DestroyBody(obj);
 	var index = world.pArray.getIndex(obj);
-	world.vWorld.removeChild(world.vArray[index]);
-	world.vArray.remove(index);
-	world.pArray.remove(index);
+	if(index>-1){
+		world.vWorld.removeChild(world.vArray[index]);
+		world.vArray.remove(index);
+		world.pArray.remove(index);
+	}
+	
 }
 
 //设置锁链链接
@@ -638,3 +678,20 @@ function createMovieClip(options) {
 	movieObj.scale.set(theOption.scale);
 	return movieObj;
 }
+
+function clearAllGameThings(){
+	while(world.pWorld.GetBodyList()){
+		var obj=world.pWorld.GetBodyList();
+		world.deleteObj(obj);
+	}
+	world.vWorld.removeChildren(0,world.vWorld.children.length);
+}
+
+$.fn.extend({
+    animateCss: function (animationName) {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        this.addClass('animated ' + animationName).one(animationEnd, function() {
+            $(this).removeClass('animated ' + animationName);
+        });
+    }
+});

@@ -1,0 +1,108 @@
+
+{"frames": {
+"starDisappear0.png":
+{
+	"frame": {"x":2,"y":2,"w":92,"h":104},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":19,"y":13,"w":92,"h":104},
+    "sourceSize": {"w":130,"h":130}
+},
+"starDisappear1.png":
+{
+	"frame": {"x":7,"y":120,"w":130,"h":130},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":0,"w":130,"h":130},
+    "sourceSize": {"w":130,"h":130}
+},
+"starDisappear2.png":
+{
+	"frame": {"x":0,"y":262,"w":90,"h":94},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":20,"y":18,"w":90,"h":94},
+    "sourceSize": {"w":130,"h":130}
+},
+"starDisappear3.png":
+{
+	"frame": {"x":0,"y":368,"w":130,"h":130},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":0,"w":130,"h":130},
+    "sourceSize": {"w":130,"h":130}
+},
+"starDisappear4.png":
+{
+	"frame": {"x":140,"y":10,"w":160,"h":190},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":0,"w":160,"h":190},
+    "sourceSize": {"w":160,"h":190}
+},
+"starDisappear5.png":
+{
+	"frame": {"x":141,"y":192,"w":125,"h":145},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":0,"w":125,"h":145},
+    "sourceSize": {"w":125,"h":145}
+},
+"starDisappear6.png":
+{
+	"frame": {"x":151,"y":345,"w":117,"h":117},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":0,"w":117,"h":117},
+    "sourceSize": {"w":117,"h":117}
+},
+"starDisappear7.png":
+{
+	"frame": {"x":151,"y":487,"w":103,"h":100},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":0,"w":103,"h":100},
+    "sourceSize": {"w":103,"h":100}
+},
+"starDisappear8.png":
+{
+	"frame": {"x":298,"y":0,"w":97,"h":95},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":0,"w":97,"h":95},
+    "sourceSize": {"w":97,"h":95}
+},
+"starDisappear9.png":
+{
+	"frame": {"x":294,"y":94,"w":90,"h":90},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":0,"w":90,"h":90},
+    "sourceSize": {"w":90,"h":90}
+},
+"starDisappear10.png":
+{
+	"frame": {"x":294,"y":181,"w":90,"h":90},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":0,"w":90,"h":90},
+    "sourceSize": {"w":90,"h":90}
+},
+"starDisappear11.png":
+{
+	"frame": {"x":300,"y":300,"w":1,"h":1},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":0,"w":1,"h":1},
+    "sourceSize": {"w":1,"h":1}
+}},
+"meta": {
+    "app": "",
+    "version": "1.0",
+    "image": "obj_star_disappear.png",
+    "format": "RGBA8888",
+    "size": {"w":256,"h":512},
+    "scale": "1",
+    "smartupdate": "$TexturePacker:SmartUpdate:2f213a6b451f9f5719773418dfe80ae8$"
+}
+}
