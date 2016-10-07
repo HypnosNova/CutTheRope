@@ -16,6 +16,8 @@ function createStartPage() {
 	})
 
 	startBtn.touchDown = function() {
+		ion.sound.play("tap");
+		ion.sound.play("menu_music",{loop:true});
 		startBtn.v.texture = PIXI.Texture.fromImage('../assets/startBtn2.png')
 	}
 	startBtn.touchEnd = function() {
@@ -36,6 +38,8 @@ function createStartPage() {
 function makeGameScene() {
 	createStartPage();
 	$("#backImg").bind("click", function() {
+		ion.sound.play("tap");
+		ion.sound.stop("menu_music");
 		$(".swiper-container").hide();
 		createStartPage();
 	})
@@ -52,6 +56,8 @@ function startLevel(index) {
 	coverClose();
 	setTimeout(function() {
 		levelScript[index]();
+		ion.sound.stop("menu_music");
+		ion.sound.play("game_music",{loop:true});
 		setTimeout(function() {
 			coverOpen();
 			setTimeout(function() {

@@ -21,6 +21,14 @@ ion.sound({
 		name:"openMouth"
 	},{
 		name:"closeMouth"
+	},{
+		name:"win"
+	},{
+		name:"tap"
+	},{
+		name:"menu_music"
+	},{
+		name:"game_music"
 	}],
 	volume: 1,
 	path: "../media/",

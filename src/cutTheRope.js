@@ -27,6 +27,7 @@ function winOrLost() {
 			coverClose();
 			setTimeout(function() {
 				$(".scoreContainer").show();
+				ion.sound.play("win");
 				for(var i = 0; i < starsGet; i++) {
 					var img = document.createElement("img");
 					img.src = "../assets/star.png";

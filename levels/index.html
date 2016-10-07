@@ -90,6 +90,9 @@
 			"left": engine_static.worldWidth / 20 + "px",
 			"bottom": engine_static.worldWidth / 20 + "px",
 		});
+		$(".swiper-button-next,.swiper-button-prev").bind("click",function(){
+			ion.sound.play("tap");
+		})
 		$(".coverDown2,.coverUp2").css({
 			"width": engine_static.worldWidth + "px"
 		});
@@ -104,13 +107,17 @@
 		$(".column").css("font-size", ($(".column").width() * 0.4 + 2) + "px");
 		$(".swiper-container").hide();
 		$(".column").bind("click", function(e) {
+			ion.sound.play("tap");
 			startLevel(parseInt($(e.target).text()) - 1);
 		});
 
 		$("#menuBtn").bind("click", function() {
+			ion.sound.play("tap");
 			$(".scoreContainer").fadeOut(500);
 			setTimeout(function() {
 				coverOpen();
+				ion.sound.play("menu_music",{loop:true});
+				ion.sound.stop("game_music");
 				clearAllGameThings();
 				inLevel = false;
 				var bg = new PIXI.Sprite(PIXI.Texture.fromFrame("../assets/levelSelect.jpg"));
@@ -165,6 +172,7 @@
 				$("#loadingTextS").remove();
 				$(".swiper-container").hide();
 				$(".swiper-container").css("visibility","visible");
+				ion.sound.play("menu_music");
 			}
 		}
 		
