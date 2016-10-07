@@ -1,4 +1,6 @@
-function makeGameScene2() {
+function makeGameScene() {
+	gameResult=1;
+	inLevel=true;
 	var bg = new PIXI.Sprite(PIXI.Texture.fromFrame("../assets/bg.jpg"));
 	world.vWorld.addChild(bg);
 	bg.anchor.x = bg.anchor.y = 0;
@@ -13,23 +15,16 @@ function makeGameScene2() {
 			y: 0
 		}
 	});
-//	//down
-//	createBoxObject({
-//		position: {
-//			x: engine_static.worldWidth / 2,
-//			y: engine_static.worldHeight + 1
-//		},
-//		width: engine_static.worldWidth,
-//		height: 1,
-//		isStatic: true,
-//		friction: 0.8,
-//		restitution: 0.5,
-//	});
 
-	var dz1 = createBallObject({
-		position: {
-			x: engine_static.worldWidth * 0.20,
+	var dz1 = createDZ({
+			x: engine_static.worldWidth * 0.50,
 			y: engine_static.worldHeight * 0.15
+		});
+
+	var dz2 = createBallObject({
+		position: {
+			x: engine_static.worldWidth * 0.1,
+			y: engine_static.worldHeight * 0.4
 		},
 		texture: "../assets/fix.png",
 		radius: 1,
@@ -40,11 +35,26 @@ function makeGameScene2() {
 			other: 0
 		}
 	});
-
-	var dz2 = createBallObject({
+	
+	var dz3 = createBallObject({
 		position: {
-			x: engine_static.worldWidth * 0.8,
-			y: engine_static.worldHeight * 0.15
+			x: engine_static.worldWidth * 0.5,
+			y: engine_static.worldHeight * 0.65
+		},
+		texture: "../assets/fix.png",
+		radius: 1,
+		height: 1,
+		isStatic: true,
+		touchFilter: {
+			self: 0,
+			other: 0
+		}
+	});
+	
+	var dz4 = createBallObject({
+		position: {
+			x: engine_static.worldWidth * 0.9,
+			y: engine_static.worldHeight * 0.4
 		},
 		texture: "../assets/fix.png",
 		radius: 1,
@@ -57,20 +67,20 @@ function makeGameScene2() {
 	});
 
 	stars = createStars([{
-		x: engine_static.worldWidth / 2,
-		y: engine_static.worldHeight / 2
+		x: engine_static.worldWidth *0.5,
+		y: engine_static.worldHeight *0.55
 	}, {
-		x: engine_static.worldWidth / 2,
-		y: engine_static.worldHeight / 2 + 70
+		x: engine_static.worldWidth *0.1,
+		y: engine_static.worldHeight *0.65 
 	}, {
-		x: engine_static.worldWidth / 2,
-		y: engine_static.worldHeight / 2 + 140
+		x: engine_static.worldWidth * 0.5,
+		y: engine_static.worldHeight *0.9
 	}])
 
 	sweets[0] = createBallObject({
 		position: {
-			x: engine_static.worldWidth / 2,
-			y: engine_static.worldHeight * 0.335
+			x: engine_static.worldWidth *0.5,
+			y: engine_static.worldHeight * 0.4
 		},
 		texture: "../assets/sweet.png",
 		radius: 25,
@@ -97,38 +107,32 @@ function makeGameScene2() {
 			container: airBuoyan,
 			ropeId: 0
 		}, [{
-			x: engine_static.worldWidth * 0.20 + engine_static.worldWidth * 0.025,
-			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.015
+			x: engine_static.worldWidth * 0.50 ,
+			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.025
 		}, {
-			x: engine_static.worldWidth * 0.20 + engine_static.worldWidth * 0.05,
-			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.03
-		}, {
-			x: engine_static.worldWidth * 0.20 + engine_static.worldWidth * 0.075,
-			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.045
-		}, {
-			x: engine_static.worldWidth * 0.20 + engine_static.worldWidth * 0.10,
-			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.06
-		}, {
-			x: engine_static.worldWidth * 0.20 + engine_static.worldWidth * 0.125,
+			x: engine_static.worldWidth * 0.50 ,
+			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.05
+		},{
+			x: engine_static.worldWidth * 0.50 ,
 			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.075
 		}, {
-			x: engine_static.worldWidth * 0.20 + engine_static.worldWidth * 0.15,
-			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.09
+			x: engine_static.worldWidth * 0.50 ,
+			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.1
+		},{
+			x: engine_static.worldWidth * 0.50 ,
+			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.125
 		}, {
-			x: engine_static.worldWidth * 0.20 + engine_static.worldWidth * 0.175,
-			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.105
-		}, {
-			x: engine_static.worldWidth * 0.20 + engine_static.worldWidth * 0.20,
-			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.12
-		}, {
-			x: engine_static.worldWidth * 0.20 + engine_static.worldWidth * 0.225,
-			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.135
-		}, {
-			x: engine_static.worldWidth * 0.20 + engine_static.worldWidth * 0.25,
+			x: engine_static.worldWidth * 0.50 ,
 			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.15
+		},{
+			x: engine_static.worldWidth * 0.50 ,
+			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.175
 		}, {
-			x: engine_static.worldWidth * 0.20 + engine_static.worldWidth * 0.275,
-			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.165
+			x: engine_static.worldWidth * 0.50 ,
+			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.2
+		},{
+			x: engine_static.worldWidth * 0.50 ,
+			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.225
 		}], dz1, sweets[0]),
 		v: new PIXI.Graphics()
 	};
@@ -140,15 +144,15 @@ function makeGameScene2() {
 		scaleX: 1.1,
 		scaleY: 1.1,
 		position: {
-			x: engine_static.worldWidth / 2,
-			y: engine_static.worldHeight - 105
+			x: engine_static.worldWidth *0.8,
+			y: engine_static.worldHeight *0.75
 		},
 		width:180,
 		height:180
 	})
 	eaters = createEaters([{
-		x: engine_static.worldWidth / 2,
-		y: engine_static.worldHeight - 125,
+		x: engine_static.worldWidth *0.8,
+		y: engine_static.worldHeight *0.75-20,
 		hasEaten: 1,
 		container: airBuoyan
 	}]);
@@ -157,7 +161,7 @@ function makeGameScene2() {
 			radius: 2,
 			width: 2,
 			height: 2,
-			density: 10,
+			density: 15,
 			name: "chain",
 			touchFilter: {
 				self: 16,
@@ -166,42 +170,161 @@ function makeGameScene2() {
 			container: airBuoyan,
 			ropeId: 1
 		}, [{
-			x: engine_static.worldWidth * 0.80 - engine_static.worldWidth * 0.025,
-			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.015
-		}, {
-			x: engine_static.worldWidth * 0.80 - engine_static.worldWidth * 0.05,
-			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.03
-		}, {
-			x: engine_static.worldWidth * 0.80 - engine_static.worldWidth * 0.075,
-			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.045
-		}, {
-			x: engine_static.worldWidth * 0.80 - engine_static.worldWidth * 0.10,
-			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.06
-		}, {
-			x: engine_static.worldWidth * 0.80 - engine_static.worldWidth * 0.125,
-			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.075
-		}, {
-			x: engine_static.worldWidth * 0.80 - engine_static.worldWidth * 0.15,
-			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.09
-		}, {
-			x: engine_static.worldWidth * 0.80 - engine_static.worldWidth * 0.175,
-			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.105
-		}, {
-			x: engine_static.worldWidth * 0.80 - engine_static.worldWidth * 0.20,
-			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.12
-		}, {
-			x: engine_static.worldWidth * 0.80 - engine_static.worldWidth * 0.225,
-			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.135
-		}, {
-			x: engine_static.worldWidth * 0.80 - engine_static.worldWidth * 0.25,
-			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.15
-		}, {
-			x: engine_static.worldWidth * 0.80 - engine_static.worldWidth * 0.275,
-			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.165
+			x: engine_static.worldWidth * 0.10 + engine_static.worldWidth * 0.025,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.10 + engine_static.worldWidth * 0.05,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.10 + engine_static.worldWidth * 0.075,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.10 + engine_static.worldWidth * 0.1,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.10 + engine_static.worldWidth * 0.125,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.10 + engine_static.worldWidth * 0.15,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.10 + engine_static.worldWidth * 0.175,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.10 + engine_static.worldWidth * 0.2,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.10 + engine_static.worldWidth * 0.225,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.10 + engine_static.worldWidth * 0.25,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.10 + engine_static.worldWidth * 0.275,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.10 + engine_static.worldWidth * 0.3,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.10 + engine_static.worldWidth * 0.325,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.10 + engine_static.worldWidth * 0.35,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.10 + engine_static.worldWidth * 0.375,
+			y: engine_static.worldHeight * 0.4
 		}], dz2, sweets[0]),
 		v: new PIXI.Graphics()
 	};
-	world.vWorld.addChild(ropes[1].v)
+	world.vWorld.addChild(ropes[1].v);
+	ropes[2] = {
+		p: setChainJoint({
+			radius: 2,
+			width: 2,
+			height: 2,
+			density: 20,
+			name: "chain",
+			touchFilter: {
+				self: 16,
+				other: 9
+			},
+			container: airBuoyan,
+			ropeId: 2
+		}, [{
+			x: engine_static.worldWidth * 0.50 ,
+			y: engine_static.worldHeight * 0.65 - engine_static.worldHeight * 0.025
+		}, {
+			x: engine_static.worldWidth * 0.50 ,
+			y: engine_static.worldHeight * 0.65 - engine_static.worldHeight * 0.05
+		},{
+			x: engine_static.worldWidth * 0.50 ,
+			y: engine_static.worldHeight * 0.65 - engine_static.worldHeight * 0.075
+		}, {
+			x: engine_static.worldWidth * 0.50 ,
+			y: engine_static.worldHeight * 0.65 - engine_static.worldHeight * 0.1
+		},{
+			x: engine_static.worldWidth * 0.50 ,
+			y: engine_static.worldHeight * 0.65 - engine_static.worldHeight * 0.125
+		}, {
+			x: engine_static.worldWidth * 0.50 ,
+			y: engine_static.worldHeight * 0.65 - engine_static.worldHeight * 0.15
+		},{
+			x: engine_static.worldWidth * 0.50 ,
+			y: engine_static.worldHeight * 0.65 - engine_static.worldHeight * 0.175
+		}, {
+			x: engine_static.worldWidth * 0.50 ,
+			y: engine_static.worldHeight * 0.65 - engine_static.worldHeight * 0.2
+		},{
+			x: engine_static.worldWidth * 0.50 ,
+			y: engine_static.worldHeight * 0.65 - engine_static.worldHeight * 0.225
+		}], dz3, sweets[0]),
+		v: new PIXI.Graphics()
+	};
+	world.vWorld.addChild(ropes[2].v);
+	
+	ropes[3] = {
+		p: setChainJoint({
+			radius: 2,
+			width: 2,
+			height: 2,
+			density: 15,
+			name: "chain",
+			touchFilter: {
+				self: 16,
+				other: 9
+			},
+			container: airBuoyan,
+			ropeId: 3
+		}, [{
+			x: engine_static.worldWidth * 0.90 - engine_static.worldWidth * 0.025,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.90 - engine_static.worldWidth * 0.05,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.90 - engine_static.worldWidth * 0.075,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.90 - engine_static.worldWidth * 0.1,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.90 - engine_static.worldWidth * 0.125,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.90 - engine_static.worldWidth * 0.15,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.90 - engine_static.worldWidth * 0.175,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.90 - engine_static.worldWidth * 0.2,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.90 - engine_static.worldWidth * 0.225,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.90 - engine_static.worldWidth * 0.25,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.90- engine_static.worldWidth * 0.275,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.90 - engine_static.worldWidth * 0.3,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.90 - engine_static.worldWidth * 0.325,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.90 - engine_static.worldWidth * 0.35,
+			y: engine_static.worldHeight * 0.4
+		},{
+			x: engine_static.worldWidth * 0.90 - engine_static.worldWidth * 0.375,
+			y: engine_static.worldHeight * 0.4
+		}], dz4, sweets[0]),
+		v: new PIXI.Graphics()
+	};
+	world.vWorld.addChild(ropes[3].v);
 	touchObject.createTouchListen()
 	update();
 }

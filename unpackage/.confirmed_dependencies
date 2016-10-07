@@ -193,7 +193,15 @@
 			"assets/backBtn2.png",
 			"assets/levelBg.png",
 			"assets/coverCard2.jpg",
-			"css/style.css"
+			"css/style.css",
+			"media/menu_music.mp3",
+			"media/tap.mp3",
+			"assets/menuBtn.png",
+			"css/animate.min.css",
+			"assets/replayBtn.png",
+			"media/game_music.mp3",
+			"assets/nextlevelBtn.png",
+			"media/win.mp3"
 		],
 		"refer": []
 	}

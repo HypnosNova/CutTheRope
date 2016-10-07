@@ -8,10 +8,24 @@
 		<link rel="stylesheet" type="text/css" href="../css/animate.min.css" />
 		<link rel="stylesheet" type="text/css" href="../lib/swiper/swiper.min.css" />
 		<link rel="stylesheet" type="text/css" href="../css/style.css" />
-		<script src="../lib/jquery-2.1.0.js"></script>
+		
 	</head>
 
 	<body>
+		<script src="../lib/jquery-2.1.0.js"></script>
+		<script src="../lib/swiper/swiper.min.js"></script>
+		<script src="../src/utils/structure.js"></script>
+		<script src="../src/utils/MathUtil.js"></script>
+		<script src="../lib/ion.sound.min.js"></script>
+		<script src="../src/sound.js"></script>
+		<script src="../lib/Box2D.js"></script>
+		<script src="../lib/pixi.min.js"></script>
+		<script src="../lib/Stats.js"></script>
+		<script src="../src/utils/engineUtil.js"></script>
+		<script src="../src/cutTheRope.js"></script>
+		<script src="js/index.js"></script>
+		<script src="js/levels.js"></script>
+		<script src="../src/init.js"></script>
 		<p id="loadingText"></p>
 		<script id="loadingTextS">
 			$("#loadingText").css("width", (window.innerHeight / 16 * 9) + "px").text("LOADING...");
@@ -65,19 +79,6 @@
 				<img id="nextlevelBtn" class="actionBtn" src="../assets/nextlevelBtn.png" />
 			</div>
 		</div>
-		<script src="../lib/swiper/swiper.min.js"></script>
-		<script src="../src/utils/structure.js"></script>
-		<script src="../src/utils/MathUtil.js"></script>
-		<script src="../lib/ion.sound.min.js"></script>
-		<script src="../src/sound.js"></script>
-		<script src="../lib/Box2D.js"></script>
-		<script src="../lib/pixi.min.js"></script>
-		<script src="../lib/Stats.js"></script>
-		<script src="../src/utils/engineUtil.js"></script>
-		<script src="../src/cutTheRope.js"></script>
-		<script src="js/index.js"></script>
-		<script src="js/levels.js"></script>
-		<script src="../src/init.js"></script>
 	</body>
 	<script>
 		$(".coverDown2").css("height", (engine_static.worldHeight / 2) + "px");

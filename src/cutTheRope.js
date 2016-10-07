@@ -32,7 +32,7 @@ function winOrLost() {
 					var img = document.createElement("img");
 					img.src = "../assets/star.png";
 					img.style.visibility = "hidden";
-					img.classList = "starImg";
+					$(img).addClass("starImg")
 					$(".starContainer").append(img);
 					(function(i) {
 						setTimeout(function() {
@@ -326,6 +326,23 @@ function createStars(arr) {
 		stars[i].gotoAndPlay(MathUtil.rndIntRange(0, 18));
 	}
 	return stars;
+}
+
+function createDZ(p){
+	return createBallObject({
+		position: {
+			x: p.x,
+			y: p.y
+		},
+		texture: "../assets/fix.png",
+		radius: 1,
+		height: 1,
+		isStatic: true,
+		touchFilter: {
+			self: 0,
+			other: 0
+		}
+	})
 }
 
 function createEaters(arr) {
