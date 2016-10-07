@@ -7,7 +7,7 @@ function createStartPage() {
 	var startBtn = createBallObject({
 		position: {
 			x: engine_static.worldWidth / 2,
-			y: engine_static.worldHeight / 2 + 100,
+			y: engine_static.worldHeight *0.67,
 		},
 		radius: 50,
 		texture: "../assets/startBtn.png",

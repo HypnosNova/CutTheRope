@@ -4,13 +4,18 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-		<title>Sweet</title>
+		<title>CutTheRope</title>
 		<link rel="stylesheet" type="text/css" href="../css/animate.min.css" />
 		<link rel="stylesheet" type="text/css" href="../lib/swiper/swiper.min.css" />
 		<link rel="stylesheet" type="text/css" href="../css/style.css" />
+		<script src="../lib/jquery-2.1.0.js"></script>
 	</head>
 
 	<body>
+		<p id="loadingText"></p>
+		<script id="loadingTextS">
+			$("#loadingText").css("width", (window.innerHeight / 16 * 9) + "px").text("LOADING...");
+		</script>
 		<div class="swiper-container">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide">
@@ -60,7 +65,6 @@
 				<img id="nextlevelBtn" class="actionBtn" src="../assets/nextlevelBtn.png" />
 			</div>
 		</div>
-		<script src="../lib/jquery-2.1.0.js"></script>
 		<script src="../lib/swiper/swiper.min.js"></script>
 		<script src="../src/utils/structure.js"></script>
 		<script src="../src/utils/MathUtil.js"></script>
@@ -153,6 +157,17 @@
 				}, 100)
 			}, 500)
 		})
+		var isDomLoaded=false;
+		document.onreadystatechange = function() {
+			if(document.readyState == "complete") {
+				isDomLoaded=true;
+				$("#loadingText").remove();
+				$("#loadingTextS").remove();
+				$(".swiper-container").hide();
+				$(".swiper-container").css("visibility","visible");
+			}
+		}
+		
 	</script>
 
 </html>

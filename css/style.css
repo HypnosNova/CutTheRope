@@ -3,6 +3,20 @@ body {
 	position: relative;
 	height: 100%;
 	background: #000;
+	background-image: url(../assets/mainbg.jpg);
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+}
+
+#loadingText {
+	position: fixed;
+	top: 60%;
+	color: white;
+	text-shadow: 0 0 15px #000;
+	font-size: 42px;
+	text-align: center;
+	font-family: "微软雅黑";
+	 font-weight: bold;
 }
 
 * {
@@ -23,9 +37,10 @@ body {
 	height: 100%;
 	left: 0;
 	margin-left: 0;
+	visibility: hidden;
 }
 
-.scoreContainer{
+.scoreContainer {
 	left: 0;
 	top: 0;
 	position: fixed;
@@ -33,19 +48,19 @@ body {
 	z-index: 70;
 }
 
-.btnContainer{
+.btnContainer {
 	position: absolute;
 	top: 55%;
 	text-align: center;
 	width: 100%;
 }
 
-.actionBtn{
+.actionBtn {
 	width: 20%;
 	margin: 0 2%;
 }
 
-.starContainer{
+.starContainer {
 	position: absolute;
 	top: 20%;
 	text-align: center;
@@ -248,7 +263,7 @@ canvas {
 }
 
 .coverDown2 {
-		position: fixed;
+	position: fixed;
 	left: 0;
 	height: 50%;
 	z-index: 60;
