@@ -7,15 +7,31 @@ levelScript[0]=function(){
 	gameResult=1;
 	var airBuoyan = addBuoyancy({
 		position: 0,
-		density: 0.01,
-		angularDrag: 0.2,
-		linearDrag: 0.2,
+		density: 12,
+		angularDrag: 0.02,
+		linearDrag: 0.02,
 		velocity: {
 			x: 0,
 			y: 0
 		}
 	});
-
+	createMagicBox({
+		texture: "../assets/chair.png",
+		scaleX: 1.1,
+		scaleY: 1.1,
+		position: {
+			x: engine_static.worldWidth / 2,
+			y: engine_static.worldHeight - 105
+		},
+		width:180,
+		height:180
+	});
+	eaters = createEaters([{
+		x: engine_static.worldWidth / 2,
+		y: engine_static.worldHeight - 125,
+		hasEaten: 1,
+		container: airBuoyan
+	}]);
 	var dz = createBallObject({
 		position: {
 			x: engine_static.worldWidth / 2,
@@ -56,14 +72,14 @@ levelScript[0]=function(){
 		},
 		restitution: 0.7,
 		name: "sweet"
-	}, airBuoyan);
+	});
 
 	ropes[0] = {
 		p: setChainJoint({
 			radius: 2,
 			width: 2,
 			height: 2,
-			density: 10,
+			density: 30,
 			name: "chain",
 			touchFilter: {
 				self: 16,
@@ -119,6 +135,25 @@ levelScript[0]=function(){
 
 	world.vWorld.addChild(ropes[0].v)
 
+}
+
+levelScript[1]=function(){
+	var bg = new PIXI.Sprite(PIXI.Texture.fromFrame("../assets/bg.jpg"));
+	world.vWorld.addChild(bg);
+	bg.anchor.x = bg.anchor.y = 0;
+	bg.scale.x = bg.scale.y = engine_static.worldHeight / 1024;
+	gameResult=1;
+	var airBuoyan = addBuoyancy({
+		position: 0,
+		density: 12,
+		angularDrag: 0.02,
+		linearDrag: 0.02,
+		velocity: {
+			x: 0,
+			y: 0
+		}
+	});
+
 	createMagicBox({
 		texture: "../assets/chair.png",
 		scaleX: 1.1,
@@ -136,27 +171,6 @@ levelScript[0]=function(){
 		hasEaten: 1,
 		container: airBuoyan
 	}]);
-	//touchObject.createTouchListen();
-	//update();
-}
-
-levelScript[1]=function(){
-	var bg = new PIXI.Sprite(PIXI.Texture.fromFrame("../assets/bg.jpg"));
-	world.vWorld.addChild(bg);
-	bg.anchor.x = bg.anchor.y = 0;
-	bg.scale.x = bg.scale.y = engine_static.worldHeight / 1024;
-	gameResult=1;
-	var airBuoyan = addBuoyancy({
-		position: 0,
-		density: 0.01,
-		angularDrag: 0.2,
-		linearDrag: 0.2,
-		velocity: {
-			x: 0,
-			y: 0
-		}
-	});
-
 	var dz1 = createBallObject({
 		position: {
 			x: engine_static.worldWidth * 0.20,
@@ -212,14 +226,14 @@ levelScript[1]=function(){
 		},
 		restitution: 0.7,
 		name: "sweet"
-	}, airBuoyan);
+	});
 
 	ropes[0] = {
 		p: setChainJoint({
 			radius: 2,
 			width: 2,
 			height: 2,
-			density: 10,
+			density: 30,
 			name: "chain",
 			touchFilter: {
 				self: 16,
@@ -265,30 +279,12 @@ levelScript[1]=function(){
 	};
 	world.vWorld.addChild(ropes[0].v)
 
-	/**/
-	createMagicBox({
-		texture: "../assets/chair.png",
-		scaleX: 1.1,
-		scaleY: 1.1,
-		position: {
-			x: engine_static.worldWidth / 2,
-			y: engine_static.worldHeight - 105
-		},
-		width:180,
-		height:180
-	})
-	eaters = createEaters([{
-		x: engine_static.worldWidth / 2,
-		y: engine_static.worldHeight - 125,
-		hasEaten: 1,
-		container: airBuoyan
-	}]);
 	ropes[1] = {
 		p: setChainJoint({
 			radius: 2,
 			width: 2,
 			height: 2,
-			density: 10,
+			density: 30,
 			name: "chain",
 			touchFilter: {
 				self: 16,
@@ -332,9 +328,7 @@ levelScript[1]=function(){
 		}], dz2, sweets[0]),
 		v: new PIXI.Graphics()
 	};
-	world.vWorld.addChild(ropes[1].v)
-	//touchObject.createTouchListen()
-	//update();
+	world.vWorld.addChild(ropes[1].v);
 }
 
 levelScript[2]=function(){
@@ -346,7 +340,7 @@ levelScript[2]=function(){
 	bg.scale.x = bg.scale.y = engine_static.worldHeight / 1024;
 	var airBuoyan = addBuoyancy({
 		position: 0,
-		density: 0.01,
+		density: 12,
 		angularDrag: 0.2,
 		linearDrag: 0.2,
 		velocity: {
@@ -355,6 +349,23 @@ levelScript[2]=function(){
 		}
 	});
 
+	createMagicBox({
+		texture: "../assets/chair.png",
+		scaleX: 1.1,
+		scaleY: 1.1,
+		position: {
+			x: engine_static.worldWidth *0.8,
+			y: engine_static.worldHeight *0.90
+		},
+		width:180,
+		height:180
+	});
+	eaters = createEaters([{
+		x: engine_static.worldWidth *0.8,
+		y: engine_static.worldHeight *0.90-20,
+		hasEaten: 1,
+		container: airBuoyan
+	}]);
 	var dz1 = createBallObject({
 		position: {
 			x: engine_static.worldWidth * 0.20,
@@ -425,14 +436,14 @@ levelScript[2]=function(){
 		},
 		restitution: 0.7,
 		name: "sweet"
-	}, airBuoyan);
+	});
 
 	ropes[0] = {
 		p: setChainJoint({
 			radius: 2,
 			width: 2,
 			height: 2,
-			density: 10,
+			density: 30,
 			name: "chain",
 			touchFilter: {
 				self: 16,
@@ -472,30 +483,12 @@ levelScript[2]=function(){
 	};
 	world.vWorld.addChild(ropes[0].v)
 
-	/**/
-	createMagicBox({
-		texture: "../assets/chair.png",
-		scaleX: 1.1,
-		scaleY: 1.1,
-		position: {
-			x: engine_static.worldWidth *0.8,
-			y: engine_static.worldHeight *0.90
-		},
-		width:180,
-		height:180
-	})
-	eaters = createEaters([{
-		x: engine_static.worldWidth *0.8,
-		y: engine_static.worldHeight *0.90-20,
-		hasEaten: 1,
-		container: airBuoyan
-	}]);
 	ropes[1] = {
 		p: setChainJoint({
 			radius: 2,
 			width: 2,
 			height: 2,
-			density: 15,
+			density: 30,
 			name: "chain",
 			touchFilter: {
 				self: 16,
@@ -557,7 +550,7 @@ levelScript[2]=function(){
 			radius: 2,
 			width: 2,
 			height: 2,
-			density: 20,
+			density: 30,
 			name: "chain",
 			touchFilter: {
 				self: 16,
@@ -661,7 +654,7 @@ levelScript[3]= function() {
 	bg.scale.x = bg.scale.y = engine_static.worldHeight / 1024;
 	var airBuoyan = addBuoyancy({
 		position: 0,
-		density: 0.01,
+		density: 12,
 		angularDrag: 0.2,
 		linearDrag: 0.2,
 		velocity: {
@@ -669,7 +662,23 @@ levelScript[3]= function() {
 			y: 0
 		}
 	});
-
+	createMagicBox({
+		texture: "../assets/chair.png",
+		scaleX: 1.1,
+		scaleY: 1.1,
+		position: {
+			x: engine_static.worldWidth *0.8,
+			y: engine_static.worldHeight *0.75
+		},
+		width:180,
+		height:180
+	})
+	eaters = createEaters([{
+		x: engine_static.worldWidth *0.8,
+		y: engine_static.worldHeight *0.75-20,
+		hasEaten: 1,
+		container: airBuoyan
+	}]);
 	var dz1 = createDZ({
 			x: engine_static.worldWidth * 0.50,
 			y: engine_static.worldHeight * 0.15
@@ -745,14 +754,14 @@ levelScript[3]= function() {
 		},
 		restitution: 0.7,
 		name: "sweet"
-	}, airBuoyan);
+	});
 
 	ropes[0] = {
 		p: setChainJoint({
 			radius: 2,
 			width: 2,
 			height: 2,
-			density: 10,
+			density: 30,
 			name: "chain",
 			touchFilter: {
 				self: 16,
@@ -791,31 +800,13 @@ levelScript[3]= function() {
 		v: new PIXI.Graphics()
 	};
 	world.vWorld.addChild(ropes[0].v)
-
-	/**/
-	createMagicBox({
-		texture: "../assets/chair.png",
-		scaleX: 1.1,
-		scaleY: 1.1,
-		position: {
-			x: engine_static.worldWidth *0.8,
-			y: engine_static.worldHeight *0.75
-		},
-		width:180,
-		height:180
-	})
-	eaters = createEaters([{
-		x: engine_static.worldWidth *0.8,
-		y: engine_static.worldHeight *0.75-20,
-		hasEaten: 1,
-		container: airBuoyan
-	}]);
+	
 	ropes[1] = {
 		p: setChainJoint({
 			radius: 2,
 			width: 2,
 			height: 2,
-			density: 15,
+			density: 30,
 			name: "chain",
 			touchFilter: {
 				self: 16,
@@ -877,7 +868,7 @@ levelScript[3]= function() {
 			radius: 2,
 			width: 2,
 			height: 2,
-			density: 20,
+			density: 30,
 			name: "chain",
 			touchFilter: {
 				self: 16,
@@ -922,7 +913,7 @@ levelScript[3]= function() {
 			radius: 2,
 			width: 2,
 			height: 2,
-			density: 15,
+			density: 30,
 			name: "chain",
 			touchFilter: {
 				self: 16,

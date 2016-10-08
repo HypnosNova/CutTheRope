@@ -1,12 +1,14 @@
+var airBuoyan;
 function makeGameScene() {
+	inLevel = true;
 	var bg = new PIXI.Sprite(PIXI.Texture.fromFrame("../assets/bg.jpg"));
 	world.vWorld.addChild(bg);
 	bg.anchor.x = bg.anchor.y = 0;
 	bg.scale.x = bg.scale.y = engine_static.worldHeight / 1024;
 
-	var airBuoyan = addBuoyancy({
-		position: 0,
-		density: 0.01,
+	airBuoyan = addBuoyancy({
+		position: 1000,
+		density: 2,
 		angularDrag: 0.2,
 		linearDrag: 0.2,
 		velocity: {
@@ -41,6 +43,16 @@ function makeGameScene() {
 		y: engine_static.worldHeight / 2 + 140
 	}])
 
+	bubbles[0]=createMagicBall({
+		position: {
+			x: engine_static.worldWidth / 2,
+			y: engine_static.worldHeight / 2
+		},
+		radius:30,
+		color:0x00ff00,
+		name:"bubble"
+	})
+
 	sweets[0] = createBallObject({
 		position: {
 			x: engine_static.worldWidth / 2 + engine_static.worldWidth / 80 * 15,
@@ -55,14 +67,14 @@ function makeGameScene() {
 		},
 		restitution: 0.7,
 		name: "sweet"
-	}, airBuoyan);
+	});
 
 	ropes[0] = {
 		p: setChainJoint({
 			radius: 2,
 			width: 2,
 			height: 2,
-			density: 10,
+			density: 15,
 			name: "chain",
 			touchFilter: {
 				self: 16,
@@ -126,8 +138,8 @@ function makeGameScene() {
 			x: engine_static.worldWidth / 2,
 			y: engine_static.worldHeight - 105
 		},
-		width:180,
-		height:180
+		width: 180,
+		height: 180
 	})
 	eaters = createEaters([{
 		x: engine_static.worldWidth / 2,
@@ -139,5 +151,3 @@ function makeGameScene() {
 	touchObject.createTouchListen();
 	update();
 }
-
-

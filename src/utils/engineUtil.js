@@ -362,10 +362,11 @@ function createMagicBall(options, container) {
 		vball.addChild(graphics);
 		world.vWorld.addChild(vball);
 		vball.i = i;
-		vball.anchor.x = vbox.anchor.y = 0.5;
+		vball.anchor.x = vball.anchor.y = 0.5;
 		vball.position.x = theOption.position.x;
 		vball.position.y = theOption.position.y;
 	}
+	vball.name=theOption.name;
 	return vball;
 }
 
@@ -615,14 +616,22 @@ function addBuoyancy(options) {
 function setDistanceJoint(obj1, obj2) {
 	var distanceJointDef = new Box2D.Dynamics.Joints.b2DistanceJointDef();
 	distanceJointDef.Initialize(obj1, obj2, obj1.GetWorldCenter(), obj2.GetWorldCenter());
+//	distanceJointDef.dampingRatio = 1;
+	return world.pWorld.CreateJoint(distanceJointDef);
+}
+
+//设置距离链接
+function setDistanceJoint2(obj1, obj2) {
+	var distanceJointDef = new Box2D.Dynamics.Joints.b2LineJointDef();
+	distanceJointDef.Initialize(obj1, obj2, obj1.GetWorldCenter(), obj2.GetWorldCenter());
 	return world.pWorld.CreateJoint(distanceJointDef);
 }
 
 //设置焊接连接
-function createWeld(obj1, obj2) {
+function setWeldJoint(obj1, obj2) {
 	var weldJointDef = new Box2D.Dynamics.Joints.b2WeldJointDef();
 	weldJointDef.Initialize(obj1, obj2, obj1.GetWorldCenter());
-	return world.CreateJoint(weldJointDef);
+	return world.pWorld.CreateJoint(weldJointDef);
 };
 
 world.deleteObj = function(obj) {

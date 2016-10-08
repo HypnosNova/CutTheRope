@@ -7,6 +7,7 @@ function doSpecialAction() {
 	eatCandy();
 	lostSweet();
 	winOrLost();
+	sweetTouchBubble();
 }
 
 function doContactBegin(bodyA, bodyB) {
@@ -47,7 +48,7 @@ function winOrLost() {
 	} else if(gameResult == -1) {
 		gameResult = -2;
 		setTimeout(function() {
-			
+
 			$(".starContainer").empty();
 			$(".swiper-container").hide();
 			starsGet = 0;
@@ -192,6 +193,37 @@ function removeRope(ropeId) {
 
 }
 
+function sweetTouchBubble() {
+	for(var h = 0; h < sweets.length; h++) {
+		for(var i = 0; i < bubbles.length; i++) {
+			var position = {
+				x: 100 * sweets[h].GetPosition().x,
+				y: 100 * sweets[h].GetPosition().y
+			};
+			var distance = MathUtil.getDistanceFromTwoPoint(position, bubbles[i].position);
+			if(distance < 25) {
+				world.vWorld.removeChild(bubbles[i]);
+				bubbles.remove(i);
+				var pball = createBallObject({
+					position: {
+						x: position.x + 0,
+						y: position.y
+					},
+					texture: "../assets/bubble.png",
+					radius: 70,
+					name: "bubble",
+					density: 1.5,
+					touchFilter: {
+						self: 0,
+						other: 0
+					}
+				}, airBuoyan);
+				setWeldJoint(sweets[h], pball);
+			}
+		}
+	}
+}
+
 function sweetTouchStar() {
 	for(var h = 0; h < sweets.length; h++) {
 		for(var i = 0; i < stars.length; i++) {
@@ -205,7 +237,7 @@ function sweetTouchStar() {
 				world.vWorld.removeChild(stars[i].light);
 
 				world.vWorld.addChild(stars[i].disappear);
-				stars[i].disappear.gotoAndPlay(0)
+				stars[i].disappear.gotoAndPlay(0);
 				stars.remove(i);
 				starsGet++;
 				ion.sound.play("star_" + (3 - stars.length));
@@ -232,6 +264,7 @@ var sweet = {},
 	stars = [],
 	ropes = [],
 	sweets = [],
+	bubbles = [],
 	eaters = [];
 
 document.addEventListener("mouseup", function(event) {
@@ -328,7 +361,7 @@ function createStars(arr) {
 	return stars;
 }
 
-function createDZ(p){
+function createDZ(p) {
 	return createBallObject({
 		position: {
 			x: p.x,
