@@ -1,5 +1,6 @@
 var inLevel = false; //是否进入游戏关卡
 var starsGet = 0;
+var bubbleArray = [];
 
 function doSpecialAction() {
 	sweetTouchStar();
@@ -8,6 +9,16 @@ function doSpecialAction() {
 	lostSweet();
 	winOrLost();
 	sweetTouchBubble();
+	bubbleArrayRend();
+}
+
+function bubbleArrayRend() {
+	for(var i = 0; i < bubbleArray.length; i++) {
+		var v = bubbleArray[i].v.normalAction;
+		var p = bubbleArray[i];
+		v.position.x = p.GetPosition().x * 100;
+		v.position.y = p.GetPosition().y * 100;
+	}
 }
 
 function doContactBegin(bodyA, bodyB) {
@@ -101,6 +112,19 @@ function cutRope(bodyA, bodyB) {
 		var ropeId = chainBody.ropeId;
 		var ropePointId = ropes[ropeId].p.getIndex(chainBody);
 		ion.sound.play("cut");
+		
+		
+//		for(var i = 0; i < ropes[ropeId].p.length; i++) {
+//			if(ropes[ropeId].p[i].name == "chain") {
+//				var shape = ropes[ropeId].p[i].GetFixtureList().GetShape();
+//				shape.SetRadius(0.002);
+////				ropes[ropeId].p[i].SetAwake();
+////				ropes[ropeId].p[i].m_fixtureList.SetDensity(0.9);
+//				ropes[ropeId].p[i].ResetMassData();
+//			}
+//		}
+		
+		
 		if(ropePointId > 0 && ropePointId < ropes[ropeId].p.length - 1) {
 			if(chainBody.m_jointList && chainBody.m_jointList.joint) {
 				//断开一个距离链接，将绳子拆成2段
@@ -201,24 +225,41 @@ function sweetTouchBubble() {
 				y: 100 * sweets[h].GetPosition().y
 			};
 			var distance = MathUtil.getDistanceFromTwoPoint(position, bubbles[i].position);
-			if(distance < 25) {
+			if(distance < 30) {
 				world.vWorld.removeChild(bubbles[i]);
 				bubbles.remove(i);
-				var pball = createBallObject({
+				var pball = createInvisibileBallObject({
 					position: {
 						x: position.x + 0,
 						y: position.y
 					},
-					texture: "../assets/bubble.png",
-					radius: 70,
+					radius: 35,
 					name: "bubble",
-					density: 1.5,
+					density: 1.25,
 					touchFilter: {
 						self: 0,
 						other: 0
 					}
 				}, airBuoyan);
+//				console.log(pball)
+//				var shape=pball.GetFixtureList().GetShape();
+//				shape.SetRadius(shape.GetRadius()*10);
+
+
 				setWeldJoint(sweets[h], pball);
+				pball.v = {};
+				pball.v.normalAction = createMovieClip({
+					name: "bubble",
+					movieLength: 13,
+					speed: 0.2,
+					position: {
+						x: position.x,
+						y: position.y
+					},
+				});
+				world.vWorld.addChild(pball.v.normalAction);
+				pball.v.normalAction.gotoAndPlay(0);
+				bubbleArray.push(pball);
 			}
 		}
 	}
@@ -250,7 +291,7 @@ function drawLineRope() {
 	for(var i = 0; i < ropes.length; i++) {
 		if(ropes[i] && ropes[i].p[0]) {
 			ropes[i].v.clear();
-			ropes[i].v.lineStyle(2, 0x000000, 0.7);
+			ropes[i].v.lineStyle(2, 0x333333, 0.7);
 			ropes[i].v.moveTo(ropes[i].p[0].GetPosition().x * 100, ropes[i].p[0].GetPosition().y * 100);
 			for(var j = 1; j < ropes[i].p.length; j++) {
 				ropes[i].v.lineTo(ropes[i].p[j].GetPosition().x * 100, ropes[i].p[j].GetPosition().y * 100);
@@ -279,7 +320,20 @@ document.addEventListener("touchend", function(event) {
 }, true);
 
 var cutBody = null;
+function checkCutBubble(posi){
+	for(var i=0;i<bubbleArray.length;i++){
+		var distance = MathUtil.getDistanceFromTwoPoint(posi, bubbleArray[i].v.normalAction.position);
+		if(distance<30){
+			world.vWorld.removeChild(bubbleArray[i].v.normalAction);
+			bubbleArray[i].v.normalAction.gotoAndStop(0);
+			world.deleteObj(bubbleArray[i]);
+			bubbleArray.remove(i);
+			
+		}
+	}
+}
 document.addEventListener("mousedown", function(event) {
+	checkCutBubble({x:event.clientX,y: event.clientY});
 	if(!cutBody && inLevel) {
 		cutBody = createBallObject({
 			position: {
@@ -301,6 +355,7 @@ document.addEventListener("mousedown", function(event) {
 
 document.addEventListener("touchstart", function(event) {
 	event = event.changedTouches[0];
+	checkCutBubble({x:event.clientX,y: event.clientY});
 	if(!cutBody && inLevel) {
 		cutBody = createBallObject({
 			position: {

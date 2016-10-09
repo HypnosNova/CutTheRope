@@ -657,7 +657,7 @@ function setChainJoint(options, array, obj1, obj2) {
 		tmp2;
 	for(var i = 0; i < array.length; i++) {
 		theOption.position = array[i];
-		tmp2 = createInvisibleBoxObject(theOption, theOption.container);
+		tmp2 = createInvisibileBallObject(theOption, theOption.container);
 		tmp2.ropeId = theOption.ropeId;
 		setDistanceJoint(tmp, tmp2);
 		chain.push(tmp2)

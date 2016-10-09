@@ -5,8 +5,17 @@ function makeGameScene() {
 	world.vWorld.addChild(bg);
 	bg.anchor.x = bg.anchor.y = 0;
 	bg.scale.x = bg.scale.y = engine_static.worldHeight / 1024;
-
-	airBuoyan = addBuoyancy({
+	airBuoyan= addBuoyancy({
+		position: 1000,
+		density: 2,
+		angularDrag: 1,
+		linearDrag: 1,
+		velocity: {
+			x: 0,
+			y: 0
+		}
+	});
+	var airBuoyan2 = addBuoyancy({
 		position: 1000,
 		density: 2,
 		angularDrag: 0.2,
@@ -46,10 +55,10 @@ function makeGameScene() {
 	bubbles[0]=createMagicBall({
 		position: {
 			x: engine_static.worldWidth / 2,
-			y: engine_static.worldHeight / 2
+			y: engine_static.worldHeight *0.5
 		},
 		radius:30,
-		color:0x00ff00,
+		texture:"../assets/bubble.png",
 		name:"bubble"
 	})
 
@@ -80,7 +89,7 @@ function makeGameScene() {
 				self: 16,
 				other: 9
 			},
-			container: airBuoyan,
+			container: airBuoyan2,
 			ropeId: 0
 		}, [{
 			x: engine_static.worldWidth / 2 + engine_static.worldWidth / 80,
@@ -145,7 +154,7 @@ function makeGameScene() {
 		x: engine_static.worldWidth / 2,
 		y: engine_static.worldHeight - 125,
 		hasEaten: 1,
-		container: airBuoyan
+		container: airBuoyan2
 	}]);
 	//clearAllGameThings();
 	touchObject.createTouchListen();

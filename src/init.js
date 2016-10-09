@@ -18,6 +18,7 @@ function gameLoad() {
 	loader.add('mainbg', "../assets/mainbg.jpg");
 	loader.add('chair', "../assets/chair.png");
 	loader.add('bubble', "../assets/bubble.png");
+	loader.add('bubble2', "../assets/movieClip/bubble_animations.json");
 	loader.add('startBtn', "../assets/startBtn.png");
 	loader.add('startBtn2', "../assets/startBtn2.png");
 	loader.add('coverCard', "../assets/coverCard.jpg");
