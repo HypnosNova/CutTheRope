@@ -156,6 +156,7 @@ function makeGameScene() {
 		hasEaten: 1,
 		container: airBuoyan2
 	}]);
+
 	//clearAllGameThings();
 	touchObject.createTouchListen();
 	update();

@@ -226,6 +226,7 @@ function sweetTouchBubble() {
 			};
 			var distance = MathUtil.getDistanceFromTwoPoint(position, bubbles[i].position);
 			if(distance < 30) {
+				ion.sound.play("bubble");
 				world.vWorld.removeChild(bubbles[i]);
 				bubbles.remove(i);
 				var pball = createInvisibileBallObject({
@@ -235,7 +236,7 @@ function sweetTouchBubble() {
 					},
 					radius: 35,
 					name: "bubble",
-					density: 1.25,
+					density: 1.35,
 					touchFilter: {
 						self: 0,
 						other: 0
@@ -250,7 +251,7 @@ function sweetTouchBubble() {
 				pball.v = {};
 				pball.v.normalAction = createMovieClip({
 					name: "bubble",
-					movieLength: 13,
+					movieLength: 14,
 					speed: 0.2,
 					position: {
 						x: position.x,
@@ -324,6 +325,7 @@ function checkCutBubble(posi){
 	for(var i=0;i<bubbleArray.length;i++){
 		var distance = MathUtil.getDistanceFromTwoPoint(posi, bubbleArray[i].v.normalAction.position);
 		if(distance<30){
+			ion.sound.play("bubble_break");
 			world.vWorld.removeChild(bubbleArray[i].v.normalAction);
 			bubbleArray[i].v.normalAction.gotoAndStop(0);
 			world.deleteObj(bubbleArray[i]);

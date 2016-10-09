@@ -29,6 +29,10 @@ ion.sound({
 		name:"menu_music"
 	},{
 		name:"game_music"
+	},{
+		name:"bubble_break"
+	},{
+		name:"bubble"
 	}],
 	volume: 1,
 	path: "../media/",
