@@ -147,6 +147,17 @@ function cutRope(bodyA, bodyB) {
 				//world.pWorld.setDistanceJoint(ropeB.p[0],ropeB.p[1]);
 				for(var i = 0; i < ropeB.p.length; i++) {
 					ropeB.p[i].ropeId = ropes.length - 1;
+					if(ropeB.p[i].name=="chain"){
+						var shape = ropeB.p[i].GetFixtureList().GetShape();
+						shape.SetRadius(0.0002);
+						ropeB.p[i].ResetMassData();
+					}
+					if(i < ropeB.p.length-1&&ropeB.p[i].m_jointList && ropeB.p[i].m_jointList.joint) {
+						world.pWorld.DestroyJoint(ropeB.p[i].m_jointList.joint);
+					}
+				}
+				for(var i = 1; i < ropeB.p.length; i++) {
+					setDistanceJoint(ropeB.p[i-1],ropeB.p[i]);
 				}
 				ropes[ropeId] = null;
 			}
@@ -258,6 +269,16 @@ function sweetTouchBubble() {
 						y: position.y
 					},
 				});
+				pball.v.popAction = createMovieClip({
+					name: "bubblepop",
+					movieLength: 12,
+					speed: 0.5,
+					position: {
+						x: position.x+30,
+						y: position.y+30
+					},
+				});
+				pball.v.popAction.loop=false;
 				world.vWorld.addChild(pball.v.normalAction);
 				pball.v.normalAction.gotoAndPlay(0);
 				bubbleArray.push(pball);
@@ -328,6 +349,8 @@ function checkCutBubble(posi){
 			ion.sound.play("bubble_break");
 			world.vWorld.removeChild(bubbleArray[i].v.normalAction);
 			bubbleArray[i].v.normalAction.gotoAndStop(0);
+			world.vWorld.addChild(bubbleArray[i].v.popAction);
+			bubbleArray[i].v.popAction.gotoAndPlay(0);
 			world.deleteObj(bubbleArray[i]);
 			bubbleArray.remove(i);
 			
