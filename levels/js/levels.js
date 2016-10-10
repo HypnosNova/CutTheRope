@@ -35,9 +35,9 @@ levelScript[0] = function() {
 	}]);
 	var dz = createDZ({
 		x: engine_static.worldWidth / 2,
-		y: engine_static.worldHeight /8
+		y: engine_static.worldHeight / 8
 	});
-	
+
 	stars = createStars([{
 		x: engine_static.worldWidth / 2,
 		y: engine_static.worldHeight * 0.45
@@ -168,7 +168,7 @@ levelScript[1] = function() {
 	});
 
 	var dz2 = createDZ({
-		x: engine_static.worldWidth *0.8,
+		x: engine_static.worldWidth * 0.8,
 		y: engine_static.worldHeight * 0.15
 	});
 
@@ -338,7 +338,7 @@ levelScript[2] = function() {
 		container: airBuoyan
 	}]);
 	var dz1 = createDZ({
-		x: engine_static.worldWidth *0.2,
+		x: engine_static.worldWidth * 0.2,
 		y: engine_static.worldHeight * 0.15
 	});
 
@@ -348,7 +348,7 @@ levelScript[2] = function() {
 	});
 
 	var dz3 = createDZ({
-		x: engine_static.worldWidth *0.8,
+		x: engine_static.worldWidth * 0.8,
 		y: engine_static.worldHeight * 0.15
 	});
 
@@ -626,7 +626,7 @@ levelScript[3] = function() {
 	});
 
 	var dz2 = createDZ({
-		x: engine_static.worldWidth *0.1,
+		x: engine_static.worldWidth * 0.1,
 		y: engine_static.worldHeight * 0.4
 	});
 
@@ -636,7 +636,7 @@ levelScript[3] = function() {
 	});
 
 	var dz4 = createDZ({
-		x: engine_static.worldWidth *0.9,
+		x: engine_static.worldWidth * 0.9,
 		y: engine_static.worldHeight * 0.4
 	});
 
@@ -904,15 +904,15 @@ levelScript[4] = function() {
 		scaleX: 1.1,
 		scaleY: 1.1,
 		position: {
-			x: engine_static.worldWidth *0.75,
-			y: engine_static.worldHeight *0.9
+			x: engine_static.worldWidth * 0.75,
+			y: engine_static.worldHeight * 0.9
 		},
 		width: 180,
 		height: 180
 	});
 	eaters = createEaters([{
-		x: engine_static.worldWidth *0.75,
-		y: engine_static.worldHeight *0.9-20,
+		x: engine_static.worldWidth * 0.75,
+		y: engine_static.worldHeight * 0.9 - 20,
 		hasEaten: 1,
 		container: airBuoyan
 	}]);
@@ -921,19 +921,19 @@ levelScript[4] = function() {
 		y: engine_static.worldHeight * 0.25
 	});
 	var dz2 = createDZ({
-		x: engine_static.worldWidth *0.75,
+		x: engine_static.worldWidth * 0.75,
 		y: engine_static.worldHeight * 0.58
 	});
 	var dz3 = createDZ({
-		x: engine_static.worldWidth *0.05,
+		x: engine_static.worldWidth * 0.05,
 		y: engine_static.worldHeight * 0.58
 	});
 
 	stars = createStars([{
-		x: engine_static.worldWidth *0.75,
+		x: engine_static.worldWidth * 0.75,
 		y: engine_static.worldHeight * 0.25
 	}, {
-		x: engine_static.worldWidth *0.75,
+		x: engine_static.worldWidth * 0.75,
 		y: engine_static.worldHeight * 0.09
 	}, {
 		x: engine_static.worldWidth / 2,
@@ -1017,36 +1017,36 @@ levelScript[4] = function() {
 			container: airBuoyan,
 			ropeId: 1
 		}, [{
-			x: engine_static.worldWidth *0.75-engine_static.worldWidth*0.04,
-			y: engine_static.worldHeight * 0.58+ engine_static.worldHeight*0.007
-		},{
-			x: engine_static.worldWidth *0.75-engine_static.worldWidth*0.08,
-			y: engine_static.worldHeight * 0.58+ engine_static.worldHeight*0.014
-		},{
-			x: engine_static.worldWidth *0.75-engine_static.worldWidth*0.12,
-			y: engine_static.worldHeight * 0.58+ engine_static.worldHeight*0.021
-		},{
-			x: engine_static.worldWidth *0.75-engine_static.worldWidth*0.16,
-			y: engine_static.worldHeight * 0.58+ engine_static.worldHeight*0.028
-		},{
-			x: engine_static.worldWidth *0.75-engine_static.worldWidth*0.2,
-			y: engine_static.worldHeight * 0.58+ engine_static.worldHeight*0.035
-		},{
-			x: engine_static.worldWidth *0.75-engine_static.worldWidth*0.24,
-			y: engine_static.worldHeight * 0.58+ engine_static.worldHeight*0.028
-		},{
-			x: engine_static.worldWidth *0.75-engine_static.worldWidth*0.28,
-			y: engine_static.worldHeight * 0.58+ engine_static.worldHeight*0.021
-		},{
-			x: engine_static.worldWidth *0.75-engine_static.worldWidth*0.32,
-			y: engine_static.worldHeight * 0.58+ engine_static.worldHeight*0.014
-		},{
-			x: engine_static.worldWidth *0.75-engine_static.worldWidth*0.36,
-			y: engine_static.worldHeight * 0.58+ engine_static.worldHeight*0.007
+			x: engine_static.worldWidth * 0.75 - engine_static.worldWidth * 0.04,
+			y: engine_static.worldHeight * 0.58 + engine_static.worldHeight * 0.007
+		}, {
+			x: engine_static.worldWidth * 0.75 - engine_static.worldWidth * 0.08,
+			y: engine_static.worldHeight * 0.58 + engine_static.worldHeight * 0.014
+		}, {
+			x: engine_static.worldWidth * 0.75 - engine_static.worldWidth * 0.12,
+			y: engine_static.worldHeight * 0.58 + engine_static.worldHeight * 0.021
+		}, {
+			x: engine_static.worldWidth * 0.75 - engine_static.worldWidth * 0.16,
+			y: engine_static.worldHeight * 0.58 + engine_static.worldHeight * 0.028
+		}, {
+			x: engine_static.worldWidth * 0.75 - engine_static.worldWidth * 0.2,
+			y: engine_static.worldHeight * 0.58 + engine_static.worldHeight * 0.035
+		}, {
+			x: engine_static.worldWidth * 0.75 - engine_static.worldWidth * 0.24,
+			y: engine_static.worldHeight * 0.58 + engine_static.worldHeight * 0.028
+		}, {
+			x: engine_static.worldWidth * 0.75 - engine_static.worldWidth * 0.28,
+			y: engine_static.worldHeight * 0.58 + engine_static.worldHeight * 0.021
+		}, {
+			x: engine_static.worldWidth * 0.75 - engine_static.worldWidth * 0.32,
+			y: engine_static.worldHeight * 0.58 + engine_static.worldHeight * 0.014
+		}, {
+			x: engine_static.worldWidth * 0.75 - engine_static.worldWidth * 0.36,
+			y: engine_static.worldHeight * 0.58 + engine_static.worldHeight * 0.007
 		}], dz2, sweets[0]),
 		v: new PIXI.Graphics()
 	};
-	
+
 	ropes[2] = {
 		p: setChainJoint({
 			radius: 2,
@@ -1061,13 +1061,13 @@ levelScript[4] = function() {
 			container: airBuoyan,
 			ropeId: 2
 		}, [{
-			x: engine_static.worldWidth *0.05+engine_static.worldWidth*0.05,
+			x: engine_static.worldWidth * 0.05 + engine_static.worldWidth * 0.05,
 			y: engine_static.worldHeight * 0.58
-		},{
-			x: engine_static.worldWidth *0.05+engine_static.worldWidth*0.1,
+		}, {
+			x: engine_static.worldWidth * 0.05 + engine_static.worldWidth * 0.1,
 			y: engine_static.worldHeight * 0.58
-		},{
-			x: engine_static.worldWidth *0.05+engine_static.worldWidth*0.15,
+		}, {
+			x: engine_static.worldWidth * 0.05 + engine_static.worldWidth * 0.15,
 			y: engine_static.worldHeight * 0.58
 		}], dz3, sweets[0]),
 		v: new PIXI.Graphics()
@@ -1075,14 +1075,421 @@ levelScript[4] = function() {
 	world.vWorld.addChild(ropes[0].v)
 	world.vWorld.addChild(ropes[1].v)
 	world.vWorld.addChild(ropes[2].v)
-	bubbles[0]=createMagicBall({
+	bubbles[0] = createMagicBall({
 		position: {
-			x: engine_static.worldWidth *0.25,
-			y: engine_static.worldHeight *0.685
+			x: engine_static.worldWidth * 0.25,
+			y: engine_static.worldHeight * 0.685
 		},
-		radius:30,
-		texture:"../assets/bubble.png",
-		name:"bubble"
+		radius: 30,
+		texture: "../assets/bubble.png",
+		name: "bubble"
+	});
+	airBuoyan = addBuoyancy({
+		position: 1000,
+		density: 2.0,
+		angularDrag: 0.4,
+		linearDrag: 2,
+		velocity: {
+			x: 0,
+			y: 0
+		}
+	});
+}
+levelScript[5] = function() {
+	var bg = new PIXI.Sprite(PIXI.Texture.fromFrame("../assets/bg.jpg"));
+	world.vWorld.addChild(bg);
+	bg.anchor.x = bg.anchor.y = 0;
+	bg.scale.x = bg.scale.y = engine_static.worldHeight / 1024;
+	gameResult = 1;
+	airBuoyan = addBuoyancy({
+		position: 1000,
+		density: 12,
+		angularDrag: 0,
+		linearDrag: 0,
+		velocity: {
+			x: 0,
+			y: 0
+		}
+	});
+	createMagicBox({
+		texture: "../assets/chair.png",
+		scaleX: 1.1,
+		scaleY: 1.1,
+		position: {
+			x: engine_static.worldWidth * 0.75,
+			y: engine_static.worldHeight * 0.9
+		},
+		width: 180,
+		height: 180
+	});
+	eaters = createEaters([{
+		x: engine_static.worldWidth * 0.75,
+		y: engine_static.worldHeight * 0.9 - 20,
+		hasEaten: 1,
+		container: airBuoyan
+	}]);
+	var dz = createDZ({
+		x: engine_static.worldWidth * 0.5,
+		y: engine_static.worldHeight * 0.25
+	});
+	var dz2 = createDZ({
+		x: engine_static.worldWidth * 0.5,
+		y: engine_static.worldHeight * 0.55
+	});
+
+	stars = createStars([{
+		x: engine_static.worldWidth * 0.3,
+		y: engine_static.worldHeight * 0.75
+	}, {
+		x: engine_static.worldWidth * 0.75,
+		y: engine_static.worldHeight * 0.08
+	}, {
+		x: engine_static.worldWidth *0.75,
+		y: engine_static.worldHeight * 0.60
+	}])
+
+	sweets[0] = createBallObject({
+		position: {
+			x: engine_static.worldWidth * 0.15,
+			y: engine_static.worldHeight * 0.4
+		},
+		texture: "../assets/sweet.png",
+		radius: 25,
+		density: 0.5,
+		touchFilter: {
+			self: 1,
+			other: 1
+		},
+		restitution: 0.7,
+		name: "sweet"
+	});
+
+	ropes[0] = {
+		p: setChainJoint({
+			radius: 2,
+			width: 2,
+			height: 2,
+			density: 30,
+			name: "chain",
+			touchFilter: {
+				self: 16,
+				other: 9
+			},
+			container: airBuoyan,
+			ropeId: 0
+		}, [{
+			x: engine_static.worldWidth * 0.5 - engine_static.worldWidth * 0.035,
+			y: engine_static.worldHeight * 0.25 + engine_static.worldHeight * 0.015
+		}, {
+			x: engine_static.worldWidth * 0.5 - engine_static.worldWidth * 0.07,
+			y: engine_static.worldHeight * 0.25 + engine_static.worldHeight * 0.03
+		}, {
+			x: engine_static.worldWidth * 0.5 - engine_static.worldWidth * 0.105,
+			y: engine_static.worldHeight * 0.25 + engine_static.worldHeight * 0.045
+		}, {
+			x: engine_static.worldWidth * 0.5 - engine_static.worldWidth * 0.14,
+			y: engine_static.worldHeight * 0.25 + engine_static.worldHeight * 0.06
+		}, {
+			x: engine_static.worldWidth * 0.5 - engine_static.worldWidth * 0.175,
+			y: engine_static.worldHeight * 0.25 + engine_static.worldHeight * 0.075
+		}, {
+			x: engine_static.worldWidth * 0.5 - engine_static.worldWidth * 0.21,
+			y: engine_static.worldHeight * 0.25 + engine_static.worldHeight * 0.09
+		}, {
+			x: engine_static.worldWidth * 0.5 - engine_static.worldWidth * 0.245,
+			y: engine_static.worldHeight * 0.25 + engine_static.worldHeight * 0.105
+		}, {
+			x: engine_static.worldWidth * 0.5 - engine_static.worldWidth * 0.280,
+			y: engine_static.worldHeight * 0.25 + engine_static.worldHeight * 0.12
+		}, {
+			x: engine_static.worldWidth * 0.5 - engine_static.worldWidth * 0.315,
+			y: engine_static.worldHeight * 0.25 + engine_static.worldHeight * 0.135
+		}], dz, sweets[0]),
+		v: new PIXI.Graphics()
+	};
+
+	ropes[1] = {
+		p: setChainJoint({
+			radius: 2,
+			width: 2,
+			height: 2,
+			density: 30,
+			name: "chain",
+			touchFilter: {
+				self: 16,
+				other: 9
+			},
+			container: airBuoyan,
+			ropeId: 1
+		}, [{
+			x: engine_static.worldWidth * 0.5 - engine_static.worldWidth * 0.035,
+			y: engine_static.worldHeight * 0.55 - engine_static.worldHeight * 0.015
+		}, {
+			x: engine_static.worldWidth * 0.5 - engine_static.worldWidth * 0.07,
+			y: engine_static.worldHeight * 0.55 - engine_static.worldHeight * 0.03
+		}, {
+			x: engine_static.worldWidth * 0.5 - engine_static.worldWidth * 0.105,
+			y: engine_static.worldHeight * 0.55 - engine_static.worldHeight * 0.045
+		}, {
+			x: engine_static.worldWidth * 0.5 - engine_static.worldWidth * 0.14,
+			y: engine_static.worldHeight * 0.55 - engine_static.worldHeight * 0.06
+		}, {
+			x: engine_static.worldWidth * 0.5 - engine_static.worldWidth * 0.175,
+			y: engine_static.worldHeight * 0.55 - engine_static.worldHeight * 0.075
+		}, {
+			x: engine_static.worldWidth * 0.5 - engine_static.worldWidth * 0.21,
+			y: engine_static.worldHeight * 0.55 - engine_static.worldHeight * 0.09
+		}, {
+			x: engine_static.worldWidth * 0.5 - engine_static.worldWidth * 0.245,
+			y: engine_static.worldHeight * 0.55 - engine_static.worldHeight * 0.105
+		}, {
+			x: engine_static.worldWidth * 0.5 - engine_static.worldWidth * 0.280,
+			y: engine_static.worldHeight * 0.55 - engine_static.worldHeight * 0.12
+		}, {
+			x: engine_static.worldWidth * 0.5 - engine_static.worldWidth * 0.315,
+			y: engine_static.worldHeight * 0.55 - engine_static.worldHeight * 0.135
+		}], dz2, sweets[0]),
+		v: new PIXI.Graphics()
+	};
+	world.vWorld.addChild(ropes[0].v)
+	world.vWorld.addChild(ropes[1].v)
+	bubbles[0] = createMagicBall({
+		position: {
+			x: engine_static.worldWidth * 0.70,
+			y: engine_static.worldHeight * 0.75
+		},
+		radius: 30,
+		texture: "../assets/bubble.png",
+		name: "bubble"
+	});
+	airBuoyan = addBuoyancy({
+		position: 1000,
+		density: 2.0,
+		angularDrag: 0.4,
+		linearDrag: 2,
+		velocity: {
+			x: 0,
+			y: 0
+		}
+	});
+}
+levelScript[6] = function() {
+	var bg = new PIXI.Sprite(PIXI.Texture.fromFrame("../assets/bg.jpg"));
+	world.vWorld.addChild(bg);
+	bg.anchor.x = bg.anchor.y = 0;
+	bg.scale.x = bg.scale.y = engine_static.worldHeight / 1024;
+	gameResult = 1;
+	airBuoyan = addBuoyancy({
+		position: 1000,
+		density: 12,
+		angularDrag: 0,
+		linearDrag: 0,
+		velocity: {
+			x: 0,
+			y: 0
+		}
+	});
+	createMagicBox({
+		texture: "../assets/chair.png",
+		scaleX: 1.1,
+		scaleY: 1.1,
+		position: {
+			x: engine_static.worldWidth * 0.85,
+			y: engine_static.worldHeight * 0.2
+		},
+		width: 180,
+		height: 180
+	});
+	eaters = createEaters([{
+		x: engine_static.worldWidth * 0.85,
+		y: engine_static.worldHeight * 0.2 - 20,
+		hasEaten: 1,
+		container: airBuoyan
+	}]);
+	var dz = createDZ({
+		x: engine_static.worldWidth * 0.15,
+		y: engine_static.worldHeight * 0.3
+	});
+	var dz2 = createDZ({
+		x: engine_static.worldWidth * 0.59,
+		y: engine_static.worldHeight * 0.3
+	});
+	var dz3 = createDZ({
+		x: engine_static.worldWidth * 0.15,
+		y: engine_static.worldHeight * 0.15
+	});
+
+	stars = createStars([{
+		x: engine_static.worldWidth * 0.3,
+		y: engine_static.worldHeight * 0.2
+	}, {
+		x: engine_static.worldWidth * 0.75,
+		y: engine_static.worldHeight * 0.08
+	}, {
+		x: engine_static.worldWidth *0.75,
+		y: engine_static.worldHeight * 0.60
+	}])
+
+	sweets[0] = createBallObject({
+		position: {
+			x: engine_static.worldWidth * 0.15,
+			y: engine_static.worldHeight * 0.3
+		},
+		texture: "../assets/sweet.png",
+		radius: 25,
+		density: 0.5,
+		touchFilter: {
+			self: 1,
+			other: 1
+		},
+		restitution: 0.7,
+		name: "sweet"
+	});
+
+//	ropes[0] = {
+//		p: setChainJoint({
+//			radius: 2,
+//			width: 2,
+//			height: 2,
+//			density: 30,
+//			name: "chain",
+//			touchFilter: {
+//				self: 16,
+//				other: 9
+//			},
+//			container: airBuoyan,
+//			ropeId: 0
+//		}, [{
+//			x: engine_static.worldWidth * 0.15,
+//			y: engine_static.worldHeight * 0.3 + engine_static.worldHeight * 0.03
+//		},{
+//			x: engine_static.worldWidth * 0.15,
+//			y: engine_static.worldHeight * 0.3 + engine_static.worldHeight * 0.06
+//		},{
+//			x: engine_static.worldWidth * 0.15,
+//			y: engine_static.worldHeight * 0.3 + engine_static.worldHeight * 0.09
+//		},{
+//			x: engine_static.worldWidth * 0.15,
+//			y: engine_static.worldHeight * 0.3 + engine_static.worldHeight * 0.12
+//		},{
+//			x: engine_static.worldWidth * 0.15,
+//			y: engine_static.worldHeight * 0.3 + engine_static.worldHeight * 0.15
+//		},{
+//			x: engine_static.worldWidth * 0.15,
+//			y: engine_static.worldHeight * 0.3 + engine_static.worldHeight * 0.18
+//		},{
+//			x: engine_static.worldWidth * 0.15,
+//			y: engine_static.worldHeight * 0.3 + engine_static.worldHeight * 0.21
+//		},{
+//			x: engine_static.worldWidth * 0.15,
+//			y: engine_static.worldHeight * 0.3 + engine_static.worldHeight * 0.24
+//		},{
+//			x: engine_static.worldWidth * 0.15,
+//			y: engine_static.worldHeight * 0.3 + engine_static.worldHeight * 0.21
+//		},{
+//			x: engine_static.worldWidth * 0.15,
+//			y: engine_static.worldHeight * 0.3 + engine_static.worldHeight * 0.18
+//		},{
+//			x: engine_static.worldWidth * 0.15,
+//			y: engine_static.worldHeight * 0.3 + engine_static.worldHeight * 0.15
+//		},{
+//			x: engine_static.worldWidth * 0.15,
+//			y: engine_static.worldHeight * 0.3 + engine_static.worldHeight * 0.12
+//		},{
+//			x: engine_static.worldWidth * 0.15,
+//			y: engine_static.worldHeight * 0.3 + engine_static.worldHeight * 0.09
+//		},{
+//			x: engine_static.worldWidth * 0.15,
+//			y: engine_static.worldHeight * 0.3 + engine_static.worldHeight * 0.06
+//		},{
+//			x: engine_static.worldWidth * 0.15,
+//			y: engine_static.worldHeight * 0.3 + engine_static.worldHeight * 0.03
+//		}], dz, sweets[0]),
+//		v: new PIXI.Graphics()
+//	};
+
+	ropes[1] = {
+		p: setChainJoint({
+			radius: 2,
+			width: 2,
+			height: 2,
+			density: 30,
+			name: "chain",
+			touchFilter: {
+				self: 16,
+				other: 9
+			},
+			container: airBuoyan,
+			ropeId: 1
+		}, [{
+			x: engine_static.worldWidth * 0.15,
+			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.03
+		},{
+			x: engine_static.worldWidth * 0.15,
+			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.06
+		},{
+			x: engine_static.worldWidth * 0.15,
+			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.09
+		},{
+			x: engine_static.worldWidth * 0.15,
+			y: engine_static.worldHeight * 0.15 + engine_static.worldHeight * 0.12
+		}], dz3, sweets[0]),
+		v: new PIXI.Graphics()
+	};
+	ropes[2] = {
+		p: setChainJoint({
+			radius: 2,
+			width: 2,
+			height: 2,
+			density: 30,
+			name: "chain",
+			touchFilter: {
+				self: 16,
+				other: 9
+			},
+			container: airBuoyan,
+			ropeId: 2
+		}, [{
+			x: engine_static.worldWidth * 0.5+engine_static.worldWidth*0.045,
+			y: engine_static.worldHeight * 0.3
+		},{
+			x: engine_static.worldWidth * 0.5,
+			y: engine_static.worldHeight * 0.3
+		},{
+			x: engine_static.worldWidth * 0.5-engine_static.worldWidth*0.045,
+			y: engine_static.worldHeight * 0.3
+		},{
+			x: engine_static.worldWidth * 0.5-engine_static.worldWidth *0.09,
+			y: engine_static.worldHeight * 0.3
+		},{
+			x: engine_static.worldWidth * 0.5-engine_static.worldWidth *0.135,
+			y: engine_static.worldHeight * 0.3
+		},{
+			x: engine_static.worldWidth * 0.5-engine_static.worldWidth *0.18,
+			y: engine_static.worldHeight * 0.3
+		},{
+			x: engine_static.worldWidth * 0.5-engine_static.worldWidth *0.225,
+			y: engine_static.worldHeight * 0.3
+		},{
+			x: engine_static.worldWidth * 0.5-engine_static.worldWidth *0.27,
+			y: engine_static.worldHeight * 0.3
+		},{
+			x: engine_static.worldWidth * 0.5-engine_static.worldWidth *0.315,
+			y: engine_static.worldHeight * 0.3
+		}], dz2, sweets[0]),
+		v: new PIXI.Graphics()
+	};
+//	world.vWorld.addChild(ropes[0].v)
+	world.vWorld.addChild(ropes[1].v)
+	world.vWorld.addChild(ropes[2].v)
+	bubbles[0] = createMagicBall({
+		position: {
+			x: engine_static.worldWidth * 0.2,
+			y: engine_static.worldHeight * 0.4
+		},
+		radius: 30,
+		texture: "../assets/bubble.png",
+		name: "bubble"
 	});
 	airBuoyan = addBuoyancy({
 		position: 1000,

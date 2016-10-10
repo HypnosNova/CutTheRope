@@ -90,7 +90,7 @@ function lostSweet() {
 				x: 100 * sweets[h].GetPosition().x,
 				y: 100 * sweets[h].GetPosition().y
 			};
-			if(position1.y > engine_static.worldHeight + 200) {
+			if(position1.y > engine_static.worldHeight + 200||position1.y <-200) {
 				gameResult = -1;
 				ion.sound.play("sad");
 				for(var i = 0; i < eaters.length; i++) {
