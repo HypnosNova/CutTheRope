@@ -1086,7 +1086,7 @@ levelScript[4] = function() {
 	});
 	airBuoyan = addBuoyancy({
 		position: 1000,
-		density: 2.2,
+		density: 2.0,
 		angularDrag: 0.4,
 		linearDrag: 2,
 		velocity: {

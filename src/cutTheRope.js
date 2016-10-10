@@ -247,7 +247,7 @@ function sweetTouchBubble() {
 					},
 					radius: 35,
 					name: "bubble",
-					density: 1.35,
+					density: 1.2,
 					touchFilter: {
 						self: 0,
 						other: 0
@@ -274,8 +274,8 @@ function sweetTouchBubble() {
 					movieLength: 12,
 					speed: 0.5,
 					position: {
-						x: position.x+30,
-						y: position.y+30
+						x: position.x,
+						y: position.y
 					},
 				});
 				pball.v.popAction.loop=false;
@@ -349,6 +349,8 @@ function checkCutBubble(posi){
 			ion.sound.play("bubble_break");
 			world.vWorld.removeChild(bubbleArray[i].v.normalAction);
 			bubbleArray[i].v.normalAction.gotoAndStop(0);
+			bubbleArray[i].v.popAction.position.x=bubbleArray[i].v.normalAction.position.x;
+			bubbleArray[i].v.popAction.position.y=bubbleArray[i].v.normalAction.position.y;
 			world.vWorld.addChild(bubbleArray[i].v.popAction);
 			bubbleArray[i].v.popAction.gotoAndPlay(0);
 			world.deleteObj(bubbleArray[i]);
