@@ -620,9 +620,9 @@ function setDistanceJoint(obj1, obj2) {
 	return world.pWorld.CreateJoint(distanceJointDef);
 }
 
-//设置距离链接
-function setDistanceJoint2(obj1, obj2) {
-	var distanceJointDef = new Box2D.Dynamics.Joints.b2LineJointDef();
+//设置马达链接
+function setRevoluteJoint(obj1, obj2) {
+	var distanceJointDef = new Box2D.Dynamics.Joints.b2RevoluteJointDef();
 	distanceJointDef.Initialize(obj1, obj2, obj1.GetWorldCenter(), obj2.GetWorldCenter());
 	return world.pWorld.CreateJoint(distanceJointDef);
 }
@@ -635,7 +635,7 @@ function setWeldJoint(obj1, obj2) {
 };
 
 world.deleteObj = function(obj) {
-	if(obj.m_jointList && obj.m_jointList.joint) {
+	if(obj&&obj.m_jointList && obj.m_jointList.joint) {
 		world.pWorld.DestroyJoint(obj.m_jointList.joint);
 	}
 	world.pWorld.DestroyBody(obj);

@@ -8,7 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/animate.min.css" />
 		<link rel="stylesheet" type="text/css" href="../lib/swiper/swiper.min.css" />
 		<link rel="stylesheet" type="text/css" href="../css/style.css" />
-		
+
 	</head>
 
 	<body>
@@ -25,6 +25,7 @@
 		<script src="../src/cutTheRope.js"></script>
 		<script src="js/index.js"></script>
 		<script src="js/levels.js"></script>
+		<script src="js/testLevel.js"></script>
 		<script src="../src/init.js"></script>
 		<p id="loadingText"></p>
 		<script id="loadingTextS">
@@ -91,9 +92,27 @@
 			"left": engine_static.worldWidth / 20 + "px",
 			"bottom": engine_static.worldWidth / 20 + "px",
 		});
-		$(".swiper-button-next,.swiper-button-prev").bind("click",function(){
-			ion.sound.play("tap");
-		})
+		$(".swiper-button-next,.swiper-button-prev").bind("mousedown", function(event) {
+			try{
+				ion.sound.play("tap");
+			}catch(e){}
+			$(event.target).animateCss("rubberBand");
+			(function(e) {
+				setTimeout(function() {
+					$(e.target).removeClass("rubberBand");
+				}, 1500);
+			})(event);
+		}).bind("touchstart", function(event) {
+			try{
+				ion.sound.play("tap");
+			}catch(e){}
+			$(event.target).animateCss("rubberBand");
+			(function(e) {
+				setTimeout(function() {
+					$(e.target).removeClass("rubberBand");
+				}, 1500);
+			})(event);
+		});
 		$(".coverDown2,.coverUp2").css({
 			"width": engine_static.worldWidth + "px"
 		});
@@ -107,18 +126,43 @@
 		$(".column").css("line-height", $(".column").width() + "px");
 		$(".column").css("font-size", ($(".column").width() * 0.4 + 2) + "px");
 		$(".swiper-container").hide();
-		$(".column").bind("click", function(e) {
-			ion.sound.play("tap");
+		$(".column").bind("mouseup", function(e) {
 			startLevel(parseInt($(e.target).text()) - 1);
+		}).bind("touchend", function(e) {
+			startLevel(parseInt($(e.target).text()) - 1);
+		}).bind("mousedown", function(e) {
+			ion.sound.play("tap");
+			$(e.target).animateCss("rubberBand");
+			(function(e) {
+				setTimeout(function() {
+					$(e.target).removeClass("rubberBand");
+				}, 1500);
+			})(e);
+		}).bind("touchstart", function(e) {
+			ion.sound.play("tap");
+			$(e.target).animateCss("rubberBand");
+			(function(e) {
+				setTimeout(function() {
+					$(e.target).removeClass("rubberBand");
+				}, 1500);
+			})(e);
 		});
 
 		$("#menuBtn").bind("click", function() {
-			ion.sound.play("tap");
+			try {
+				ion.sound.play("tap");
+			} catch(e) {}
 			$(".scoreContainer").fadeOut(500);
 			setTimeout(function() {
 				coverOpen();
-				ion.sound.play("menu_music",{loop:true});
-				ion.sound.stop("game_music");
+				try {
+					ion.sound.play("menu_music", {
+						loop: true
+					});
+				} catch(e) {}
+				try {
+					ion.sound.stop("game_music");
+				} catch(e) {}
 				clearAllGameThings();
 				inLevel = false;
 				var bg = new PIXI.Sprite(PIXI.Texture.fromFrame("../assets/levelSelect.jpg"));
@@ -136,6 +180,7 @@
 				$(".swiper-container").hide();
 				starsGet = 0;
 				ropes = [];
+				clearAllGameThings();
 				levelScript[currentLevel]();
 				setTimeout(function() {
 					coverOpen();
@@ -165,18 +210,16 @@
 				}, 100)
 			}, 500)
 		})
-		var isDomLoaded=false;
+		var isDomLoaded = false;
 		document.onreadystatechange = function() {
 			if(document.readyState == "complete") {
-				isDomLoaded=true;
+				isDomLoaded = true;
 				$("#loadingText").remove();
 				$("#loadingTextS").remove();
 				$(".swiper-container").hide();
-				$(".swiper-container").css("visibility","visible");
-				ion.sound.play("menu_music");
+				$(".swiper-container").css("visibility", "visible");
 			}
 		}
-		
 	</script>
 
 </html>

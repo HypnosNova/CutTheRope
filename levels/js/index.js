@@ -7,7 +7,7 @@ function createStartPage() {
 	var startBtn = createBallObject({
 		position: {
 			x: engine_static.worldWidth / 2,
-			y: engine_static.worldHeight *0.67,
+			y: engine_static.worldHeight * 0.67,
 		},
 		radius: 50,
 		texture: "../assets/startBtn.png",
@@ -16,8 +16,14 @@ function createStartPage() {
 	})
 
 	startBtn.touchDown = function() {
-		ion.sound.play("tap");
-		ion.sound.play("menu_music",{loop:true});
+		try {
+			ion.sound.play("tap");
+		} catch(e) {}
+		try {
+			ion.sound.play("menu_music", {
+				loop: true
+			});
+		} catch(e) {}
 		startBtn.v.texture = PIXI.Texture.fromImage('../assets/startBtn2.png')
 	}
 	startBtn.touchEnd = function() {
@@ -38,8 +44,12 @@ function createStartPage() {
 function makeGameScene() {
 	createStartPage();
 	$("#backImg").bind("click", function() {
-		ion.sound.play("tap");
-		ion.sound.stop("menu_music");
+		try {
+			ion.sound.play("tap");
+		} catch(e) {}
+		try {
+			ion.sound.stop("menu_music");
+		} catch(e) {}
 		$(".swiper-container").hide();
 		createStartPage();
 	})
@@ -47,17 +57,24 @@ function makeGameScene() {
 	update();
 }
 
-var currentLevel=-1;
+var currentLevel = -1;
+
 function startLevel(index) {
-	currentLevel=index;
+	currentLevel = index;
 	$(".swiper-container").hide();
-	starsGet=0;
-	ropes=[];
+	starsGet = 0;
+	ropes = [];
 	coverClose();
 	setTimeout(function() {
 		levelScript[index]();
-		ion.sound.stop("menu_music");
-		ion.sound.play("game_music",{loop:true});
+		try {
+			ion.sound.stop("menu_music");
+		} catch(e) {}
+		try {
+			ion.sound.play("game_music", {
+				loop: true
+			});
+		} catch(e) {}
 		setTimeout(function() {
 			coverOpen();
 			setTimeout(function() {

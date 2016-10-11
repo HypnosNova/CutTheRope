@@ -39,7 +39,9 @@ function winOrLost() {
 			coverClose();
 			setTimeout(function() {
 				$(".scoreContainer").show();
-				ion.sound.play("win");
+				try {
+					ion.sound.play("win");
+				} catch(e) {}
 				for(var i = 0; i < starsGet; i++) {
 					var img = document.createElement("img");
 					img.src = "../assets/star.png";
@@ -90,9 +92,11 @@ function lostSweet() {
 				x: 100 * sweets[h].GetPosition().x,
 				y: 100 * sweets[h].GetPosition().y
 			};
-			if(position1.y > engine_static.worldHeight + 200||position1.y <-200) {
+			if(position1.y > engine_static.worldHeight + 200 || position1.y < -200) {
 				gameResult = -1;
-				ion.sound.play("sad");
+				try {
+					ion.sound.play("sad");
+				} catch(e) {}
 				for(var i = 0; i < eaters.length; i++) {
 					eaters[i].currentAction.gotoAndStop(0);
 					world.vWorld.removeChild(eaters[i].currentAction);
@@ -111,20 +115,20 @@ function cutRope(bodyA, bodyB) {
 		var chainBody = bodyA.name == "chain" ? bodyA : bodyB;
 		var ropeId = chainBody.ropeId;
 		var ropePointId = ropes[ropeId].p.getIndex(chainBody);
-		ion.sound.play("cut");
-		
-		
-//		for(var i = 0; i < ropes[ropeId].p.length; i++) {
-//			if(ropes[ropeId].p[i].name == "chain") {
-//				var shape = ropes[ropeId].p[i].GetFixtureList().GetShape();
-//				shape.SetRadius(0.002);
-////				ropes[ropeId].p[i].SetAwake();
-////				ropes[ropeId].p[i].m_fixtureList.SetDensity(0.9);
-//				ropes[ropeId].p[i].ResetMassData();
-//			}
-//		}
-		
-		
+		try {
+			ion.sound.play("cut");
+		} catch(e) {}
+
+		//		for(var i = 0; i < ropes[ropeId].p.length; i++) {
+		//			if(ropes[ropeId].p[i].name == "chain") {
+		//				var shape = ropes[ropeId].p[i].GetFixtureList().GetShape();
+		//				shape.SetRadius(0.002);
+		////				ropes[ropeId].p[i].SetAwake();
+		////				ropes[ropeId].p[i].m_fixtureList.SetDensity(0.9);
+		//				ropes[ropeId].p[i].ResetMassData();
+		//			}
+		//		}
+
 		if(ropePointId > 0 && ropePointId < ropes[ropeId].p.length - 1) {
 			if(chainBody.m_jointList && chainBody.m_jointList.joint) {
 				//断开一个距离链接，将绳子拆成2段
@@ -147,17 +151,17 @@ function cutRope(bodyA, bodyB) {
 				//world.pWorld.setDistanceJoint(ropeB.p[0],ropeB.p[1]);
 				for(var i = 0; i < ropeB.p.length; i++) {
 					ropeB.p[i].ropeId = ropes.length - 1;
-					if(ropeB.p[i].name=="chain"){
+					if(ropeB.p[i].name == "chain") {
 						var shape = ropeB.p[i].GetFixtureList().GetShape();
 						shape.SetRadius(0.0002);
 						ropeB.p[i].ResetMassData();
 					}
-					if(i < ropeB.p.length-1&&ropeB.p[i].m_jointList && ropeB.p[i].m_jointList.joint) {
+					if(i < ropeB.p.length - 1 && ropeB.p[i].m_jointList && ropeB.p[i].m_jointList.joint) {
 						world.pWorld.DestroyJoint(ropeB.p[i].m_jointList.joint);
 					}
 				}
 				for(var i = 1; i < ropeB.p.length; i++) {
-					setDistanceJoint(ropeB.p[i-1],ropeB.p[i]);
+					setDistanceJoint(ropeB.p[i - 1], ropeB.p[i]);
 				}
 				ropes[ropeId] = null;
 			}
@@ -185,7 +189,9 @@ function eatCandy() {
 					eaters[i].currentAction = eaters[i].openMouthAction;
 					world.vWorld.addChild(eaters[i].openMouthAction);
 					eaters[i].openMouthAction.gotoAndPlay(0);
-					ion.sound.play("openMouth");
+					try {
+						ion.sound.play("openMouth");
+					} catch(e) {}
 				} else if(distance < 40) {
 					eaters[i].hasEaten--;
 					world.deleteObj(sweets[h]);
@@ -196,7 +202,9 @@ function eatCandy() {
 							}
 						}
 					}
-					ion.sound.play("eat");
+					try {
+						ion.sound.play("eat");
+					} catch(e) {}
 					eaters[i].currentAction.gotoAndStop(0);
 					world.vWorld.removeChild(eaters[i].currentAction);
 					eaters[i].currentAction = eaters[i].chewAction;
@@ -210,14 +218,18 @@ function eatCandy() {
 					eaters[i].currentAction = eaters[i].closeMouthAction;
 					world.vWorld.addChild(eaters[i].closeMouthAction);
 					eaters[i].closeMouthAction.gotoAndPlay(0);
-					ion.sound.play("closeMouth");
+					try {
+						ion.sound.play("closeMouth");
+					} catch(e) {}
 				} else if(distance >= 120 && (eaters[i].currentAction != eaters[i].normalAction) && (eaters[i].currentAction != eaters[i].sadAction)) {
 					world.vWorld.removeChild(eaters[i].currentAction);
 					eaters[i].currentAction.gotoAndStop(0);
 					eaters[i].currentAction = eaters[i].normalAction;
 					world.vWorld.addChild(eaters[i].normalAction);
 					eaters[i].normalAction.gotoAndPlay(0);
-					ion.sound.play("normal");
+					try {
+						ion.sound.play("normal");
+					} catch(e) {}
 				}
 			}
 		}
@@ -231,13 +243,16 @@ function removeRope(ropeId) {
 function sweetTouchBubble() {
 	for(var h = 0; h < sweets.length; h++) {
 		for(var i = 0; i < bubbles.length; i++) {
+			if(!bubbles[i]){continue;}
 			var position = {
 				x: 100 * sweets[h].GetPosition().x,
 				y: 100 * sweets[h].GetPosition().y
 			};
 			var distance = MathUtil.getDistanceFromTwoPoint(position, bubbles[i].position);
 			if(distance < 30) {
-				ion.sound.play("bubble");
+				try {
+					ion.sound.play("bubble");
+				} catch(e) {}
 				world.vWorld.removeChild(bubbles[i]);
 				bubbles.remove(i);
 				var pball = createInvisibileBallObject({
@@ -253,10 +268,9 @@ function sweetTouchBubble() {
 						other: 0
 					}
 				}, airBuoyan);
-//				console.log(pball)
-//				var shape=pball.GetFixtureList().GetShape();
-//				shape.SetRadius(shape.GetRadius()*10);
-
+				//				console.log(pball)
+				//				var shape=pball.GetFixtureList().GetShape();
+				//				shape.SetRadius(shape.GetRadius()*10);
 
 				setWeldJoint(sweets[h], pball);
 				pball.v = {};
@@ -278,7 +292,7 @@ function sweetTouchBubble() {
 						y: position.y
 					},
 				});
-				pball.v.popAction.loop=false;
+				pball.v.popAction.loop = false;
 				world.vWorld.addChild(pball.v.normalAction);
 				pball.v.normalAction.gotoAndPlay(0);
 				bubbleArray.push(pball);
@@ -303,7 +317,9 @@ function sweetTouchStar() {
 				stars[i].disappear.gotoAndPlay(0);
 				stars.remove(i);
 				starsGet++;
-				ion.sound.play("star_" + (3 - stars.length));
+				try {
+					ion.sound.play("star_" + (3 - stars.length));
+				} catch(e) {}
 			}
 		}
 	}
@@ -342,47 +358,42 @@ document.addEventListener("touchend", function(event) {
 }, true);
 
 var cutBody = null;
-function checkCutBubble(posi){
-	for(var i=0;i<bubbleArray.length;i++){
+
+function checkCutBubble(posi) {
+	for(var i = 0; i < bubbleArray.length; i++) {
 		var distance = MathUtil.getDistanceFromTwoPoint(posi, bubbleArray[i].v.normalAction.position);
-		if(distance<30){
-			ion.sound.play("bubble_break");
+		if(distance < 30) {
+			try {
+				ion.sound.play("bubble_break");
+			} catch(e) {}
 			world.vWorld.removeChild(bubbleArray[i].v.normalAction);
 			bubbleArray[i].v.normalAction.gotoAndStop(0);
-			bubbleArray[i].v.popAction.position.x=bubbleArray[i].v.normalAction.position.x;
-			bubbleArray[i].v.popAction.position.y=bubbleArray[i].v.normalAction.position.y;
+			bubbleArray[i].v.popAction.position.x = bubbleArray[i].v.normalAction.position.x;
+			bubbleArray[i].v.popAction.position.y = bubbleArray[i].v.normalAction.position.y;
 			world.vWorld.addChild(bubbleArray[i].v.popAction);
 			bubbleArray[i].v.popAction.gotoAndPlay(0);
 			world.deleteObj(bubbleArray[i]);
 			bubbleArray.remove(i);
-			
+			return true;
 		}
 	}
+	return false;
 }
 document.addEventListener("mousedown", function(event) {
-	checkCutBubble({x:event.clientX,y: event.clientY});
-	if(!cutBody && inLevel) {
-		cutBody = createBallObject({
-			position: {
-				x: event.clientX,
-				y: event.clientY
-			},
-			radius: 8,
-			density: 1,
-			touchFilter: {
-				self: 8,
-				other: 16
-			},
-			isDragable: true,
-			restitution: 0.3,
-			name: "cut"
-		})
-	}
+	createCutKnife(event);
 }, true);
 
 document.addEventListener("touchstart", function(event) {
 	event = event.changedTouches[0];
-	checkCutBubble({x:event.clientX,y: event.clientY});
+	createCutKnife(event);
+}, true);
+
+function createCutKnife(event){
+	var flag=checkCutBubble({
+		x: event.clientX,
+		y: event.clientY
+	});
+	if(flag){return}
 	if(!cutBody && inLevel) {
 		cutBody = createBallObject({
 			position: {
@@ -400,8 +411,7 @@ document.addEventListener("touchstart", function(event) {
 			name: "cut"
 		})
 	}
-}, true);
-
+}
 //创建星星
 function createStars(arr) {
 	var stars = [];

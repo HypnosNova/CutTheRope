@@ -18,6 +18,7 @@ function gameLoad() {
 	loader.add('mainbg', "../assets/mainbg.jpg");
 	loader.add('chair', "../assets/chair.png");
 	loader.add('bubble', "../assets/bubble.png");
+	loader.add('killerDz', "../assets/killerDz.png");
 	loader.add('bubble2', "../assets/movieClip/bubble_animations.json");
 	loader.add('bubblepop', "../assets/movieClip/bubble_pop.json");
 	loader.add('startBtn', "../assets/startBtn.png");

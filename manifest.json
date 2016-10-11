@@ -371,7 +371,10 @@
 					"media/bubble_break.mp3",
 					"assets/movieClip/bubble_pop.json",
 					"assets/movieClip/obj_bubble_pop.png",
-					"media/bubble.mp3"
+					"media/bubble.mp3",
+					"assets/tilebg.jpg",
+					"assets/killerDz.png",
+					"levels/js/testLevel.js"
 				],
 				"refer": [],
 				"priority": 0

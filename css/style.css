@@ -3,9 +3,9 @@ body {
 	position: relative;
 	height: 100%;
 	background: #000;
-	background-image: url(../assets/mainbg.jpg);
-	background-size: auto 100%;
-	background-repeat: no-repeat;
+	background-image: url(../assets/tilebg.jpg);
+	/*background-size: auto 100%;
+	background-repeat: no-repeat;*/
 }
 
 #loadingText {
