@@ -1600,7 +1600,7 @@ levelScript[7] = function() {
 			x:engine_static.worldWidth/2,
 			y:engine_static.worldHeight*0.8
 		},
-		color:0x0000ff,
+		texture:"../assets/stickBar.png",
 		density:1,
 		width:engine_static.worldWidth*0.45,
 		height:engine_static.worldHeight*0.02

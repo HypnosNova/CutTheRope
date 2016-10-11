@@ -23,6 +23,7 @@ function gameLoad() {
 	loader.add('bubblepop', "../assets/movieClip/bubble_pop.json");
 	loader.add('startBtn', "../assets/startBtn.png");
 	loader.add('startBtn2', "../assets/startBtn2.png");
+	loader.add('stickBar', "../assets/stickBar.png");
 	loader.add('coverCard', "../assets/coverCard.jpg");
 	loader.add('levelSelect', "../assets/levelSelect.jpg");
 	loader.add('obj_star_idle', "../assets/movieClip/star_animations.json");
@@ -33,5 +34,6 @@ function gameLoad() {
 	//loader.add('fighter', "../assets/movieClip/fighter.json");
 	loader.once('complete', makeGameScene);
 	loader.load();
+	console.log(loader)
 }
 gameLoad();
