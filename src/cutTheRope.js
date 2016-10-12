@@ -2,6 +2,18 @@ var inLevel = false; //是否进入游戏关卡
 var starsGet = 0;
 var bubbleArray = [];
 
+var CUT_THE_ROPE_STATIC={
+	sweetRadius:engine_static.worldWidth*0.07,
+	dzRadius:engine_static.worldWidth*0.05,
+	starRadius:engine_static.worldWidth*0.12,
+	bubbleRadius:engine_static.worldWidth*0.10,
+	starDisappearScale:engine_static.worldWidth*0.21,
+	eaterRadius:engine_static.worldWidth*0.12,
+	openMouthMinDistance:engine_static.worldWidth*0.12*1.0,
+	openMouthMaxDistance:engine_static.worldWidth*0.12*2.0,
+	closeMouthMaxDistance:engine_static.worldWidth*0.12*2.3
+}
+
 function doSpecialAction() {
 	sweetTouchStar();
 	drawLineRope();
@@ -182,7 +194,7 @@ function eatCandy() {
 					y: 100 * eaters[i].GetPosition().y
 				};
 				var distance = MathUtil.getDistanceFromTwoPoint(position1, position2);
-				if(distance < 100 && distance >= 40 && (eaters[i].currentAction != eaters[i].openMouthAction)) {
+				if(distance < CUT_THE_ROPE_STATIC.openMouthMaxDistance && distance >= CUT_THE_ROPE_STATIC.openMouthMinDistance && (eaters[i].currentAction != eaters[i].openMouthAction)) {
 					//张开嘴动画
 					eaters[i].currentAction.gotoAndStop(0);
 					world.vWorld.removeChild(eaters[i].currentAction);
@@ -192,7 +204,7 @@ function eatCandy() {
 					try {
 						ion.sound.play("openMouth");
 					} catch(e) {}
-				} else if(distance < 40) {
+				} else if(distance < CUT_THE_ROPE_STATIC.openMouthMinDistance) {
 					eaters[i].hasEaten--;
 					world.deleteObj(sweets[h]);
 					for(var j = 0; j < ropes.length; j++) {
@@ -211,7 +223,7 @@ function eatCandy() {
 					world.vWorld.addChild(eaters[i].chewAction);
 					eaters[i].chewAction.gotoAndPlay(0);
 					gameResult--;
-				} else if(distance >= 100 && distance < 120 && (eaters[i].currentAction != eaters[i].closeMouthAction) && (eaters[i].currentAction != eaters[i].normalAction)) {
+				} else if(distance >= CUT_THE_ROPE_STATIC.openMouthMaxDistance && distance < CUT_THE_ROPE_STATIC.closeMouthMaxDistance  && (eaters[i].currentAction != eaters[i].closeMouthAction) && (eaters[i].currentAction != eaters[i].normalAction)) {
 					//bi嘴动画
 					eaters[i].currentAction.gotoAndStop(0);
 					world.vWorld.removeChild(eaters[i].currentAction);
@@ -221,7 +233,7 @@ function eatCandy() {
 					try {
 						ion.sound.play("closeMouth");
 					} catch(e) {}
-				} else if(distance >= 120 && (eaters[i].currentAction != eaters[i].normalAction) && (eaters[i].currentAction != eaters[i].sadAction)) {
+				} else if(distance >= CUT_THE_ROPE_STATIC.closeMouthMaxDistance && (eaters[i].currentAction != eaters[i].normalAction) && (eaters[i].currentAction != eaters[i].sadAction)) {
 					world.vWorld.removeChild(eaters[i].currentAction);
 					eaters[i].currentAction.gotoAndStop(0);
 					eaters[i].currentAction = eaters[i].normalAction;
@@ -309,7 +321,7 @@ function sweetTouchStar() {
 				y: 100 * sweets[h].GetPosition().y
 			};
 			var distance = MathUtil.getDistanceFromTwoPoint(position, stars[i].position);
-			if(distance < 40) {
+			if(distance < (CUT_THE_ROPE_STATIC.starRadius+CUT_THE_ROPE_STATIC.sweetRadius)/2) {
 				world.vWorld.removeChild(stars[i]);
 				world.vWorld.removeChild(stars[i].light);
 
@@ -400,14 +412,14 @@ function createCutKnife(event){
 				x: event.clientX,
 				y: event.clientY
 			},
-			radius: 8,
+			radius: engine_static.worldWidth*0.03,
 			density: 1,
 			touchFilter: {
 				self: 8,
 				other: 16
 			},
 			isDragable: true,
-			restitution: 0.3,
+			restitution: 0.1,
 			name: "cut"
 		})
 	}
@@ -424,6 +436,7 @@ function createStars(arr) {
 				x: arr[i].x,
 				y: arr[i].y
 			},
+			scale:scaleXPic2Real("obj_star_idle",CUT_THE_ROPE_STATIC.starRadius,"starLight.png")
 		});
 		stars[i].light = createMagicBall({
 			position: {
@@ -431,7 +444,7 @@ function createStars(arr) {
 				y: arr[i].y
 			},
 			texture: "starLight.png",
-			radius: 90,
+			radius: CUT_THE_ROPE_STATIC.starRadius,
 			scaleX: 1,
 			scaleY: 1,
 			name: "starLight",
@@ -444,6 +457,7 @@ function createStars(arr) {
 				x: arr[i].x,
 				y: arr[i].y
 			},
+			scale:scaleXPic2Real("star_disappear",CUT_THE_ROPE_STATIC.starDisappearScale,"starDisappear0.png")
 		});
 		stars[i].disappear.loop = false;
 		world.vWorld.addChild(stars[i]);
@@ -466,13 +480,64 @@ function createDZ(p) {
 		touchFilter: {
 			self: 0,
 			other: 0
-		}
+		},
+		scaleX:scaleXPic2Real("fix",engine_static.worldWidth*0.03),
+		scaleY:scaleYPic2Real("fix",engine_static.worldWidth*0.03),
 	})
+}
+
+function createSweet(p) {
+	return createBallObject({
+		position: {
+			x: p.x,
+			y: p.y
+		},
+		texture: "../assets/sweet.png",
+		radius: CUT_THE_ROPE_STATIC.sweetRadius,
+		density: 0.5,
+		touchFilter: {
+			self: 1,
+			other: 1
+		},
+		restitution: 0.7,
+		scaleX:scaleXPic2Real("sweet",CUT_THE_ROPE_STATIC.sweetRadius),
+		scaleY:scaleYPic2Real("sweet",CUT_THE_ROPE_STATIC.sweetRadius),
+		name: "sweet"
+	})
+}
+
+function createChair(x,y){
+	createMagicBox({
+		texture: "../assets/chair.png",
+		scaleX: scaleXPic2Real("chair",engine_static.worldWidth*0.18),
+		scaleY: scaleYPic2Real("chair",engine_static.worldWidth*0.18),
+		position: {
+			x: x,
+			y: engine_static.worldHeight*0.01+y
+		},
+		width: engine_static.worldWidth*0.18,
+		height: engine_static.worldWidth*0.18
+	});
+}
+
+function createBubble(x,y){
+	return createMagicBall({
+		position: {
+			x: x,
+			y: y
+		},
+		radius: CUT_THE_ROPE_STATIC.bubbleRadius,
+		texture: "../assets/bubble.png",
+		scaleX:scaleXPic2Real("bubble",CUT_THE_ROPE_STATIC.bubbleRadius),
+		scaleY:scaleYPic2Real("bubble",CUT_THE_ROPE_STATIC.bubbleRadius),
+		name: "bubble"
+	});
 }
 
 function createEaters(arr) {
 	var eaters = [];
 	for(var i = 0; i < arr.length; i++) {
+		createChair(arr[i].x,arr[i].y)
 		eaters[i] = createBallObject({
 			position: {
 				x: arr[i].x,
@@ -499,6 +564,7 @@ function createEaters(arr) {
 				x: arr[i].x,
 				y: arr[i].y
 			},
+			scale:scaleXPic2Real("char_animations",CUT_THE_ROPE_STATIC.eaterRadius,"normal0.png")
 		});
 		world.vWorld.addChild(eaters[i].normalAction);
 		eaters[i].normalAction.gotoAndPlay(0);
@@ -511,6 +577,7 @@ function createEaters(arr) {
 				x: arr[i].x,
 				y: arr[i].y
 			},
+			scale:scaleXPic2Real("char_animations",CUT_THE_ROPE_STATIC.eaterRadius,"normal0.png")
 		});
 		eaters[i].openMouthAction.loop = false;
 		eaters[i].closeMouthAction = createMovieClip({
@@ -521,6 +588,7 @@ function createEaters(arr) {
 				x: arr[i].x,
 				y: arr[i].y
 			},
+			scale:scaleXPic2Real("char_animations",CUT_THE_ROPE_STATIC.eaterRadius,"normal0.png")
 		});
 		eaters[i].closeMouthAction.loop = false;
 		eaters[i].sadAction = createMovieClip({
@@ -531,6 +599,7 @@ function createEaters(arr) {
 				x: arr[i].x,
 				y: arr[i].y
 			},
+			scale:scaleXPic2Real("char_animations",CUT_THE_ROPE_STATIC.eaterRadius,"normal0.png")
 		});
 		eaters[i].sadAction.loop = false;
 		eaters[i].chewAction = createMovieClip({
@@ -541,9 +610,9 @@ function createEaters(arr) {
 				x: arr[i].x,
 				y: arr[i].y
 			},
+			scale:scaleXPic2Real("char_animations",CUT_THE_ROPE_STATIC.eaterRadius,"normal0.png")
 		});
 		eaters[i].chewAction.loop = false;
-
 	}
 	return eaters
 }

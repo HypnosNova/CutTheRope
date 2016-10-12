@@ -16,20 +16,10 @@ levelScript[0] = function() {
 			y: 0
 		}
 	});
-	createMagicBox({
-		texture: "../assets/chair.png",
-		scaleX: 1.1,
-		scaleY: 1.1,
-		position: {
-			x: engine_static.worldWidth / 2,
-			y: engine_static.worldHeight - 105
-		},
-		width: 180,
-		height: 180
-	});
+	
 	eaters = createEaters([{
 		x: engine_static.worldWidth / 2,
-		y: engine_static.worldHeight - 125,
+		y: engine_static.worldHeight*0.8,
 		hasEaten: 1,
 		container: airBuoyan
 	}]);
@@ -49,21 +39,10 @@ levelScript[0] = function() {
 		y: engine_static.worldHeight * 0.65
 	}])
 
-	sweets[0] = createBallObject({
-		position: {
+	sweets[0] = createSweet({
 			x: engine_static.worldWidth / 2 + engine_static.worldWidth / 80 * 15,
 			y: engine_static.worldHeight / 8 + engine_static.worldHeight / 80 * 15
-		},
-		texture: "../assets/sweet.png",
-		radius: 25,
-		density: 0.5,
-		touchFilter: {
-			self: 1,
-			other: 1
-		},
-		restitution: 0.7,
-		name: "sweet"
-	});
+		});
 
 	ropes[0] = {
 		p: setChainJoint({
@@ -145,20 +124,9 @@ levelScript[1] = function() {
 		}
 	});
 
-	createMagicBox({
-		texture: "../assets/chair.png",
-		scaleX: 1.1,
-		scaleY: 1.1,
-		position: {
-			x: engine_static.worldWidth / 2,
-			y: engine_static.worldHeight - 105
-		},
-		width: 180,
-		height: 180
-	})
 	eaters = createEaters([{
 		x: engine_static.worldWidth / 2,
-		y: engine_static.worldHeight - 125,
+		y: engine_static.worldHeight *0.8,
 		hasEaten: 1,
 		container: airBuoyan
 	}]);
@@ -174,30 +142,19 @@ levelScript[1] = function() {
 
 	stars = createStars([{
 		x: engine_static.worldWidth / 2,
-		y: engine_static.worldHeight / 2
+		y: engine_static.worldHeight *0.45
 	}, {
 		x: engine_static.worldWidth / 2,
-		y: engine_static.worldHeight / 2 + 70
+		y: engine_static.worldHeight *0.55
 	}, {
 		x: engine_static.worldWidth / 2,
-		y: engine_static.worldHeight / 2 + 140
+		y: engine_static.worldHeight *0.65
 	}])
 
-	sweets[0] = createBallObject({
-		position: {
+	sweets[0] = createSweet({
 			x: engine_static.worldWidth / 2,
 			y: engine_static.worldHeight * 0.335
-		},
-		texture: "../assets/sweet.png",
-		radius: 25,
-		density: 0.5,
-		touchFilter: {
-			self: 1,
-			other: 1
-		},
-		restitution: 0.7,
-		name: "sweet"
-	});
+		});
 
 	ropes[0] = {
 		p: setChainJoint({
@@ -320,20 +277,9 @@ levelScript[2] = function() {
 		}
 	});
 
-	createMagicBox({
-		texture: "../assets/chair.png",
-		scaleX: 1.1,
-		scaleY: 1.1,
-		position: {
-			x: engine_static.worldWidth * 0.8,
-			y: engine_static.worldHeight * 0.90
-		},
-		width: 180,
-		height: 180
-	});
 	eaters = createEaters([{
 		x: engine_static.worldWidth * 0.8,
-		y: engine_static.worldHeight * 0.90 - 20,
+		y: engine_static.worldHeight * 0.85,
 		hasEaten: 1,
 		container: airBuoyan
 	}]);
@@ -354,30 +300,19 @@ levelScript[2] = function() {
 
 	stars = createStars([{
 		x: engine_static.worldWidth * 0.2,
-		y: engine_static.worldHeight * 0.48
+		y: engine_static.worldHeight * 0.475
 	}, {
 		x: engine_static.worldWidth * 0.8,
-		y: engine_static.worldHeight * 0.48
+		y: engine_static.worldHeight * 0.475
 	}, {
 		x: engine_static.worldWidth * 0.5,
-		y: engine_static.worldHeight * 0.61
+		y: engine_static.worldHeight * 0.60
 	}])
 
-	sweets[0] = createBallObject({
-		position: {
+	sweets[0] = createSweet({
 			x: engine_static.worldWidth * 0.2,
 			y: engine_static.worldHeight * 0.4
-		},
-		texture: "../assets/sweet.png",
-		radius: 25,
-		density: 0.5,
-		touchFilter: {
-			self: 1,
-			other: 1
-		},
-		restitution: 0.7,
-		name: "sweet"
-	});
+		});
 
 	ropes[0] = {
 		p: setChainJoint({
@@ -603,20 +538,10 @@ levelScript[3] = function() {
 			y: 0
 		}
 	});
-	createMagicBox({
-		texture: "../assets/chair.png",
-		scaleX: 1.1,
-		scaleY: 1.1,
-		position: {
-			x: engine_static.worldWidth * 0.8,
-			y: engine_static.worldHeight * 0.75
-		},
-		width: 180,
-		height: 180
-	})
+
 	eaters = createEaters([{
 		x: engine_static.worldWidth * 0.8,
-		y: engine_static.worldHeight * 0.75 - 20,
+		y: engine_static.worldHeight * 0.75,
 		hasEaten: 1,
 		container: airBuoyan
 	}]);
@@ -651,21 +576,10 @@ levelScript[3] = function() {
 		y: engine_static.worldHeight * 0.9
 	}])
 
-	sweets[0] = createBallObject({
-		position: {
+	sweets[0] = createSweet({
 			x: engine_static.worldWidth * 0.5,
 			y: engine_static.worldHeight * 0.4
-		},
-		texture: "../assets/sweet.png",
-		radius: 25,
-		density: 0.5,
-		touchFilter: {
-			self: 1,
-			other: 1
-		},
-		restitution: 0.7,
-		name: "sweet"
-	});
+		});
 
 	ropes[0] = {
 		p: setChainJoint({
@@ -899,20 +813,9 @@ levelScript[4] = function() {
 			y: 0
 		}
 	});
-	createMagicBox({
-		texture: "../assets/chair.png",
-		scaleX: 1.1,
-		scaleY: 1.1,
-		position: {
-			x: engine_static.worldWidth * 0.75,
-			y: engine_static.worldHeight * 0.9
-		},
-		width: 180,
-		height: 180
-	});
 	eaters = createEaters([{
 		x: engine_static.worldWidth * 0.75,
-		y: engine_static.worldHeight * 0.9 - 20,
+		y: engine_static.worldHeight * 0.85,
 		hasEaten: 1,
 		container: airBuoyan
 	}]);
@@ -940,21 +843,10 @@ levelScript[4] = function() {
 		y: engine_static.worldHeight * 0.50
 	}])
 
-	sweets[0] = createBallObject({
-		position: {
+	sweets[0] = createSweet({
 			x: engine_static.worldWidth * 0.25,
 			y: engine_static.worldHeight * 0.58
-		},
-		texture: "../assets/sweet.png",
-		radius: 25,
-		density: 0.5,
-		touchFilter: {
-			self: 1,
-			other: 1
-		},
-		restitution: 0.7,
-		name: "sweet"
-	});
+		});
 
 	ropes[0] = {
 		p: setChainJoint({
@@ -1075,15 +967,7 @@ levelScript[4] = function() {
 	world.vWorld.addChild(ropes[0].v)
 	world.vWorld.addChild(ropes[1].v)
 	world.vWorld.addChild(ropes[2].v)
-	bubbles[0] = createMagicBall({
-		position: {
-			x: engine_static.worldWidth * 0.25,
-			y: engine_static.worldHeight * 0.685
-		},
-		radius: 30,
-		texture: "../assets/bubble.png",
-		name: "bubble"
-	});
+	bubbles[0] = createBubble(engine_static.worldWidth * 0.25,engine_static.worldHeight * 0.685);
 	airBuoyan = addBuoyancy({
 		position: 1000,
 		density: 2.0,
@@ -1111,20 +995,10 @@ levelScript[5] = function() {
 			y: 0
 		}
 	});
-	createMagicBox({
-		texture: "../assets/chair.png",
-		scaleX: 1.1,
-		scaleY: 1.1,
-		position: {
-			x: engine_static.worldWidth * 0.75,
-			y: engine_static.worldHeight * 0.9
-		},
-		width: 180,
-		height: 180
-	});
+
 	eaters = createEaters([{
 		x: engine_static.worldWidth * 0.75,
-		y: engine_static.worldHeight * 0.9 - 20,
+		y: engine_static.worldHeight * 0.85,
 		hasEaten: 1,
 		container: airBuoyan
 	}]);
@@ -1148,21 +1022,10 @@ levelScript[5] = function() {
 		y: engine_static.worldHeight * 0.60
 	}])
 
-	sweets[0] = createBallObject({
-		position: {
+	sweets[0] = createSweet({
 			x: engine_static.worldWidth * 0.15,
 			y: engine_static.worldHeight * 0.4
-		},
-		texture: "../assets/sweet.png",
-		radius: 25,
-		density: 0.5,
-		touchFilter: {
-			self: 1,
-			other: 1
-		},
-		restitution: 0.7,
-		name: "sweet"
-	});
+		});
 
 	ropes[0] = {
 		p: setChainJoint({
@@ -1253,15 +1116,7 @@ levelScript[5] = function() {
 	};
 	world.vWorld.addChild(ropes[0].v)
 	world.vWorld.addChild(ropes[1].v)
-	bubbles[0] = createMagicBall({
-		position: {
-			x: engine_static.worldWidth * 0.70,
-			y: engine_static.worldHeight * 0.75
-		},
-		radius: 30,
-		texture: "../assets/bubble.png",
-		name: "bubble"
-	});
+	bubbles[0] = createBubble(engine_static.worldWidth * 0.7,engine_static.worldHeight * 0.75);
 	airBuoyan = addBuoyancy({
 		position: 1000,
 		density: 2.0,
@@ -1289,20 +1144,9 @@ levelScript[6] = function() {
 			y: 0
 		}
 	});
-	createMagicBox({
-		texture: "../assets/chair.png",
-		scaleX: 1.1,
-		scaleY: 1.1,
-		position: {
-			x: engine_static.worldWidth * 0.80,
-			y: engine_static.worldHeight * 0.2
-		},
-		width: 180,
-		height: 180
-	});
 	eaters = createEaters([{
 		x: engine_static.worldWidth * 0.80,
-		y: engine_static.worldHeight * 0.2 - 20,
+		y: engine_static.worldHeight * 0.2 ,
 		hasEaten: 1,
 		container: airBuoyan
 	}]);
@@ -1326,21 +1170,10 @@ levelScript[6] = function() {
 		y: engine_static.worldHeight * 0.80
 	}])
 
-	sweets[0] = createBallObject({
-		position: {
+	sweets[0] = createSweet({
 			x: engine_static.worldWidth * 0.365,
 			y: engine_static.worldHeight * 0.4
-		},
-		texture: "../assets/sweet.png",
-		radius: 25,
-		density: 0.5,
-		touchFilter: {
-			self: 1,
-			other: 1
-		},
-		restitution: 0.7,
-		name: "sweet"
-	});
+		});
 
 	ropes[1] = {
 		p: setChainJoint({
@@ -1419,33 +1252,9 @@ levelScript[6] = function() {
 //	world.vWorld.addChild(ropes[0].v)
 	world.vWorld.addChild(ropes[1].v)
 	world.vWorld.addChild(ropes[2].v)
-	bubbles[0] = createMagicBall({
-		position: {
-			x: engine_static.worldWidth * 0.365,
-			y: engine_static.worldHeight * 0.42
-		},
-		radius: 30,
-		texture: "../assets/bubble.png",
-		name: "bubble"
-	});
-	bubbles[1] = createMagicBall({
-		position: {
-			x: engine_static.worldWidth * 0.8,
-			y: engine_static.worldHeight * 0.7
-		},
-		radius: 30,
-		texture: "../assets/bubble.png",
-		name: "bubble"
-	});
-	bubbles[2] = createMagicBall({
-		position: {
-			x: engine_static.worldWidth * 0.8,
-			y: engine_static.worldHeight * 0.9
-		},
-		radius: 30,
-		texture: "../assets/bubble.png",
-		name: "bubble"
-	});
+	bubbles[0] =createBubble(engine_static.worldWidth * 0.365,engine_static.worldHeight * 0.42); 
+	bubbles[1] = createBubble(engine_static.worldWidth * 0.8,engine_static.worldHeight * 0.7);
+	bubbles[2] = createBubble(engine_static.worldWidth * 0.8,engine_static.worldHeight * 0.9);
 	airBuoyan = addBuoyancy({
 		position: 1000,
 		density: 2.0,
@@ -1473,20 +1282,9 @@ levelScript[7] = function() {
 			y: 0
 		}
 	});
-	createMagicBox({
-		texture: "../assets/chair.png",
-		scaleX: 1.1,
-		scaleY: 1.1,
-		position: {
-			x: engine_static.worldWidth * 0.5,
-			y: engine_static.worldHeight * 0.2
-		},
-		width: 180,
-		height: 180
-	});
 	eaters = createEaters([{
 		x: engine_static.worldWidth * 0.5,
-		y: engine_static.worldHeight * 0.2 - 20,
+		y: engine_static.worldHeight * 0.2,
 		hasEaten: 1,
 		container: airBuoyan
 	}]);
@@ -1500,8 +1298,8 @@ levelScript[7] = function() {
 	});
 
 	stars = createStars([{
-		x: engine_static.worldWidth * 0.4,
-		y: engine_static.worldHeight * 0.30
+		x: engine_static.worldWidth * 0.3,
+		y: engine_static.worldHeight * 0.365
 	}, {
 		x: engine_static.worldWidth * 0.15,
 		y: engine_static.worldHeight * 0.15
@@ -1520,20 +1318,9 @@ levelScript[7] = function() {
 		height:engine_static.worldHeight*0.045,
 		name:"havyBox"
 	});
-	sweets[0] = createBallObject({
-		position: {
+	sweets[0] = createSweet({
 			x: engine_static.worldWidth * 0.15,
 			y: engine_static.worldHeight * 0.4
-		},
-		texture: "../assets/sweet.png",
-		radius: 25,
-		density: 0.5,
-		touchFilter: {
-			self: 1,
-			other: 1
-		},
-		restitution: 0.7,
-		name: "sweet"
 	});
 
 	ropes[0] = {
@@ -1601,24 +1388,19 @@ levelScript[7] = function() {
 			y:engine_static.worldHeight*0.8
 		},
 		texture:"../assets/stickBar.png",
+//		color:0x0000ff,
 		density:1,
 		width:engine_static.worldWidth*0.45,
-		height:engine_static.worldHeight*0.02
+		height:engine_static.worldHeight*0.02,
+		scaleX:scaleXPic2Real("stickBar",engine_static.worldWidth*0.45),
+		scaleY:scaleYPic2Real("stickBar",engine_static.worldHeight*0.02),
 	});
 	var ddz=createDZ({
 		x:engine_static.worldWidth/2,
 		y:engine_static.worldHeight*0.8
 	})
 	setRevoluteJoint(qqb,ddz);
-	bubbles[0] = createMagicBall({
-		position: {
-			x: engine_static.worldWidth * 0.15,
-			y: engine_static.worldHeight * 0.65
-		},
-		radius: 30,
-		texture: "../assets/bubble.png",
-		name: "bubble"
-	});
+	bubbles[0] = createBubble(engine_static.worldWidth * 0.15,engine_static.worldHeight * 0.65);
 	airBuoyan = addBuoyancy({
 		position: 1000,
 		density: 2.0,

@@ -211,7 +211,9 @@
 			"media/bubble.mp3",
 			"assets/tilebg.jpg",
 			"assets/killerDz.png",
-			"levels/js/testLevel.js"
+			"levels/js/testLevel.js",
+			"assets/stickBar.png",
+			"assets/wood.png"
 		],
 		"refer": []
 	}

@@ -42,6 +42,7 @@ function createStartPage() {
 }
 
 function makeGameScene() {
+	gameResource=loader.resources;
 	createStartPage();
 	$("#backImg").bind("click", function() {
 		try {

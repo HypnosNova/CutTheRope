@@ -1,10 +1,10 @@
+var loader,gameResource;
 function gameLoad() {
 	createWorld();
 	//renderObject.addStatsView();
 	renderObject.addRenderView();
-
 	//加载资源
-	var loader = new PIXI.loaders.Loader();
+	loader = new PIXI.loaders.Loader();
 	loader.add('sweet', "../assets/sweet.png");
 	loader.add('box', "../assets/box.jpg");
 	loader.add('ball', "../assets/ball.png");
@@ -19,6 +19,7 @@ function gameLoad() {
 	loader.add('chair', "../assets/chair.png");
 	loader.add('bubble', "../assets/bubble.png");
 	loader.add('killerDz', "../assets/killerDz.png");
+	loader.add('wood', "../assets/wood.png");
 	loader.add('bubble2', "../assets/movieClip/bubble_animations.json");
 	loader.add('bubblepop', "../assets/movieClip/bubble_pop.json");
 	loader.add('startBtn', "../assets/startBtn.png");
@@ -30,10 +31,8 @@ function gameLoad() {
 	loader.add('star_disappear', "../assets/movieClip/star_disappear.json");
 	loader.add('char_animations', "../assets/movieClip/char_animations.json");
 	loader.add('char_animations3', "../assets/movieClip/char_animations3.json");
-	//loader.add('crystalball', "../assets/movieClip/crystalball.json");
-	//loader.add('fighter', "../assets/movieClip/fighter.json");
 	loader.once('complete', makeGameScene);
 	loader.load();
-	console.log(loader)
+	
 }
 gameLoad();
