@@ -419,7 +419,7 @@ function createCutKnife(event){
 				other: 16
 			},
 			isDragable: true,
-			restitution: 0.3,
+			restitution: 0.1,
 			name: "cut"
 		})
 	}
