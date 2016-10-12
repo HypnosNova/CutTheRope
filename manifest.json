@@ -364,7 +364,18 @@
 					"assets/replayBtn.png",
 					"media/game_music.mp3",
 					"assets/nextlevelBtn.png",
-					"media/win.mp3"
+					"media/win.mp3",
+					"assets/bubble.png",
+					"assets/movieClip/obj_bubble_flight.png",
+					"assets/movieClip/bubble_animations.json",
+					"media/bubble_break.mp3",
+					"assets/movieClip/bubble_pop.json",
+					"assets/movieClip/obj_bubble_pop.png",
+					"media/bubble.mp3",
+					"assets/tilebg.jpg",
+					"assets/killerDz.png",
+					"levels/js/testLevel.js",
+					"assets/stickBar.png"
 				],
 				"refer": [],
 				"priority": 0

@@ -2,6 +2,8 @@ var engine_static = {
 	//场景的长度单位，任何东西的长度放到场景里就要除以这个单位
 	renderPause: false, //是否需要暂停渲染
 	meter: 100,
+	theoryWidth:576,
+	theoryHeight:1024,
 	worldWidth: window.innerHeight / 16 * 9,
 	worldHeight: window.innerHeight,
 	//圆形刚体默认属性
@@ -102,6 +104,23 @@ var engine_static = {
 		scale: 1,
 		movieLength: 1,
 		speed: 1
+	}
+}
+
+//实际图片素材的大小，游戏理论场景的大小，游戏设备屏幕的大小
+//将游戏图片素材宽度在理论大小映射为设备屏幕大小，由于图片素材的大小是固定的，所以需要进行缩放
+function scaleXPic2Real(pname,rx,pic){
+	if(gameResource[pname].isImage){
+		return rx/gameResource[pname].texture.width*2;
+	}else{
+		return rx/gameResource[pname].textures[pic].width*2;
+	}
+}
+function scaleYPic2Real(pname,ry,pic){
+	if(gameResource[pname].isImage){
+		return ry/gameResource[pname].texture.height*2;
+	}else{
+		return ry/gameResource[pname].textures[pic].height*2;
 	}
 }
 
