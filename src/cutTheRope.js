@@ -2,16 +2,16 @@ var inLevel = false; //是否进入游戏关卡
 var starsGet = 0;
 var bubbleArray = [];
 
-var CUT_THE_ROPE_STATIC={
-	sweetRadius:engine_static.worldWidth*0.07,
-	dzRadius:engine_static.worldWidth*0.05,
-	starRadius:engine_static.worldWidth*0.12,
-	bubbleRadius:engine_static.worldWidth*0.10,
-	starDisappearScale:engine_static.worldWidth*0.21,
-	eaterRadius:engine_static.worldWidth*0.12,
-	openMouthMinDistance:engine_static.worldWidth*0.12*1.0,
-	openMouthMaxDistance:engine_static.worldWidth*0.12*2.0,
-	closeMouthMaxDistance:engine_static.worldWidth*0.12*2.3
+var CUT_THE_ROPE_STATIC = {
+	sweetRadius: engine_static.worldWidth * 0.07,
+	dzRadius: engine_static.worldWidth * 0.05,
+	starRadius: engine_static.worldWidth * 0.12,
+	bubbleRadius: engine_static.worldWidth * 0.10,
+	starDisappearScale: engine_static.worldWidth * 0.21,
+	eaterRadius: engine_static.worldWidth * 0.12,
+	openMouthMinDistance: engine_static.worldWidth * 0.12 * 1.0,
+	openMouthMaxDistance: engine_static.worldWidth * 0.12 * 2.0,
+	closeMouthMaxDistance: engine_static.worldWidth * 0.12 * 2.3
 }
 
 function doSpecialAction() {
@@ -35,12 +35,10 @@ function bubbleArrayRend() {
 
 function doContactBegin(bodyA, bodyB) {
 	cutRope(bodyA, bodyB);
-	//eatCandy(bodyA, bodyB)
 }
 
 function doContactEnd(bodyA, bodyB) {
-	//cutRope(bodyA, bodyB);
-	//eatCandy(bodyA, bodyB)
+	candyTouchKiller(bodyA, bodyB);
 }
 
 function winOrLost() {
@@ -120,7 +118,177 @@ function lostSweet() {
 		}
 	}
 }
+//糖果碰到钉子碎了
+function candyTouchKiller(bodyA, bodyB) {
+	if((bodyA.name == "sweet" && bodyB.name == "killerDz") || (bodyB.name == "sweet" && bodyA.name == "killerDz")) {
+		(function(bodyA, bodyB) {
+			setTimeout(function() {
+				var theSweet = bodyA.name == "sweet" ? bodyA : bodyB;
+				//				var sweetLeft = createBallObject({
+				//					position: {
+				//						x: theSweet.GetPosition().x * 100 + CUT_THE_ROPE_STATIC.sweetRadius / 2,
+				//						y: theSweet.GetPosition().y * 100
+				//					},
+				//					texture: "../assets/sweetLeft.png",
+				//					width: CUT_THE_ROPE_STATIC.sweetRadius / 2,
+				//					height: CUT_THE_ROPE_STATIC.sweetRadius,
+				//					density: 0.5,
+				//					touchFilter: {
+				//						self: 0,
+				//						other: 0
+				//					},
+				//					restitution: 0.7,
+				//					scaleX: scaleXPic2Real("sweetLeft", CUT_THE_ROPE_STATIC.sweetRadius / 2),
+				//					scaleY: scaleYPic2Real("sweetLeft", CUT_THE_ROPE_STATIC.sweetRadius),
+				//					name: "sweetLeft"
+				//				});
+				//				var sweetRight = createBallObject({
+				//					position: {
+				//						x: theSweet.GetPosition().x * 100 - CUT_THE_ROPE_STATIC.sweetRadius / 2,
+				//						y: theSweet.GetPosition().y * 100
+				//					},
+				//					texture: "../assets/sweetRight.png",
+				//					width: CUT_THE_ROPE_STATIC.sweetRadius / 2,
+				//					height: CUT_THE_ROPE_STATIC.sweetRadius,
+				//					density: 0.5,
+				//					touchFilter: {
+				//						self: 0,
+				//						other: 0
+				//					},
+				//					restitution: 0.7,
+				//					scaleX: scaleXPic2Real("sweetRight", CUT_THE_ROPE_STATIC.sweetRadius / 2),
+				//					scaleY: scaleYPic2Real("sweetRight", CUT_THE_ROPE_STATIC.sweetRadius),
+				//					name: "sweetRight"
+				//				});
+				//				sweetLeft.SetLinearVelocity(theSweet.GetLinearVelocity());
+				//				sweetRight.SetLinearVelocity(theSweet.GetLinearVelocity());
+				//				sweetLeft.ApplyImpulse(vector(0.04, 0), sweetLeft.GetWorldCenter());
+				//				sweetRight.ApplyImpulse(vector(-0.04, 0), sweetRight.GetWorldCenter());
 
+				var crash1 = createBallObject({
+					position: {
+						x: theSweet.GetPosition().x * 100 + CUT_THE_ROPE_STATIC.sweetRadius / 2,
+						y: theSweet.GetPosition().y * 100 - CUT_THE_ROPE_STATIC.sweetRadius / 2
+					},
+					texture: "../assets/crash1.png",
+					width: CUT_THE_ROPE_STATIC.sweetRadius / 2.5,
+					height: CUT_THE_ROPE_STATIC.sweetRadius / 2.5,
+					density: 0.5,
+					touchFilter: {
+						self: 0,
+						other: 0
+					},
+					restitution: 0.7,
+					scaleX: scaleXPic2Real("crash1", CUT_THE_ROPE_STATIC.sweetRadius / 2.5),
+					scaleY: scaleYPic2Real("crash1", CUT_THE_ROPE_STATIC.sweetRadius / 2.5),
+					name: "sweetLeft"
+				});
+				var crash2 = createBallObject({
+					position: {
+						x: theSweet.GetPosition().x * 100 + CUT_THE_ROPE_STATIC.sweetRadius / 2,
+						y: theSweet.GetPosition().y * 100 + CUT_THE_ROPE_STATIC.sweetRadius / 2
+					},
+					texture: "../assets/crash2.png",
+					width: CUT_THE_ROPE_STATIC.sweetRadius / 2,
+					height: CUT_THE_ROPE_STATIC.sweetRadius / 2,
+					density: 0.5,
+					touchFilter: {
+						self: 0,
+						other: 0
+					},
+					restitution: 0.7,
+					scaleX: scaleXPic2Real("crash2", CUT_THE_ROPE_STATIC.sweetRadius / 2),
+					scaleY: scaleYPic2Real("crash2", CUT_THE_ROPE_STATIC.sweetRadius / 2),
+					name: "sweetRight"
+				});
+				var crash3 = createBallObject({
+					position: {
+						x: theSweet.GetPosition().x * 100 - CUT_THE_ROPE_STATIC.sweetRadius / 2,
+						y: theSweet.GetPosition().y * 100 - CUT_THE_ROPE_STATIC.sweetRadius / 2
+					},
+					texture: "../assets/crash3.png",
+					width: CUT_THE_ROPE_STATIC.sweetRadius / 2.5,
+					height: CUT_THE_ROPE_STATIC.sweetRadius / 2.5,
+					density: 0.5,
+					touchFilter: {
+						self: 0,
+						other: 0
+					},
+					restitution: 0.7,
+					scaleX: scaleXPic2Real("crash3", CUT_THE_ROPE_STATIC.sweetRadius / 2.5),
+					scaleY: scaleYPic2Real("crash3", CUT_THE_ROPE_STATIC.sweetRadius / 2.5),
+					name: "sweetLeft"
+				});
+				var crash4 = createBallObject({
+					position: {
+						x: theSweet.GetPosition().x * 100 - CUT_THE_ROPE_STATIC.sweetRadius / 2,
+						y: theSweet.GetPosition().y * 100 + CUT_THE_ROPE_STATIC.sweetRadius / 2
+					},
+					texture: "../assets/crash4.png",
+					width: CUT_THE_ROPE_STATIC.sweetRadius / 2,
+					height: CUT_THE_ROPE_STATIC.sweetRadius / 2,
+					density: 0.5,
+					touchFilter: {
+						self: 0,
+						other: 0
+					},
+					restitution: 0.7,
+					scaleX: scaleXPic2Real("crash4", CUT_THE_ROPE_STATIC.sweetRadius / 2),
+					scaleY: scaleYPic2Real("crash4", CUT_THE_ROPE_STATIC.sweetRadius / 2),
+					name: "sweetRight"
+				});
+				var crash5 = createBallObject({
+					position: {
+						x: theSweet.GetPosition().x * 100,
+						y: theSweet.GetPosition().y * 100
+					},
+					texture: "../assets/crash5.png",
+					width: CUT_THE_ROPE_STATIC.sweetRadius / 2.4,
+					height: CUT_THE_ROPE_STATIC.sweetRadius / 2.1,
+					density: 0.5,
+					touchFilter: {
+						self: 0,
+						other: 0
+					},
+					restitution: 0.7,
+					scaleX: scaleXPic2Real("crash5", CUT_THE_ROPE_STATIC.sweetRadius / 2.4),
+					scaleY: scaleYPic2Real("crash5", CUT_THE_ROPE_STATIC.sweetRadius / 2.1),
+					name: "sweetRight"
+				});
+				crash1.SetLinearVelocity(theSweet.GetLinearVelocity());
+				crash2.SetLinearVelocity(theSweet.GetLinearVelocity());
+				crash3.SetLinearVelocity(theSweet.GetLinearVelocity());
+				crash4.SetLinearVelocity(theSweet.GetLinearVelocity());
+				crash5.SetLinearVelocity(theSweet.GetLinearVelocity());
+				crash1.ApplyImpulse(vector(MathUtil.rndRange(0, 0.025) - 0.005, -MathUtil.rndRange(0, 0.012) + 0.002), crash1.GetWorldCenter());
+				crash2.ApplyImpulse(vector(MathUtil.rndRange(0, 0.025) - 0.005, MathUtil.rndRange(0, 0.012) - 0.002), crash2.GetWorldCenter());
+				crash3.ApplyImpulse(vector(-MathUtil.rndRange(0, 0.025) + 0.005, -MathUtil.rndRange(0, 0.012) + 0.002), crash3.GetWorldCenter());
+				crash4.ApplyImpulse(vector(-MathUtil.rndRange(0, 0.025) + 0.005, MathUtil.rndRange(0, 0.012) - 0.002), crash4.GetWorldCenter());
+				crash5.ApplyImpulse(vector(MathUtil.rndRange(0, 0.02) - 0.01, MathUtil.rndRange(0, 0.02) - 0.01), crash4.GetWorldCenter());
+				world.deleteObj(theSweet);
+				gameResult = -1;
+				for(var i = 0; i < ropes.length; i++) {
+					if(ropes[i] && ropes[i].p) {
+						var index = ropes[i].p.getIndex(theSweet)
+						if(index) {
+							ropes[i].p.remove(index);
+						}
+					}
+				}
+				try {
+					ion.sound.play("sad");
+				} catch(e) {}
+				for(var i = 0; i < eaters.length; i++) {
+					eaters[i].currentAction.gotoAndStop(0);
+					world.vWorld.removeChild(eaters[i].currentAction);
+					eaters[i].currentAction = eaters[i].sadAction;
+					world.vWorld.addChild(eaters[i].sadAction);
+					eaters[i].sadAction.gotoAndPlay(0);
+				}
+			}, 1)
+		})(bodyA, bodyB)
+	}
+}
 //割断绳子
 function cutRope(bodyA, bodyB) {
 	if((bodyA.name == "chain" && bodyB.name == "cut") || (bodyB.name == "chain" && bodyA.name == "cut")) {
@@ -130,17 +298,6 @@ function cutRope(bodyA, bodyB) {
 		try {
 			ion.sound.play("cut");
 		} catch(e) {}
-
-		//		for(var i = 0; i < ropes[ropeId].p.length; i++) {
-		//			if(ropes[ropeId].p[i].name == "chain") {
-		//				var shape = ropes[ropeId].p[i].GetFixtureList().GetShape();
-		//				shape.SetRadius(0.002);
-		////				ropes[ropeId].p[i].SetAwake();
-		////				ropes[ropeId].p[i].m_fixtureList.SetDensity(0.9);
-		//				ropes[ropeId].p[i].ResetMassData();
-		//			}
-		//		}
-
 		if(ropePointId > 0 && ropePointId < ropes[ropeId].p.length - 1) {
 			if(chainBody.m_jointList && chainBody.m_jointList.joint) {
 				//断开一个距离链接，将绳子拆成2段
@@ -223,7 +380,7 @@ function eatCandy() {
 					world.vWorld.addChild(eaters[i].chewAction);
 					eaters[i].chewAction.gotoAndPlay(0);
 					gameResult--;
-				} else if(distance >= CUT_THE_ROPE_STATIC.openMouthMaxDistance && distance < CUT_THE_ROPE_STATIC.closeMouthMaxDistance  && (eaters[i].currentAction != eaters[i].closeMouthAction) && (eaters[i].currentAction != eaters[i].normalAction)) {
+				} else if(distance >= CUT_THE_ROPE_STATIC.openMouthMaxDistance && distance < CUT_THE_ROPE_STATIC.closeMouthMaxDistance && (eaters[i].currentAction != eaters[i].closeMouthAction) && (eaters[i].currentAction != eaters[i].normalAction)) {
 					//bi嘴动画
 					eaters[i].currentAction.gotoAndStop(0);
 					world.vWorld.removeChild(eaters[i].currentAction);
@@ -255,7 +412,9 @@ function removeRope(ropeId) {
 function sweetTouchBubble() {
 	for(var h = 0; h < sweets.length; h++) {
 		for(var i = 0; i < bubbles.length; i++) {
-			if(!bubbles[i]){continue;}
+			if(!bubbles[i]) {
+				continue;
+			}
 			var position = {
 				x: 100 * sweets[h].GetPosition().x,
 				y: 100 * sweets[h].GetPosition().y
@@ -272,7 +431,7 @@ function sweetTouchBubble() {
 						x: position.x + 0,
 						y: position.y
 					},
-					radius: 35,
+					radius: CUT_THE_ROPE_STATIC.bubbleRadius,
 					name: "bubble",
 					density: 1.2,
 					touchFilter: {
@@ -280,10 +439,6 @@ function sweetTouchBubble() {
 						other: 0
 					}
 				}, airBuoyan);
-				//				console.log(pball)
-				//				var shape=pball.GetFixtureList().GetShape();
-				//				shape.SetRadius(shape.GetRadius()*10);
-
 				setWeldJoint(sweets[h], pball);
 				pball.v = {};
 				pball.v.normalAction = createMovieClip({
@@ -294,6 +449,7 @@ function sweetTouchBubble() {
 						x: position.x,
 						y: position.y
 					},
+					scale:scaleXPic2Real("bubble2",CUT_THE_ROPE_STATIC.bubbleRadius,"bubble3.png")
 				});
 				pball.v.popAction = createMovieClip({
 					name: "bubblepop",
@@ -303,6 +459,7 @@ function sweetTouchBubble() {
 						x: position.x,
 						y: position.y
 					},
+					scale:scaleXPic2Real("bubblepop",CUT_THE_ROPE_STATIC.bubbleRadius*1.5,"bubblepop0.png")
 				});
 				pball.v.popAction.loop = false;
 				world.vWorld.addChild(pball.v.normalAction);
@@ -321,7 +478,7 @@ function sweetTouchStar() {
 				y: 100 * sweets[h].GetPosition().y
 			};
 			var distance = MathUtil.getDistanceFromTwoPoint(position, stars[i].position);
-			if(distance < (CUT_THE_ROPE_STATIC.starRadius+CUT_THE_ROPE_STATIC.sweetRadius)/2) {
+			if(distance < (CUT_THE_ROPE_STATIC.starRadius + CUT_THE_ROPE_STATIC.sweetRadius) / 2) {
 				world.vWorld.removeChild(stars[i]);
 				world.vWorld.removeChild(stars[i].light);
 
@@ -341,11 +498,25 @@ function drawLineRope() {
 	for(var i = 0; i < ropes.length; i++) {
 		if(ropes[i] && ropes[i].p[0]) {
 			ropes[i].v.clear();
-			ropes[i].v.lineStyle(2, 0x333333, 0.7);
+			ropes[i].v.lineStyle(1.5, 0x333333, 0.7);
 			ropes[i].v.moveTo(ropes[i].p[0].GetPosition().x * 100, ropes[i].p[0].GetPosition().y * 100);
-			for(var j = 1; j < ropes[i].p.length; j++) {
-				ropes[i].v.lineTo(ropes[i].p[j].GetPosition().x * 100, ropes[i].p[j].GetPosition().y * 100);
+			if(ropes[i].p.length <= 2) {
+				for(var j = 1; j < ropes[i].p.length; j++) {
+					ropes[i].v.lineTo(ropes[i].p[j].GetPosition().x * 100, ropes[i].p[j].GetPosition().y * 100);
+				}
+			}else{
+				var arr=[];
+				for(var j = 0; j < ropes[i].p.length; j++) {
+					arr.push(ropes[i].p[j].GetPosition().x * 100);
+					arr.push(ropes[i].p[j].GetPosition().y * 100);
+					//ropes[i].v.bezierCurveTo(ropes[i].p[j-2].GetPosition().x * 100, ropes[i].p[j-2].GetPosition().y * 100,ropes[i].p[j-1].GetPosition().x * 100, ropes[i].p[j-1].GetPosition().y * 100,ropes[i].p[j].GetPosition().x * 100, ropes[i].p[j].GetPosition().y * 100);
+				}
+				var splinePoints = getCurvePoints(arr, 0.5, 4);
+				for(var j = 0; j < splinePoints.length; j+=2) {
+					ropes[i].v.lineTo(splinePoints[j], splinePoints[j+1]);
+				}
 			}
+			
 			ropes[i].v.endFill();
 		}
 	}
@@ -400,19 +571,21 @@ document.addEventListener("touchstart", function(event) {
 	createCutKnife(event);
 }, true);
 
-function createCutKnife(event){
-	var flag=checkCutBubble({
+function createCutKnife(event) {
+	var flag = checkCutBubble({
 		x: event.clientX,
 		y: event.clientY
 	});
-	if(flag){return}
+	if(flag) {
+		return
+	}
 	if(!cutBody && inLevel) {
 		cutBody = createBallObject({
 			position: {
 				x: event.clientX,
 				y: event.clientY
 			},
-			radius: engine_static.worldWidth*0.03,
+			radius: engine_static.worldWidth * 0.03,
 			density: 1,
 			touchFilter: {
 				self: 8,
@@ -436,7 +609,7 @@ function createStars(arr) {
 				x: arr[i].x,
 				y: arr[i].y
 			},
-			scale:scaleXPic2Real("obj_star_idle",CUT_THE_ROPE_STATIC.starRadius,"starLight.png")
+			scale: scaleXPic2Real("obj_star_idle", CUT_THE_ROPE_STATIC.starRadius, "starLight.png")
 		});
 		stars[i].light = createMagicBall({
 			position: {
@@ -457,7 +630,7 @@ function createStars(arr) {
 				x: arr[i].x,
 				y: arr[i].y
 			},
-			scale:scaleXPic2Real("star_disappear",CUT_THE_ROPE_STATIC.starDisappearScale,"starDisappear0.png")
+			scale: scaleXPic2Real("star_disappear", CUT_THE_ROPE_STATIC.starDisappearScale, "starDisappear0.png")
 		});
 		stars[i].disappear.loop = false;
 		world.vWorld.addChild(stars[i]);
@@ -481,8 +654,8 @@ function createDZ(p) {
 			self: 0,
 			other: 0
 		},
-		scaleX:scaleXPic2Real("fix",engine_static.worldWidth*0.03),
-		scaleY:scaleYPic2Real("fix",engine_static.worldWidth*0.03),
+		scaleX: scaleXPic2Real("fix", engine_static.worldWidth * 0.03),
+		scaleY: scaleYPic2Real("fix", engine_static.worldWidth * 0.03),
 	})
 }
 
@@ -500,27 +673,27 @@ function createSweet(p) {
 			other: 1
 		},
 		restitution: 0.7,
-		scaleX:scaleXPic2Real("sweet",CUT_THE_ROPE_STATIC.sweetRadius),
-		scaleY:scaleYPic2Real("sweet",CUT_THE_ROPE_STATIC.sweetRadius),
+		scaleX: scaleXPic2Real("sweet", CUT_THE_ROPE_STATIC.sweetRadius),
+		scaleY: scaleYPic2Real("sweet", CUT_THE_ROPE_STATIC.sweetRadius),
 		name: "sweet"
 	})
 }
 
-function createChair(x,y){
+function createChair(x, y) {
 	createMagicBox({
 		texture: "../assets/chair.png",
-		scaleX: scaleXPic2Real("chair",engine_static.worldWidth*0.18),
-		scaleY: scaleYPic2Real("chair",engine_static.worldWidth*0.18),
+		scaleX: scaleXPic2Real("chair", engine_static.worldWidth * 0.18),
+		scaleY: scaleYPic2Real("chair", engine_static.worldWidth * 0.18),
 		position: {
 			x: x,
-			y: engine_static.worldHeight*0.01+y
+			y: engine_static.worldHeight * 0.01 + y
 		},
-		width: engine_static.worldWidth*0.18,
-		height: engine_static.worldWidth*0.18
+		width: engine_static.worldWidth * 0.18,
+		height: engine_static.worldWidth * 0.18
 	});
 }
 
-function createBubble(x,y){
+function createBubble(x, y) {
 	return createMagicBall({
 		position: {
 			x: x,
@@ -528,8 +701,8 @@ function createBubble(x,y){
 		},
 		radius: CUT_THE_ROPE_STATIC.bubbleRadius,
 		texture: "../assets/bubble.png",
-		scaleX:scaleXPic2Real("bubble",CUT_THE_ROPE_STATIC.bubbleRadius),
-		scaleY:scaleYPic2Real("bubble",CUT_THE_ROPE_STATIC.bubbleRadius),
+		scaleX: scaleXPic2Real("bubble", CUT_THE_ROPE_STATIC.bubbleRadius),
+		scaleY: scaleYPic2Real("bubble", CUT_THE_ROPE_STATIC.bubbleRadius),
 		name: "bubble"
 	});
 }
@@ -537,7 +710,7 @@ function createBubble(x,y){
 function createEaters(arr) {
 	var eaters = [];
 	for(var i = 0; i < arr.length; i++) {
-		createChair(arr[i].x,arr[i].y)
+		createChair(arr[i].x, arr[i].y)
 		eaters[i] = createBallObject({
 			position: {
 				x: arr[i].x,
@@ -564,7 +737,7 @@ function createEaters(arr) {
 				x: arr[i].x,
 				y: arr[i].y
 			},
-			scale:scaleXPic2Real("char_animations",CUT_THE_ROPE_STATIC.eaterRadius,"normal0.png")
+			scale: scaleXPic2Real("char_animations", CUT_THE_ROPE_STATIC.eaterRadius, "normal0.png")
 		});
 		world.vWorld.addChild(eaters[i].normalAction);
 		eaters[i].normalAction.gotoAndPlay(0);
@@ -577,7 +750,7 @@ function createEaters(arr) {
 				x: arr[i].x,
 				y: arr[i].y
 			},
-			scale:scaleXPic2Real("char_animations",CUT_THE_ROPE_STATIC.eaterRadius,"normal0.png")
+			scale: scaleXPic2Real("char_animations", CUT_THE_ROPE_STATIC.eaterRadius, "normal0.png")
 		});
 		eaters[i].openMouthAction.loop = false;
 		eaters[i].closeMouthAction = createMovieClip({
@@ -588,7 +761,7 @@ function createEaters(arr) {
 				x: arr[i].x,
 				y: arr[i].y
 			},
-			scale:scaleXPic2Real("char_animations",CUT_THE_ROPE_STATIC.eaterRadius,"normal0.png")
+			scale: scaleXPic2Real("char_animations", CUT_THE_ROPE_STATIC.eaterRadius, "normal0.png")
 		});
 		eaters[i].closeMouthAction.loop = false;
 		eaters[i].sadAction = createMovieClip({
@@ -599,7 +772,7 @@ function createEaters(arr) {
 				x: arr[i].x,
 				y: arr[i].y
 			},
-			scale:scaleXPic2Real("char_animations",CUT_THE_ROPE_STATIC.eaterRadius,"normal0.png")
+			scale: scaleXPic2Real("char_animations", CUT_THE_ROPE_STATIC.eaterRadius, "normal0.png")
 		});
 		eaters[i].sadAction.loop = false;
 		eaters[i].chewAction = createMovieClip({
@@ -610,7 +783,7 @@ function createEaters(arr) {
 				x: arr[i].x,
 				y: arr[i].y
 			},
-			scale:scaleXPic2Real("char_animations",CUT_THE_ROPE_STATIC.eaterRadius,"normal0.png")
+			scale: scaleXPic2Real("char_animations", CUT_THE_ROPE_STATIC.eaterRadius, "normal0.png")
 		});
 		eaters[i].chewAction.loop = false;
 	}
