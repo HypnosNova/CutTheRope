@@ -124,46 +124,46 @@ function candyTouchKiller(bodyA, bodyB) {
 		(function(bodyA, bodyB) {
 			setTimeout(function() {
 				var theSweet = bodyA.name == "sweet" ? bodyA : bodyB;
-//				var sweetLeft = createBallObject({
-//					position: {
-//						x: theSweet.GetPosition().x * 100 + CUT_THE_ROPE_STATIC.sweetRadius / 2,
-//						y: theSweet.GetPosition().y * 100
-//					},
-//					texture: "../assets/sweetLeft.png",
-//					width: CUT_THE_ROPE_STATIC.sweetRadius / 2,
-//					height: CUT_THE_ROPE_STATIC.sweetRadius,
-//					density: 0.5,
-//					touchFilter: {
-//						self: 0,
-//						other: 0
-//					},
-//					restitution: 0.7,
-//					scaleX: scaleXPic2Real("sweetLeft", CUT_THE_ROPE_STATIC.sweetRadius / 2),
-//					scaleY: scaleYPic2Real("sweetLeft", CUT_THE_ROPE_STATIC.sweetRadius),
-//					name: "sweetLeft"
-//				});
-//				var sweetRight = createBallObject({
-//					position: {
-//						x: theSweet.GetPosition().x * 100 - CUT_THE_ROPE_STATIC.sweetRadius / 2,
-//						y: theSweet.GetPosition().y * 100
-//					},
-//					texture: "../assets/sweetRight.png",
-//					width: CUT_THE_ROPE_STATIC.sweetRadius / 2,
-//					height: CUT_THE_ROPE_STATIC.sweetRadius,
-//					density: 0.5,
-//					touchFilter: {
-//						self: 0,
-//						other: 0
-//					},
-//					restitution: 0.7,
-//					scaleX: scaleXPic2Real("sweetRight", CUT_THE_ROPE_STATIC.sweetRadius / 2),
-//					scaleY: scaleYPic2Real("sweetRight", CUT_THE_ROPE_STATIC.sweetRadius),
-//					name: "sweetRight"
-//				});
-//				sweetLeft.SetLinearVelocity(theSweet.GetLinearVelocity());
-//				sweetRight.SetLinearVelocity(theSweet.GetLinearVelocity());
-//				sweetLeft.ApplyImpulse(vector(0.04, 0), sweetLeft.GetWorldCenter());
-//				sweetRight.ApplyImpulse(vector(-0.04, 0), sweetRight.GetWorldCenter());
+				//				var sweetLeft = createBallObject({
+				//					position: {
+				//						x: theSweet.GetPosition().x * 100 + CUT_THE_ROPE_STATIC.sweetRadius / 2,
+				//						y: theSweet.GetPosition().y * 100
+				//					},
+				//					texture: "../assets/sweetLeft.png",
+				//					width: CUT_THE_ROPE_STATIC.sweetRadius / 2,
+				//					height: CUT_THE_ROPE_STATIC.sweetRadius,
+				//					density: 0.5,
+				//					touchFilter: {
+				//						self: 0,
+				//						other: 0
+				//					},
+				//					restitution: 0.7,
+				//					scaleX: scaleXPic2Real("sweetLeft", CUT_THE_ROPE_STATIC.sweetRadius / 2),
+				//					scaleY: scaleYPic2Real("sweetLeft", CUT_THE_ROPE_STATIC.sweetRadius),
+				//					name: "sweetLeft"
+				//				});
+				//				var sweetRight = createBallObject({
+				//					position: {
+				//						x: theSweet.GetPosition().x * 100 - CUT_THE_ROPE_STATIC.sweetRadius / 2,
+				//						y: theSweet.GetPosition().y * 100
+				//					},
+				//					texture: "../assets/sweetRight.png",
+				//					width: CUT_THE_ROPE_STATIC.sweetRadius / 2,
+				//					height: CUT_THE_ROPE_STATIC.sweetRadius,
+				//					density: 0.5,
+				//					touchFilter: {
+				//						self: 0,
+				//						other: 0
+				//					},
+				//					restitution: 0.7,
+				//					scaleX: scaleXPic2Real("sweetRight", CUT_THE_ROPE_STATIC.sweetRadius / 2),
+				//					scaleY: scaleYPic2Real("sweetRight", CUT_THE_ROPE_STATIC.sweetRadius),
+				//					name: "sweetRight"
+				//				});
+				//				sweetLeft.SetLinearVelocity(theSweet.GetLinearVelocity());
+				//				sweetRight.SetLinearVelocity(theSweet.GetLinearVelocity());
+				//				sweetLeft.ApplyImpulse(vector(0.04, 0), sweetLeft.GetWorldCenter());
+				//				sweetRight.ApplyImpulse(vector(-0.04, 0), sweetRight.GetWorldCenter());
 
 				var crash1 = createBallObject({
 					position: {
@@ -172,7 +172,7 @@ function candyTouchKiller(bodyA, bodyB) {
 					},
 					texture: "../assets/crash1.png",
 					width: CUT_THE_ROPE_STATIC.sweetRadius / 2.5,
-					height: CUT_THE_ROPE_STATIC.sweetRadius/2.5,
+					height: CUT_THE_ROPE_STATIC.sweetRadius / 2.5,
 					density: 0.5,
 					touchFilter: {
 						self: 0,
@@ -180,7 +180,7 @@ function candyTouchKiller(bodyA, bodyB) {
 					},
 					restitution: 0.7,
 					scaleX: scaleXPic2Real("crash1", CUT_THE_ROPE_STATIC.sweetRadius / 2.5),
-					scaleY: scaleYPic2Real("crash1", CUT_THE_ROPE_STATIC.sweetRadius/2.5),
+					scaleY: scaleYPic2Real("crash1", CUT_THE_ROPE_STATIC.sweetRadius / 2.5),
 					name: "sweetLeft"
 				});
 				var crash2 = createBallObject({
@@ -190,7 +190,7 @@ function candyTouchKiller(bodyA, bodyB) {
 					},
 					texture: "../assets/crash2.png",
 					width: CUT_THE_ROPE_STATIC.sweetRadius / 2,
-					height: CUT_THE_ROPE_STATIC.sweetRadius/2,
+					height: CUT_THE_ROPE_STATIC.sweetRadius / 2,
 					density: 0.5,
 					touchFilter: {
 						self: 0,
@@ -198,7 +198,7 @@ function candyTouchKiller(bodyA, bodyB) {
 					},
 					restitution: 0.7,
 					scaleX: scaleXPic2Real("crash2", CUT_THE_ROPE_STATIC.sweetRadius / 2),
-					scaleY: scaleYPic2Real("crash2", CUT_THE_ROPE_STATIC.sweetRadius/2),
+					scaleY: scaleYPic2Real("crash2", CUT_THE_ROPE_STATIC.sweetRadius / 2),
 					name: "sweetRight"
 				});
 				var crash3 = createBallObject({
@@ -208,7 +208,7 @@ function candyTouchKiller(bodyA, bodyB) {
 					},
 					texture: "../assets/crash3.png",
 					width: CUT_THE_ROPE_STATIC.sweetRadius / 2.5,
-					height: CUT_THE_ROPE_STATIC.sweetRadius/2.5,
+					height: CUT_THE_ROPE_STATIC.sweetRadius / 2.5,
 					density: 0.5,
 					touchFilter: {
 						self: 0,
@@ -216,7 +216,7 @@ function candyTouchKiller(bodyA, bodyB) {
 					},
 					restitution: 0.7,
 					scaleX: scaleXPic2Real("crash3", CUT_THE_ROPE_STATIC.sweetRadius / 2.5),
-					scaleY: scaleYPic2Real("crash3", CUT_THE_ROPE_STATIC.sweetRadius/2.5),
+					scaleY: scaleYPic2Real("crash3", CUT_THE_ROPE_STATIC.sweetRadius / 2.5),
 					name: "sweetLeft"
 				});
 				var crash4 = createBallObject({
@@ -226,7 +226,7 @@ function candyTouchKiller(bodyA, bodyB) {
 					},
 					texture: "../assets/crash4.png",
 					width: CUT_THE_ROPE_STATIC.sweetRadius / 2,
-					height: CUT_THE_ROPE_STATIC.sweetRadius/2,
+					height: CUT_THE_ROPE_STATIC.sweetRadius / 2,
 					density: 0.5,
 					touchFilter: {
 						self: 0,
@@ -234,7 +234,7 @@ function candyTouchKiller(bodyA, bodyB) {
 					},
 					restitution: 0.7,
 					scaleX: scaleXPic2Real("crash4", CUT_THE_ROPE_STATIC.sweetRadius / 2),
-					scaleY: scaleYPic2Real("crash4", CUT_THE_ROPE_STATIC.sweetRadius/2),
+					scaleY: scaleYPic2Real("crash4", CUT_THE_ROPE_STATIC.sweetRadius / 2),
 					name: "sweetRight"
 				});
 				var crash5 = createBallObject({
@@ -244,7 +244,7 @@ function candyTouchKiller(bodyA, bodyB) {
 					},
 					texture: "../assets/crash5.png",
 					width: CUT_THE_ROPE_STATIC.sweetRadius / 2.4,
-					height: CUT_THE_ROPE_STATIC.sweetRadius/2.1,
+					height: CUT_THE_ROPE_STATIC.sweetRadius / 2.1,
 					density: 0.5,
 					touchFilter: {
 						self: 0,
@@ -252,7 +252,7 @@ function candyTouchKiller(bodyA, bodyB) {
 					},
 					restitution: 0.7,
 					scaleX: scaleXPic2Real("crash5", CUT_THE_ROPE_STATIC.sweetRadius / 2.4),
-					scaleY: scaleYPic2Real("crash5", CUT_THE_ROPE_STATIC.sweetRadius/2.1),
+					scaleY: scaleYPic2Real("crash5", CUT_THE_ROPE_STATIC.sweetRadius / 2.1),
 					name: "sweetRight"
 				});
 				crash1.SetLinearVelocity(theSweet.GetLinearVelocity());
@@ -260,15 +260,15 @@ function candyTouchKiller(bodyA, bodyB) {
 				crash3.SetLinearVelocity(theSweet.GetLinearVelocity());
 				crash4.SetLinearVelocity(theSweet.GetLinearVelocity());
 				crash5.SetLinearVelocity(theSweet.GetLinearVelocity());
-				crash1.ApplyImpulse(vector(MathUtil.rndRange(0,0.025)-0.005, -MathUtil.rndRange(0,0.012)+0.002), crash1.GetWorldCenter());
-				crash2.ApplyImpulse(vector(MathUtil.rndRange(0,0.025)-0.005, MathUtil.rndRange(0,0.012)-0.002), crash2.GetWorldCenter());
-				crash3.ApplyImpulse(vector(-MathUtil.rndRange(0,0.025)+0.005, -MathUtil.rndRange(0,0.012)+0.002), crash3.GetWorldCenter());
-				crash4.ApplyImpulse(vector(-MathUtil.rndRange(0,0.025)+0.005, MathUtil.rndRange(0,0.012)-0.002), crash4.GetWorldCenter());
-				crash5.ApplyImpulse(vector(MathUtil.rndRange(0,0.02)-0.01, MathUtil.rndRange(0,0.02)-0.01), crash4.GetWorldCenter());
+				crash1.ApplyImpulse(vector(MathUtil.rndRange(0, 0.025) - 0.005, -MathUtil.rndRange(0, 0.012) + 0.002), crash1.GetWorldCenter());
+				crash2.ApplyImpulse(vector(MathUtil.rndRange(0, 0.025) - 0.005, MathUtil.rndRange(0, 0.012) - 0.002), crash2.GetWorldCenter());
+				crash3.ApplyImpulse(vector(-MathUtil.rndRange(0, 0.025) + 0.005, -MathUtil.rndRange(0, 0.012) + 0.002), crash3.GetWorldCenter());
+				crash4.ApplyImpulse(vector(-MathUtil.rndRange(0, 0.025) + 0.005, MathUtil.rndRange(0, 0.012) - 0.002), crash4.GetWorldCenter());
+				crash5.ApplyImpulse(vector(MathUtil.rndRange(0, 0.02) - 0.01, MathUtil.rndRange(0, 0.02) - 0.01), crash4.GetWorldCenter());
 				world.deleteObj(theSweet);
 				gameResult = -1;
 				for(var i = 0; i < ropes.length; i++) {
-					if(ropes[i]&&ropes[i].p) {
+					if(ropes[i] && ropes[i].p) {
 						var index = ropes[i].p.getIndex(theSweet)
 						if(index) {
 							ropes[i].p.remove(index);
@@ -500,11 +500,25 @@ function drawLineRope() {
 	for(var i = 0; i < ropes.length; i++) {
 		if(ropes[i] && ropes[i].p[0]) {
 			ropes[i].v.clear();
-			ropes[i].v.lineStyle(2, 0x333333, 0.7);
+			ropes[i].v.lineStyle(1.5, 0x333333, 0.7);
 			ropes[i].v.moveTo(ropes[i].p[0].GetPosition().x * 100, ropes[i].p[0].GetPosition().y * 100);
-			for(var j = 1; j < ropes[i].p.length; j++) {
-				ropes[i].v.lineTo(ropes[i].p[j].GetPosition().x * 100, ropes[i].p[j].GetPosition().y * 100);
+			if(ropes[i].p.length <= 2) {
+				for(var j = 1; j < ropes[i].p.length; j++) {
+					ropes[i].v.lineTo(ropes[i].p[j].GetPosition().x * 100, ropes[i].p[j].GetPosition().y * 100);
+				}
+			}else{
+				var arr=[];
+				for(var j = 0; j < ropes[i].p.length; j++) {
+					arr.push(ropes[i].p[j].GetPosition().x * 100);
+					arr.push(ropes[i].p[j].GetPosition().y * 100);
+					//ropes[i].v.bezierCurveTo(ropes[i].p[j-2].GetPosition().x * 100, ropes[i].p[j-2].GetPosition().y * 100,ropes[i].p[j-1].GetPosition().x * 100, ropes[i].p[j-1].GetPosition().y * 100,ropes[i].p[j].GetPosition().x * 100, ropes[i].p[j].GetPosition().y * 100);
+				}
+				var splinePoints = getCurvePoints(arr, 0.5, 4);
+				for(var j = 0; j < splinePoints.length; j+=2) {
+					ropes[i].v.lineTo(splinePoints[j], splinePoints[j+1]);
+				}
 			}
+			
 			ropes[i].v.endFill();
 		}
 	}
