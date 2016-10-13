@@ -175,7 +175,7 @@ levelScript[9] = function() {
 		scaleY:scaleYPic2Real("killerDz",engine_static.worldWidth/23),
 		name: "killerDz"
 	});
-	bubbles[0] = createBubble(engine_static.worldWidth * 0.85, engine_static.worldHeight * 0.7);
+	bubbles[0] = createBubble(engine_static.worldWidth * 0.85, engine_static.worldHeight * 0.72);
 	var woodBridge2 = createBoxObject({
 		position: {
 			x: engine_static.worldWidth * 0.85,
@@ -184,7 +184,7 @@ levelScript[9] = function() {
 		isStatic:true,
 		texture: "../assets/wood.png",
 		density: 1,
-		restitution:0.2,
+		restitution:0.15,
 		width: engine_static.worldWidth * 0.15,
 		height: engine_static.worldHeight * 0.025,
 		scaleX: scaleXPic2Real("wood", engine_static.worldWidth * 0.15),
