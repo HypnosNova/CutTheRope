@@ -6,6 +6,13 @@ function gameLoad() {
 	//加载资源
 	loader = new PIXI.loaders.Loader();
 	loader.add('sweet', "../assets/sweet.png");
+	loader.add('sweetLeft', "../assets/sweetLeft.png");
+	loader.add('sweetRight', "../assets/sweetRight.png");
+	loader.add('crash1', "../assets/crash1.png");
+	loader.add('crash2', "../assets/crash2.png");
+	loader.add('crash3', "../assets/crash3.png");
+	loader.add('crash4', "../assets/crash4.png");
+	loader.add('crash5', "../assets/crash5.png");
 	loader.add('box', "../assets/box.jpg");
 	loader.add('ball', "../assets/ball.png");
 	loader.add('eater', "../assets/eater.png");

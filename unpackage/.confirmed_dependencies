@@ -213,7 +213,14 @@
 			"assets/killerDz.png",
 			"levels/js/testLevel.js",
 			"assets/stickBar.png",
-			"assets/wood.png"
+			"assets/wood.png",
+			"assets/sweetRight.png",
+			"assets/sweetLeft.png",
+			"assets/crash2.png",
+			"assets/crash5.png",
+			"assets/crash3.png",
+			"assets/crash4.png",
+			"assets/crash1.png"
 		],
 		"refer": []
 	}

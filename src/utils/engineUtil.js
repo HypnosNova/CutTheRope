@@ -598,9 +598,9 @@ function update() {
 		actor.position.y = position.y * 100;
 		actor.rotation = body.GetAngle();
 	}
-
-	doSpecialAction(); //抽出来一个函数，各类游戏的专有轮询处理写在这个函数里
-
+	if(doSpecialAction){
+		doSpecialAction(); //抽出来一个函数，各类游戏的专有轮询处理写在这个函数里
+	}
 	renderObject.renderer.render(world.vWorld);
 	renderObject.stats.update();
 }
@@ -724,3 +724,11 @@ $.fn.extend({
         });
     }
 });
+
+function addForce(obj,force){
+	obj.ApplyForce(vector(force.x,force.y), obj.GetWorldCenter());
+}
+//创建box2d的向量
+function vector(x,y){
+	return new Box2D.Common.Math.b2Vec2(x,y);
+}
