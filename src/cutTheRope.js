@@ -93,6 +93,47 @@ function winOrLost() {
 	}
 }
 
+function addPauseAndRestartBtn() {
+	var pauseBtn = createBallObject({
+		position: {
+			x: engine_static.worldWidth * 0.93,
+			y: engine_static.worldHeight * 0.035,
+		},
+		texture:"../assets/pauseBtn.png",
+		radius: engine_static.worldheight * 0.5,
+		isStatic: true,
+		touchFilter: {
+			self: 0,
+			other: 0
+		},
+		width: engine_static.worldWidth * 0.035,
+		height: engine_static.worldWidth * 0.035,
+		scaleX: scaleXPic2Real("pauseBtn", engine_static.worldWidth * 0.035),
+		scaleY: scaleYPic2Real("pauseBtn", engine_static.worldWidth * 0.035),
+		name: "pauseBtn"
+	});
+	var restartBtn = createBallObject({
+		position: {
+			x: engine_static.worldWidth * 0.85,
+			y: engine_static.worldHeight * 0.035,
+		},
+		texture:"../assets/restartBtn.png",
+		radius: engine_static.worldheight * 0.5,
+		isStatic: true,
+		touchFilter: {
+			self: 0,
+			other: 0
+		},
+		width: engine_static.worldWidth * 0.03,
+		height: engine_static.worldWidth * 0.03,
+		scaleX: scaleXPic2Real("restartBtn", engine_static.worldWidth * 0.03),
+		scaleY: scaleYPic2Real("restartBtn", engine_static.worldWidth * 0.03),
+		name: "restartBtn"
+	});
+	
+	
+}
+
 //糖果掉落没有被吃掉
 var gameResult = -2; //是否游戏胜利或失败
 function lostSweet() {
@@ -449,7 +490,7 @@ function sweetTouchBubble() {
 						x: position.x,
 						y: position.y
 					},
-					scale:scaleXPic2Real("bubble2",CUT_THE_ROPE_STATIC.bubbleRadius,"bubble3.png")
+					scale: scaleXPic2Real("bubble2", CUT_THE_ROPE_STATIC.bubbleRadius, "bubble3.png")
 				});
 				pball.v.popAction = createMovieClip({
 					name: "bubblepop",
@@ -459,7 +500,7 @@ function sweetTouchBubble() {
 						x: position.x,
 						y: position.y
 					},
-					scale:scaleXPic2Real("bubblepop",CUT_THE_ROPE_STATIC.bubbleRadius*1.5,"bubblepop0.png")
+					scale: scaleXPic2Real("bubblepop", CUT_THE_ROPE_STATIC.bubbleRadius * 1.5, "bubblepop0.png")
 				});
 				pball.v.popAction.loop = false;
 				world.vWorld.addChild(pball.v.normalAction);
@@ -504,19 +545,19 @@ function drawLineRope() {
 				for(var j = 1; j < ropes[i].p.length; j++) {
 					ropes[i].v.lineTo(ropes[i].p[j].GetPosition().x * 100, ropes[i].p[j].GetPosition().y * 100);
 				}
-			}else{
-				var arr=[];
+			} else {
+				var arr = [];
 				for(var j = 0; j < ropes[i].p.length; j++) {
 					arr.push(ropes[i].p[j].GetPosition().x * 100);
 					arr.push(ropes[i].p[j].GetPosition().y * 100);
 					//ropes[i].v.bezierCurveTo(ropes[i].p[j-2].GetPosition().x * 100, ropes[i].p[j-2].GetPosition().y * 100,ropes[i].p[j-1].GetPosition().x * 100, ropes[i].p[j-1].GetPosition().y * 100,ropes[i].p[j].GetPosition().x * 100, ropes[i].p[j].GetPosition().y * 100);
 				}
 				var splinePoints = getCurvePoints(arr, 0.5, 4);
-				for(var j = 0; j < splinePoints.length; j+=2) {
-					ropes[i].v.lineTo(splinePoints[j], splinePoints[j+1]);
+				for(var j = 0; j < splinePoints.length; j += 2) {
+					ropes[i].v.lineTo(splinePoints[j], splinePoints[j + 1]);
 				}
 			}
-			
+
 			ropes[i].v.endFill();
 		}
 	}

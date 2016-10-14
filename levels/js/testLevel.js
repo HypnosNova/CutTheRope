@@ -1,4 +1,4 @@
-levelScript[9] = function() {
+levelScript[10] = function() {
 	var bg = new PIXI.Sprite(PIXI.Texture.fromFrame("../assets/bg.jpg"));
 	world.vWorld.addChild(bg);
 	bg.anchor.x = bg.anchor.y = 0;

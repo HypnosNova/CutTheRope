@@ -22,6 +22,8 @@ function gameLoad() {
 	loader.add('star', "../assets/star.png");
 	loader.add('fix', "../assets/fix.png");
 	loader.add('bg', "../assets/bg.jpg");
+	loader.add('pauseBtn', "../assets/pauseBtn.png");
+	loader.add('restartBtn', "../assets/restartBtn.png");
 	loader.add('mainbg', "../assets/mainbg.jpg");
 	loader.add('chair', "../assets/chair.png");
 	loader.add('bubble', "../assets/bubble.png");

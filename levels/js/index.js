@@ -78,6 +78,7 @@ function startLevel(index) {
 		} catch(e) {}
 		setTimeout(function() {
 			coverOpen();
+			addPauseAndRestartBtn();
 			setTimeout(function() {
 				$(".coverDown").hide();
 				$(".coverUp").hide();

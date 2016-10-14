@@ -384,7 +384,9 @@
 					"assets/crash3.png",
 					"assets/crash4.png",
 					"assets/crash1.png",
-					"lib/curve_calc.min.js"
+					"lib/curve_calc.min.js",
+					"assets/restartBtn.png",
+					"assets/pauseBtn.png"
 				],
 				"refer": [],
 				"priority": 0
