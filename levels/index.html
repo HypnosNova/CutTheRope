@@ -13,6 +13,7 @@
 
 	<body>
 		<script src="../lib/jquery-2.1.0.js"></script>
+		<script src="../src/storage.js"></script>
 		<script src="../lib/curve_calc.min.js"></script>
 		<script src="../lib/swiper/swiper.min.js"></script>
 		<script src="../src/utils/structure.js"></script>
@@ -76,9 +77,16 @@
 		<div class="scoreContainer">
 			<div class="starContainer"></div>
 			<div class="btnContainer">
-				<img id="menuBtn" class="actionBtn" src="../assets/menuBtn.png" />
-				<img id="replayBtn" class="actionBtn" src="../assets/replayBtn.png" />
-				<img id="nextlevelBtn" class="actionBtn" src="../assets/nextlevelBtn.png" />
+				<img id="menuBtn" class="menuBtn actionBtn" src="../assets/menuBtn.png" />
+				<img id="replayBtn" class="replayBtn actionBtn" src="../assets/replayBtn.png" />
+				<img id="nextlevelBtn" class="nextlevelBtn actionBtn" src="../assets/nextlevelBtn.png" />
+			</div>
+		</div>
+		<div id="pauseDiv">
+			<div class="btnContainer">
+				<img id="menuBtn2" class="menuBtn2 actionBtn" src="../assets/menuBtn.png" />
+				<img id="replayBtn" class="replayBtn actionBtn" src="../assets/replayBtn.png" />
+				<img id="continueBtn" class="continueBtn actionBtn" src="../assets/nextlevelBtn.png" />
 			</div>
 		</div>
 	</body>
@@ -86,6 +94,7 @@
 		$(".coverDown2").css("height", (engine_static.worldHeight / 2) + "px");
 		$(".coverUp2").css("height", (engine_static.worldHeight / 2) + "px");
 		$(".swiper-container").css("width", engine_static.worldWidth + "px");
+		$("#pauseDiv").css("width", engine_static.worldWidth + "px");
 		$(".scoreContainer").css("width", engine_static.worldWidth + "px").css("height", engine_static.worldHeight + "px");
 		$("#backImg").css({
 			"width": engine_static.worldWidth / 6 + "px",
@@ -149,10 +158,12 @@
 			})(e);
 		});
 
-		$("#menuBtn").bind("click", function() {
+		$(".menuBtn").bind("click", function() {
 			try {
 				ion.sound.play("tap");
 			} catch(e) {}
+			$("#pauseDiv").hide();
+			engine_static.renderPause=false;
 			$(".scoreContainer").fadeOut(500);
 			setTimeout(function() {
 				coverOpen();
@@ -175,32 +186,56 @@
 				}, 300);
 			}, 500);
 		})
-		$("#replayBtn").bind("click", function() {
-			$(".scoreContainer").fadeOut(500);
+		$(".menuBtn2").bind("click", function() {
+			try {
+				ion.sound.play("tap");
+			} catch(e) {}
+			$("#pauseDiv").hide();
+			engine_static.renderPause=false;
+			coverClose();
 			setTimeout(function() {
-				$(".swiper-container").hide();
-				starsGet = 0;
-				ropes = [];
+				coverOpen();
+				try {
+					ion.sound.play("menu_music", {
+						loop: true
+					});
+				} catch(e) {}
+				try {
+					ion.sound.stop("game_music");
+				} catch(e) {}
 				clearAllGameThings();
-				levelScript[currentLevel]();
+				inLevel = false;
+				var bg = new PIXI.Sprite(PIXI.Texture.fromFrame("../assets/levelSelect.jpg"));
+				world.vWorld.addChild(bg);
+				bg.anchor.x = bg.anchor.y = 0;
+				bg.scale.x = bg.scale.y = engine_static.worldHeight / 576;
 				setTimeout(function() {
-					coverOpen();
-					setTimeout(function() {
-						$(".coverDown").hide();
-						$(".coverUp").hide();
-						inLevel = true;
-					}, 500)
-				}, 100)
-			}, 500)
+					$(".swiper-container").fadeIn(500);
+				}, 300);
+			}, 500);
 		})
-		$("#nextlevelBtn").bind("click", function() {
+		$(".replayBtn").bind("click", function() {
+			engine_static.renderPause=false;
+			$("#pauseDiv").hide();
+			$(".scoreContainer").fadeOut(500);
+			restartGameLevel();
+		})
+		$(".continueBtn").bind("click", function() {
+			engine_static.renderPause=false;
+			$("#pauseDiv").hide();
+		})
+		$(".nextlevelBtn").bind("click", function() {
+			engine_static.renderPause=false;
+			$("#pauseDiv").hide();
 			currentLevel++;
 			$(".scoreContainer").fadeOut(500);
 			setTimeout(function() {
+				clearAllGameThings();
 				$(".swiper-container").hide();
 				starsGet = 0;
 				ropes = [];
 				levelScript[currentLevel]();
+				addPauseAndRestartBtn();
 				setTimeout(function() {
 					coverOpen();
 					setTimeout(function() {
@@ -221,6 +256,7 @@
 				$(".swiper-container").css("visibility", "visible");
 			}
 		}
+		showStarRecord();
 	</script>
 
 </html>

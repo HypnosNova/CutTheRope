@@ -8,6 +8,7 @@ var engine_static = {
 	worldHeight: window.innerHeight,
 	//圆形刚体默认属性
 	ballObjectProperty: {
+		alpha:1,
 		name: "", //名字
 		radius: 25, //半径
 		isStatic: false, //是否是静态刚体
@@ -31,6 +32,7 @@ var engine_static = {
 	},
 	//方块刚体默认属性
 	boxObjectProperty: {
+		alpha:1,
 		name: "", //名字
 		width: 25, //宽度
 		height: 25, //高度
@@ -298,61 +300,11 @@ function createTouchFilter(options) {
 //创建一个球在场景里
 function createBallObject(options, container) {
 	//--------------创建物理实体-------------
-	//设置对象的各个属性值
-	var theOption = $.extend({}, engine_static.ballObjectProperty, options);
-	var circleFixture = new Box2D.Dynamics.b2FixtureDef();
-	circleFixture.shape = new Box2D.Collision.Shapes.b2CircleShape();
-	circleFixture.density = theOption.density;
-	circleFixture.friction = theOption.friction;
-	circleFixture.restitution = theOption.restitution;
-	circleFixture.shape.SetRadius(theOption.radius / engine_static.meter);
-	circleFixture.filter = createTouchFilter({
-		self: theOption.touchFilter.self,
-		other: theOption.touchFilter.other
-	});
-	//定义刚体
-	var bodyDef = new Box2D.Dynamics.b2BodyDef();
-	//是否是静态刚体
-	if(theOption.isStatic) {
-		bodyDef.type = Box2D.Dynamics.b2Body.b2_staticBody;
-	} else {
-		bodyDef.type = Box2D.Dynamics.b2Body.b2_dynamicBody
-	}
-	//设置刚体位置
-	bodyDef.position.Set(theOption.position.x / engine_static.meter, theOption.position.y / engine_static.meter);
-
-	var pball = world.pWorld.CreateBody(bodyDef);
-	pball.CreateFixture(circleFixture);
-	pball.isDragable = theOption.isDragable;
-	pball.name = theOption.name;
-	world.pArray.push(pball); //将物理物体加入数组和视图物体进行绑定
-	if(container) {
-		container.AddBody(pball);
-	}
+	var pball=createInvisibileBallObject(options,container);
+	world.pArray.push(pball);
 	//-----------------创建视图物体----------------
-	if(theOption.texture) {
-		var vball = new PIXI.Sprite(PIXI.Texture.fromFrame(theOption.texture));
-		world.vWorld.addChild(vball);
-		vball.i = i;
-		vball.anchor.x = vball.anchor.y = 0.5;
-		vball.scale.x = theOption.scaleX;
-		vball.scale.y = theOption.scaleY;
-		world.vArray.push(vball); //将视图物体加入数组和物理实体进行绑定
-		pball.v=vball;
-	} else {
-		var vbox = new PIXI.Sprite();
-		var graphics = new PIXI.Graphics();
-		graphics.lineStyle(0);
-		graphics.beginFill(theOption.color, 1);
-		graphics.drawCircle(0, 0, theOption.radius);
-		graphics.endFill();
-		vbox.addChild(graphics);
-		world.vWorld.addChild(vbox);
-		vbox.i = i;
-		vbox.anchor.x = vbox.anchor.y = 0.5;
-		world.vArray.push(vbox); //将视图物体加入数组和物理实体进行绑定
-		pball.v=vbox;
-	}
+	pball.v=createMagicBall(options,container);
+	world.vArray.push(pball.v);
 	return pball;
 }
 
@@ -364,13 +316,8 @@ function createMagicBall(options, container) {
 	var vball;
 	if(theOption.texture) {
 		vball = new PIXI.Sprite(PIXI.Texture.fromFrame(theOption.texture));
-		world.vWorld.addChild(vball);
-		vball.i = i;
-		vball.anchor.x = vball.anchor.y = 0.5;
 		vball.scale.x = theOption.scaleX;
 		vball.scale.y = theOption.scaleY;
-		vball.position.x = theOption.position.x;
-		vball.position.y = theOption.position.y;
 	} else {
 		vball = new PIXI.Sprite();
 		var graphics = new PIXI.Graphics();
@@ -379,13 +326,14 @@ function createMagicBall(options, container) {
 		graphics.drawCircle(0, 0, theOption.radius);
 		graphics.endFill();
 		vball.addChild(graphics);
-		world.vWorld.addChild(vball);
-		vball.i = i;
-		vball.anchor.x = vball.anchor.y = 0.5;
-		vball.position.x = theOption.position.x;
-		vball.position.y = theOption.position.y;
 	}
+	vball.anchor.x = vball.anchor.y = 0.5;
+	vball.position.x = theOption.position.x;
+	vball.position.y = theOption.position.y;
+	vball.i = i;
+	vball.alpha=theOption.alpha;
 	vball.name=theOption.name;
+	world.vWorld.addChild(vball);
 	return vball;
 }
 
@@ -429,62 +377,11 @@ function createInvisibileBallObject(options, container) {
 //创建方块物体
 function createBoxObject(options, container) {
 	//--------------创建物理实体-------------
-	//设置对象的各个属性值
-	var theOption = $.extend({}, engine_static.boxObjectProperty, options);
-	var boxFixture = new Box2D.Dynamics.b2FixtureDef();
-	boxFixture.shape = new Box2D.Collision.Shapes.b2PolygonShape();
-	boxFixture.density = theOption.density;
-	boxFixture.friction = theOption.friction;
-	boxFixture.restitution = theOption.restitution;
-	boxFixture.shape.SetAsBox(theOption.width / engine_static.meter, theOption.height / engine_static.meter);
-	boxFixture.filter = createTouchFilter({
-		self: theOption.touchFilter.self,
-		other: theOption.touchFilter.other
-	});
-	boxFixture.name = theOption.name;
-	//定义刚体
-	var bodyDef = new Box2D.Dynamics.b2BodyDef();
-	//是否是静态刚体
-	if(theOption.isStatic) {
-		bodyDef.type = Box2D.Dynamics.b2Body.b2_staticBody;
-	} else {
-		bodyDef.type = Box2D.Dynamics.b2Body.b2_dynamicBody
-	}
-	//设置刚体位置
-	bodyDef.position.Set(theOption.position.x / engine_static.meter, theOption.position.y / engine_static.meter);
-	var pbox = world.pWorld.CreateBody(bodyDef);
-	pbox.CreateFixture(boxFixture);
-	pbox.isDragable = theOption.isDragable;
-	pbox.name = theOption.name;
-	world.pArray.push(pbox); //将物理物体加入数组和视图物体进行绑定
-	if(container) {
-		container.AddBody(pbox);
-	}
+	var pbox=createInvisibleBoxObject(options,container);
+	world.pArray.push(pbox);
 	//-----------------创建视图物体----------------
-	if(theOption.texture) {
-		var vbox = new PIXI.Sprite(PIXI.Texture.fromFrame(theOption.texture));
-		world.vWorld.addChild(vbox);
-		vbox.i = i;
-		vbox.anchor.x = vbox.anchor.y = 0.5;
-		vbox.scale.x = theOption.scaleX;
-		vbox.scale.y = theOption.scaleY;
-		world.vArray.push(vbox); //将视图物体加入数组和物理实体进行绑定
-		pbox.v=vbox;
-	} else {
-		var vbox = new PIXI.Sprite();
-		var graphics = new PIXI.Graphics();
-		graphics.lineStyle(0, theOption.color, 0);
-		graphics.beginFill(theOption.color, 1);
-		graphics.drawRect(0, 0, theOption.width * 2, theOption.height * 2);
-		graphics.x = -theOption.width;
-		graphics.y = -theOption.height;
-		vbox.addChild(graphics);
-		world.vWorld.addChild(vbox);
-		vbox.i = i;
-		vbox.anchor.x = vbox.anchor.y = 0.5;
-		world.vArray.push(vbox); //将视图物体加入数组和物理实体进行绑定
-		pbox.v=vbox;
-	}
+	pbox.v=createMagicBox(options);
+	world.vArray.push(pbox.v);
 	return pbox;
 }
 //创建方块物体
@@ -495,13 +392,8 @@ function createMagicBox(options) {
 	//-----------------创建视图物体----------------
 	if(theOption.texture) {
 		vbox = new PIXI.Sprite(PIXI.Texture.fromFrame(theOption.texture));
-		world.vWorld.addChild(vbox);
-		vbox.i = i;
-		vbox.anchor.x = vbox.anchor.y = 0.5;
 		vbox.scale.x = theOption.scaleX;
 		vbox.scale.y = theOption.scaleY;
-		vbox.position.x = theOption.position.x;
-		vbox.position.y = theOption.position.y;
 	} else {
 		vbox = new PIXI.Sprite();
 		var graphics = new PIXI.Graphics();
@@ -511,12 +403,13 @@ function createMagicBox(options) {
 		graphics.x = -theOption.width;
 		graphics.y = -theOption.height;
 		vbox.addChild(graphics);
-		world.vWorld.addChild(vbox);
-		vbox.i = i;
-		vbox.anchor.x = vbox.anchor.y = 0.5;
-		vbox.position.x = theOption.position.x;
-		vbox.position.y = theOption.position.y;
 	}
+	world.vWorld.addChild(vbox);
+	vbox.i = i;
+	vbox.alpha=theOption.alpha;
+	vbox.position.x = theOption.position.x;
+	vbox.position.y = theOption.position.y;
+	vbox.anchor.x = vbox.anchor.y = 0.5;
 	return vbox;
 }
 //创建方块物体

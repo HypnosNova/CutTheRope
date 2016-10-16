@@ -1,4 +1,4 @@
-var inLevel = false; //是否进入游戏关卡
+var inLevel = false,alreadyClosing=false;; //是否进入游戏关卡
 var starsGet = 0;
 var bubbleArray = [];
 
@@ -10,8 +10,18 @@ var CUT_THE_ROPE_STATIC = {
 	starDisappearScale: engine_static.worldWidth * 0.21,
 	eaterRadius: engine_static.worldWidth * 0.12,
 	openMouthMinDistance: engine_static.worldWidth * 0.12 * 1.0,
-	openMouthMaxDistance: engine_static.worldWidth * 0.12 * 2.0,
-	closeMouthMaxDistance: engine_static.worldWidth * 0.12 * 2.3
+	openMouthMaxDistance: engine_static.worldWidth * 0.12 * 2.2,
+	closeMouthMaxDistance: engine_static.worldWidth * 0.12 * 2.3,
+	pauseBtn: {
+		radius: engine_static.worldWidth * 0.032,
+		x: engine_static.worldWidth * 0.93,
+		y: engine_static.worldWidth * 0.065
+	},
+	restartBtn: {
+		radius: engine_static.worldWidth * 0.032,
+		x: engine_static.worldWidth * 0.84,
+		y: engine_static.worldWidth * 0.065
+	}
 }
 
 function doSpecialAction() {
@@ -42,16 +52,23 @@ function doContactEnd(bodyA, bodyB) {
 }
 
 function winOrLost() {
-	if(gameResult == 0) {
+	if(gameResult == 0&&!alreadyClosing) {
 		$(".starContainer").empty();
 		gameResult = -2;
 		setTimeout(function() {
+			if(alreadyClosing){
+				return;
+			}
+			if(gameResult > 0){
+				return;
+			}
 			coverClose();
 			setTimeout(function() {
 				$(".scoreContainer").show();
 				try {
 					ion.sound.play("win");
 				} catch(e) {}
+				saveStarRecord(starsGet,currentLevel);
 				for(var i = 0; i < starsGet; i++) {
 					var img = document.createElement("img");
 					img.src = "../assets/star.png";
@@ -71,67 +88,88 @@ function winOrLost() {
 	} else if(gameResult == -1) {
 		gameResult = -2;
 		setTimeout(function() {
-
-			$(".starContainer").empty();
-			$(".swiper-container").hide();
-			starsGet = 0;
-			ropes = [];
-			coverClose();
-			setTimeout(function() {
-				clearAllGameThings();
-				levelScript[currentLevel]();
-				setTimeout(function() {
-					coverOpen();
-					setTimeout(function() {
-						$(".coverDown").hide();
-						$(".coverUp").hide();
-						inLevel = true;
-					}, 500);
-				}, 100);
-			}, 500);
+			if(gameResult>0||alreadyClosing){
+				return;
+			}
+			restartGameLevel();
 		}, 1500);
 	}
+}
+
+function restartGameLevel() {
+	if(alreadyClosing){
+		return;
+	}
+	alreadyClosing=true;
+	$(".starContainer").empty();
+	$(".swiper-container").hide();
+	starsGet = 0;
+	ropes = [];
+	coverClose();
+	setTimeout(function() {
+		clearAllGameThings();
+		levelScript[currentLevel]();
+		addPauseAndRestartBtn();
+		setTimeout(function() {
+			coverOpen();
+			setTimeout(function() {
+				$(".coverDown").hide();
+				$(".coverUp").hide();
+				inLevel = true;
+				alreadyClosing=false;
+			}, 500);
+		}, 100);
+	}, 500);
 }
 
 function addPauseAndRestartBtn() {
 	var pauseBtn = createBallObject({
 		position: {
-			x: engine_static.worldWidth * 0.93,
-			y: engine_static.worldHeight * 0.035,
+			x: CUT_THE_ROPE_STATIC.pauseBtn.x,
+			y: CUT_THE_ROPE_STATIC.pauseBtn.y,
 		},
-		texture:"../assets/pauseBtn.png",
-		radius: engine_static.worldheight * 0.5,
+		texture: "../assets/pauseBtn.png",
+		radius: CUT_THE_ROPE_STATIC.pauseBtn.radius,
 		isStatic: true,
 		touchFilter: {
 			self: 0,
 			other: 0
 		},
-		width: engine_static.worldWidth * 0.035,
-		height: engine_static.worldWidth * 0.035,
-		scaleX: scaleXPic2Real("pauseBtn", engine_static.worldWidth * 0.035),
-		scaleY: scaleYPic2Real("pauseBtn", engine_static.worldWidth * 0.035),
+		alpha: 0.7,
+		scaleX: scaleXPic2Real("pauseBtn", CUT_THE_ROPE_STATIC.pauseBtn.radius),
+		scaleY: scaleYPic2Real("pauseBtn", CUT_THE_ROPE_STATIC.pauseBtn.radius),
 		name: "pauseBtn"
 	});
 	var restartBtn = createBallObject({
+		alpha: 0.7,
 		position: {
-			x: engine_static.worldWidth * 0.85,
-			y: engine_static.worldHeight * 0.035,
+			x: CUT_THE_ROPE_STATIC.restartBtn.x,
+			y: CUT_THE_ROPE_STATIC.restartBtn.y,
 		},
-		texture:"../assets/restartBtn.png",
-		radius: engine_static.worldheight * 0.5,
+		texture: "../assets/restartBtn.png",
+		radius: CUT_THE_ROPE_STATIC.restartBtn.radius,
 		isStatic: true,
 		touchFilter: {
 			self: 0,
 			other: 0
 		},
-		width: engine_static.worldWidth * 0.03,
-		height: engine_static.worldWidth * 0.03,
-		scaleX: scaleXPic2Real("restartBtn", engine_static.worldWidth * 0.03),
-		scaleY: scaleYPic2Real("restartBtn", engine_static.worldWidth * 0.03),
+		scaleX: scaleXPic2Real("restartBtn", CUT_THE_ROPE_STATIC.restartBtn.radius),
+		scaleY: scaleYPic2Real("restartBtn", CUT_THE_ROPE_STATIC.restartBtn.radius),
 		name: "restartBtn"
 	});
-	
-	
+	restartBtn.touchDown = function() {
+		if(gameResult<=0){
+			return;
+		}
+		restartGameLevel();
+	}
+	pauseBtn.touchDown = function() {
+		if(gameResult<=0){
+			return;
+		}
+		engine_static.renderPause=true;
+		$("#pauseDiv").show();
+	}
 }
 
 //糖果掉落没有被吃掉
@@ -165,47 +203,6 @@ function candyTouchKiller(bodyA, bodyB) {
 		(function(bodyA, bodyB) {
 			setTimeout(function() {
 				var theSweet = bodyA.name == "sweet" ? bodyA : bodyB;
-				//				var sweetLeft = createBallObject({
-				//					position: {
-				//						x: theSweet.GetPosition().x * 100 + CUT_THE_ROPE_STATIC.sweetRadius / 2,
-				//						y: theSweet.GetPosition().y * 100
-				//					},
-				//					texture: "../assets/sweetLeft.png",
-				//					width: CUT_THE_ROPE_STATIC.sweetRadius / 2,
-				//					height: CUT_THE_ROPE_STATIC.sweetRadius,
-				//					density: 0.5,
-				//					touchFilter: {
-				//						self: 0,
-				//						other: 0
-				//					},
-				//					restitution: 0.7,
-				//					scaleX: scaleXPic2Real("sweetLeft", CUT_THE_ROPE_STATIC.sweetRadius / 2),
-				//					scaleY: scaleYPic2Real("sweetLeft", CUT_THE_ROPE_STATIC.sweetRadius),
-				//					name: "sweetLeft"
-				//				});
-				//				var sweetRight = createBallObject({
-				//					position: {
-				//						x: theSweet.GetPosition().x * 100 - CUT_THE_ROPE_STATIC.sweetRadius / 2,
-				//						y: theSweet.GetPosition().y * 100
-				//					},
-				//					texture: "../assets/sweetRight.png",
-				//					width: CUT_THE_ROPE_STATIC.sweetRadius / 2,
-				//					height: CUT_THE_ROPE_STATIC.sweetRadius,
-				//					density: 0.5,
-				//					touchFilter: {
-				//						self: 0,
-				//						other: 0
-				//					},
-				//					restitution: 0.7,
-				//					scaleX: scaleXPic2Real("sweetRight", CUT_THE_ROPE_STATIC.sweetRadius / 2),
-				//					scaleY: scaleYPic2Real("sweetRight", CUT_THE_ROPE_STATIC.sweetRadius),
-				//					name: "sweetRight"
-				//				});
-				//				sweetLeft.SetLinearVelocity(theSweet.GetLinearVelocity());
-				//				sweetRight.SetLinearVelocity(theSweet.GetLinearVelocity());
-				//				sweetLeft.ApplyImpulse(vector(0.04, 0), sweetLeft.GetWorldCenter());
-				//				sweetRight.ApplyImpulse(vector(-0.04, 0), sweetRight.GetWorldCenter());
-
 				var crash1 = createBallObject({
 					position: {
 						x: theSweet.GetPosition().x * 100 + CUT_THE_ROPE_STATIC.sweetRadius / 2,
@@ -446,10 +443,6 @@ function eatCandy() {
 	}
 }
 
-function removeRope(ropeId) {
-
-}
-
 function sweetTouchBubble() {
 	for(var h = 0; h < sweets.length; h++) {
 		for(var i = 0; i < bubbles.length; i++) {
@@ -571,12 +564,12 @@ var sweet = {},
 	eaters = [];
 
 document.addEventListener("mouseup", function(event) {
-	if(inLevel) {
+	if(inLevel&&cutBody) {
 		cutBody = world.deleteObj(cutBody);
 	}
 }, true);
 document.addEventListener("touchend", function(event) {
-	if(inLevel) {
+	if(inLevel&&cutBody) {
 		cutBody = world.deleteObj(cutBody);
 	}
 }, true);
@@ -586,7 +579,7 @@ var cutBody = null;
 function checkCutBubble(posi) {
 	for(var i = 0; i < bubbleArray.length; i++) {
 		var distance = MathUtil.getDistanceFromTwoPoint(posi, bubbleArray[i].v.normalAction.position);
-		if(distance < 30) {
+		if(distance < CUT_THE_ROPE_STATIC.bubbleRadius*0.6) {
 			try {
 				ion.sound.play("bubble_break");
 			} catch(e) {}
@@ -603,6 +596,25 @@ function checkCutBubble(posi) {
 	}
 	return false;
 }
+
+function checkClickRestartOrPause(posi) {
+	var distance = MathUtil.getDistanceFromTwoPoint(posi, {x:CUT_THE_ROPE_STATIC.restartBtn.x,y:CUT_THE_ROPE_STATIC.restartBtn.y});
+	if(distance < CUT_THE_ROPE_STATIC.restartBtn.radius) {
+		try {
+			ion.sound.play("tap");
+		} catch(e) {}
+		return true;
+	}
+	distance = MathUtil.getDistanceFromTwoPoint(posi, {x:CUT_THE_ROPE_STATIC.pauseBtn.x,y:CUT_THE_ROPE_STATIC.pauseBtn.y});
+	if(distance < CUT_THE_ROPE_STATIC.pauseBtn.radius) {
+		try {
+			ion.sound.play("tap");
+		} catch(e) {}
+		return true;
+	}
+	return false;
+}
+
 document.addEventListener("mousedown", function(event) {
 	createCutKnife(event);
 }, true);
@@ -614,6 +626,9 @@ document.addEventListener("touchstart", function(event) {
 
 function createCutKnife(event) {
 	var flag = checkCutBubble({
+		x: event.clientX,
+		y: event.clientY
+	})||checkClickRestartOrPause({
 		x: event.clientX,
 		y: event.clientY
 	});
