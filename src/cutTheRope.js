@@ -532,7 +532,7 @@ function drawLineRope() {
 	for(var i = 0; i < ropes.length; i++) {
 		if(ropes[i] && ropes[i].p[0]) {
 			ropes[i].v.clear();
-			ropes[i].v.lineStyle(1.5, 0x333333, 0.7);
+			ropes[i].v.lineStyle(1.5, ropes[i].color||0x333333, 0.7);
 			ropes[i].v.moveTo(ropes[i].p[0].GetPosition().x * 100, ropes[i].p[0].GetPosition().y * 100);
 			if(ropes[i].p.length <= 2) {
 				for(var j = 1; j < ropes[i].p.length; j++) {
