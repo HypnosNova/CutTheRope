@@ -41,3 +41,23 @@ MathUtil.hitTest = function(x1, y1, w1, h1,
 MathUtil.getDistanceFromTwoPoint=function(pointA,pointB){
 	return Math.sqrt((pointA.x-pointB.x)*(pointA.x-pointB.x)+(pointA.y-pointB.y)*(pointA.y-pointB.y))
 }
+
+MathUtil.getVectorAngle=function(vec1,vec2){
+	return Math.acos((vec1.x*vec2.x+vec1.y*vec2.y)/Math.sqrt(vec1.x*vec1.x+vec1.y*vec1.y)/Math.sqrt(vec2.x*vec2.x+vec2.y*vec2.y))
+}
+
+MathUtil.getSmallAngle=function(angle){
+	return angle<=Math.PI?angle:Math.PI*2-angle;
+}
+
+MathUtil.getVectorLen=function(vec){
+	return Math.sqrt(vec.x*vec.x+vec.y*vec.y);
+}
+
+MathUtil.getVectorShadow=function(vec1,vec2){
+	var vec={},vecLen=0;
+	vecLen=(vec1.x*vec2.x+vec1.y*vec2.y)/(vec2.x*vec2.x+vec2.y*vec2.y);
+	vec.x=vec1.x/vecLen;
+	vec.y=vec1.y/vecLen
+	return vec;
+}

@@ -20,6 +20,7 @@ function gameLoad() {
 	loader.add('boxdef', "../assets/boxdef.png");
 	loader.add('null', "../assets/null.png");
 	loader.add('star', "../assets/star.png");
+	loader.add('pump', "../assets/movieClip/pump.json");
 	loader.add('fix', "../assets/fix.png");
 	loader.add('bg', "../assets/bg.jpg");
 	loader.add('pauseBtn', "../assets/pauseBtn.png");

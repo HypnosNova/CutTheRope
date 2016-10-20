@@ -1,6 +1,6 @@
 var inLevel = false,alreadyClosing=false;; //是否进入游戏关卡
 var starsGet = 0;
-var bubbleArray = [];
+var bubbleArray = [],pumpArray=[];
 
 var CUT_THE_ROPE_STATIC = {
 	sweetRadius: engine_static.worldWidth * 0.07,
@@ -12,6 +12,7 @@ var CUT_THE_ROPE_STATIC = {
 	openMouthMinDistance: engine_static.worldWidth * 0.12 * 1.0,
 	openMouthMaxDistance: engine_static.worldWidth * 0.12 * 2.2,
 	closeMouthMaxDistance: engine_static.worldWidth * 0.12 * 2.3,
+	pumpWidth:engine_static.worldWidth*0.12,
 	pauseBtn: {
 		radius: engine_static.worldWidth * 0.032,
 		x: engine_static.worldWidth * 0.93,
@@ -597,6 +598,44 @@ function checkCutBubble(posi) {
 	return false;
 }
 
+
+function checkClickPump(posi) {
+	for(var i = 0; i < pumpArray.length; i++) {
+		var distance = MathUtil.getDistanceFromTwoPoint(posi, pumpArray[i].position);
+		if(distance < CUT_THE_ROPE_STATIC.pumpWidth) {
+			try {
+				ion.sound.play("pump");
+			} catch(e) {}
+			pumpArray[i].gotoAndPlay(0);
+			pumpPushAir(pumpArray[i]);
+			return true;
+		}
+	}
+	return false;
+}
+
+function pumpPushAir(pump){
+	var canPumpArr=["sweet"];var FORCE=0.6,force=0,forceDec=engine_static.worldWidth/2;
+	for(var i=0;i<world.pArray.length;i++){
+		if(canPumpArr.getIndex(world.pArray[i].name)>-1){
+			var vec1={
+				x:world.pArray[i].GetPosition().x*100-pump.position.x,
+				y:world.pArray[i].GetPosition().y*100-pump.position.y,
+			}
+			var vec1Len=MathUtil.getVectorLen(vec1);
+			force=FORCE*(forceDec/(forceDec+vec1Len));
+			var vec2={
+				x:-Math.cos(-Math.PI/2- pump.rotation)*force,
+				y:Math.sin(-Math.PI/2-pump.rotation)*force,
+			}
+			var vecAngle=MathUtil.getVectorAngle(vec1,vec2);
+			if(MathUtil.getSmallAngle(vecAngle)<Math.PI/2){
+				world.pArray[i].ApplyImpulse(vector(force*Math.cos(vecAngle+Math.PI),force.y), world.pArray[i].GetWorldCenter());
+			}
+		}
+	}
+}
+
 function checkClickRestartOrPause(posi) {
 	var distance = MathUtil.getDistanceFromTwoPoint(posi, {x:CUT_THE_ROPE_STATIC.restartBtn.x,y:CUT_THE_ROPE_STATIC.restartBtn.y});
 	if(distance < CUT_THE_ROPE_STATIC.restartBtn.radius) {
@@ -629,6 +668,9 @@ function createCutKnife(event) {
 		x: event.clientX,
 		y: event.clientY
 	})||checkClickRestartOrPause({
+		x: event.clientX,
+		y: event.clientY
+	})||checkClickPump({
 		x: event.clientX,
 		y: event.clientY
 	});
@@ -690,7 +732,6 @@ function createStars(arr) {
 		});
 		stars[i].disappear.loop = false;
 		world.vWorld.addChild(stars[i]);
-
 		stars[i].gotoAndPlay(MathUtil.rndIntRange(0, 18));
 	}
 	return stars;

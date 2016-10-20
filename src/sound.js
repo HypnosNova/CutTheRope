@@ -10,6 +10,8 @@ ion.sound({
 	},{
 		name:"main"
 	},{
+		name:"pump"
+	},{
 		name:"sad"
 	},{
 		name:"star_1"
