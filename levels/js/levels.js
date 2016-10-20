@@ -2344,19 +2344,5 @@ levelScript[11] = function() {
 
 	world.vWorld.addChild(ropes[0].v);
 	
-	
-
-	pumpArray[0] = createMovieClip({
-		name: "pump",
-		movieLength: 6,
-		speed: 0.4,
-		position: {
-			x: engine_static.worldWidth*0.75,
-			y: engine_static.worldHeight/2
-		},
-		rotation:Math.PI*1.5,
-		scale: scaleXPic2Real("pump", CUT_THE_ROPE_STATIC.pumpWidth, "pump0.png")
-	});
-	pumpArray[0].loop=false;
-	world.vWorld.addChild(pumpArray[0]);
+	pumpArray[0] = createPump(engine_static.worldWidth*0.75,engine_static.worldHeight/2,Math.PI*1.5);
 }

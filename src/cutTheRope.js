@@ -3,13 +3,13 @@ var starsGet = 0;
 var bubbleArray = [],pumpArray=[];
 
 var CUT_THE_ROPE_STATIC = {
-	sweetRadius: engine_static.worldWidth * 0.07,
+	sweetRadius: engine_static.worldWidth * 0.065,
 	dzRadius: engine_static.worldWidth * 0.05,
 	starRadius: engine_static.worldWidth * 0.12,
 	bubbleRadius: engine_static.worldWidth * 0.10,
 	starDisappearScale: engine_static.worldWidth * 0.21,
 	eaterRadius: engine_static.worldWidth * 0.12,
-	openMouthMinDistance: engine_static.worldWidth * 0.12 * 1.0,
+	openMouthMinDistance: engine_static.worldWidth * 0.12 * 1.1,
 	openMouthMaxDistance: engine_static.worldWidth * 0.12 * 2.2,
 	closeMouthMaxDistance: engine_static.worldWidth * 0.12 * 2.3,
 	pumpWidth:engine_static.worldWidth*0.12,
@@ -615,7 +615,7 @@ function checkClickPump(posi) {
 }
 
 function pumpPushAir(pump){
-	var canPumpArr=["sweet"];var FORCE=0.6,force=0,forceDec=engine_static.worldWidth/2;
+	var canPumpArr=["sweet"];var FORCE=0.6,force=0,forceDec=engine_static.worldWidth/5;
 	for(var i=0;i<world.pArray.length;i++){
 		if(canPumpArr.getIndex(world.pArray[i].name)>-1){
 			var vec1={
@@ -625,9 +625,10 @@ function pumpPushAir(pump){
 			var vec1Len=MathUtil.getVectorLen(vec1);
 			force=FORCE*(forceDec/(forceDec+vec1Len));
 			var vec2={
-				x:-Math.cos(-Math.PI/2- pump.rotation)*force,
-				y:Math.sin(-Math.PI/2-pump.rotation)*force,
+				x:Math.cos(Math.PI/2- pump.rotation)*force,
+				y:-Math.sin(Math.PI/2-pump.rotation)*force,
 			}
+			console.log(vec2.x+"==="+vec2.y)
 			var vecAngle=MathUtil.getVectorAngle(vec1,vec2);
 			if(MathUtil.getSmallAngle(vecAngle)<Math.PI/2){
 				world.pArray[i].ApplyImpulse(vector(force*Math.cos(vecAngle+Math.PI),force.y), world.pArray[i].GetWorldCenter());
@@ -885,4 +886,21 @@ function createEaters(arr) {
 		eaters[i].chewAction.loop = false;
 	}
 	return eaters
+}
+
+function createPump(x,y,r){
+	var pump=createMovieClip({
+		name: "pump",
+		movieLength: 6,
+		speed: 0.4,
+		position: {
+			x: x,
+			y: y
+		},
+		rotation:r,
+		scale: scaleXPic2Real("pump", CUT_THE_ROPE_STATIC.pumpWidth, "pump0.png")
+	});
+	pump.loop=false;
+	world.vWorld.addChild(pump);
+	return pump;
 }

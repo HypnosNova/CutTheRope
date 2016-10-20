@@ -449,7 +449,6 @@ function createInvisibleBoxObject(options, container) {
 	return pbox;
 }
 
-//渲染循环
 function update() {
 	requestAnimationFrame(update);
 	if(engine_static.renderPause) {
