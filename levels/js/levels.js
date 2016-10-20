@@ -2287,12 +2287,12 @@ levelScript[11] = function() {
 
 	stars = createStars([{
 		x: engine_static.worldWidth / 2,
-		y: engine_static.worldHeight * 0.125
+		y: engine_static.worldHeight * 0.65
 	}, {
-		x: engine_static.worldWidth *0.15,
+		x: engine_static.worldWidth *0.1,
 		y: engine_static.worldHeight * 0.23
 	}, {
-		x: engine_static.worldWidth *0.80,
+		x: engine_static.worldWidth *0.90,
 		y: engine_static.worldHeight * 0.32
 	}])
 

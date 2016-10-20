@@ -32,13 +32,13 @@ levelScript[12] = function() {
 
 	stars = createStars([{
 		x: engine_static.worldWidth *0.31,
-		y: engine_static.worldHeight * 0.20
+		y: engine_static.worldHeight * 0.17
 	}, {
 		x: engine_static.worldWidth *0.31,
 		y: engine_static.worldHeight * 0.51
 	}, {
 		x: engine_static.worldWidth *0.31,
-		y: engine_static.worldHeight * 0.65
+		y: engine_static.worldHeight * 0.64
 	}])
 
 	sweets[0] = createSweet({
@@ -97,22 +97,28 @@ levelScript[12] = function() {
 			container: airBuoyan,
 			ropeId: 1
 		}, [{
-			x: engine_static.worldWidth *0.36 ,
-			y: engine_static.worldHeight *0.42
+			x: engine_static.worldWidth *0.35 ,
+			y: engine_static.worldHeight *0.432
 		},{
-			x: engine_static.worldWidth *0.41 ,
-			y: engine_static.worldHeight *0.42
+			x: engine_static.worldWidth *0.39 ,
+			y: engine_static.worldHeight *0.444
 		},{
-			x: engine_static.worldWidth *0.46 ,
-			y: engine_static.worldHeight *0.42
+			x: engine_static.worldWidth *0.43 ,
+			y: engine_static.worldHeight *0.456
+		},{
+			x: engine_static.worldWidth *0.47 ,
+			y: engine_static.worldHeight *0.468
 		},{
 			x: engine_static.worldWidth *0.51 ,
-			y: engine_static.worldHeight *0.42
+			y: engine_static.worldHeight *0.456
 		},{
-			x: engine_static.worldWidth *0.56 ,
-			y: engine_static.worldHeight *0.42
+			x: engine_static.worldWidth *0.55 ,
+			y: engine_static.worldHeight *0.444
 		},{
-			x: engine_static.worldWidth *0.61 ,
+			x: engine_static.worldWidth *0.59 ,
+			y: engine_static.worldHeight *0.432
+		},{
+			x: engine_static.worldWidth *0.62 ,
 			y: engine_static.worldHeight *0.42
 		}], dz1, sweets[0]),
 		v: new PIXI.Graphics()
@@ -121,8 +127,8 @@ levelScript[12] = function() {
 	world.vWorld.addChild(ropes[1].v);
 	
 	pumpArray[0] = createPump(engine_static.worldWidth*0.85,engine_static.worldHeight*0.42,Math.PI*1.5);
-	pumpArray[1] = createPump(engine_static.worldWidth*0.32,engine_static.worldHeight*0.42,Math.PI*0.5);
-	//pumpArray[1] = createPump(engine_static.worldWidth*0.1,engine_static.worldHeight*0.65,Math.PI*0.5);
+	//pumpArray[1] = createPump(engine_static.worldWidth*0.32,engine_static.worldHeight*0.42,Math.PI*0.5);
+	pumpArray[1] = createPump(engine_static.worldWidth*0.1,engine_static.worldHeight*0.65,Math.PI*0.5);
 	createBoxObject({
 		position: {
 			x: engine_static.worldWidth*0.55,
@@ -182,7 +188,7 @@ levelScript[12] = function() {
 		name: "killerDz"
 	});
 	
-	bubbles[0] = createBubble(engine_static.worldWidth * 0.31,engine_static.worldHeight * 0.30);
+	bubbles[0] = createBubble(engine_static.worldWidth * 0.31,engine_static.worldHeight * 0.31);
 	
 	airBuoyan = addBuoyancy({
 		position: 1000,

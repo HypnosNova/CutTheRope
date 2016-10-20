@@ -615,7 +615,7 @@ function checkClickPump(posi) {
 }
 
 function pumpPushAir(pump){
-	var canPumpArr=["sweet"];var FORCE=0.6,force=0,forceDec=engine_static.worldWidth/5;
+	var canPumpArr=["sweet"];var FORCE=0.75,force=0,forceDec=engine_static.worldWidth/3;
 	for(var i=0;i<world.pArray.length;i++){
 		if(canPumpArr.getIndex(world.pArray[i].name)>-1){
 			var vec1={
@@ -628,10 +628,9 @@ function pumpPushAir(pump){
 				x:Math.cos(Math.PI/2- pump.rotation)*force,
 				y:-Math.sin(Math.PI/2-pump.rotation)*force,
 			}
-			console.log(vec2.x+"==="+vec2.y)
 			var vecAngle=MathUtil.getVectorAngle(vec1,vec2);
 			if(MathUtil.getSmallAngle(vecAngle)<Math.PI/2){
-				world.pArray[i].ApplyImpulse(vector(force*Math.cos(vecAngle+Math.PI),force.y), world.pArray[i].GetWorldCenter());
+				world.pArray[i].ApplyImpulse(vector(vec2.x*Math.cos(vecAngle),vec2.y*Math.cos(vecAngle)), world.pArray[i].GetWorldCenter());
 			}
 		}
 	}

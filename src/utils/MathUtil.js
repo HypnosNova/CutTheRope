@@ -55,9 +55,9 @@ MathUtil.getVectorLen=function(vec){
 }
 
 MathUtil.getVectorShadow=function(vec1,vec2){
-	var vec={},vecLen=0;
-	vecLen=(vec1.x*vec2.x+vec1.y*vec2.y)/(vec2.x*vec2.x+vec2.y*vec2.y);
-	vec.x=vec1.x/vecLen;
-	vec.y=vec1.y/vecLen
-	return vec;
+	var vlen=MathUtil.getVectorLen(vec2);
+	var v={};
+	v.x=vec1.x*vec2.x/vlen;
+	v.y=vec1.y*vec2.y/vlen;
+	return v;
 }
