@@ -606,6 +606,11 @@ function clearAllGameThings(){
 		world.deleteObj(obj);
 	}
 	world.vWorld.removeChildren(0,world.vWorld.children.length);
+	sweets=[];
+	ropes=[];
+	pumpArray=[];
+	bubbleArray=[];
+	magicSpecialObjArray=[];
 }
 
 $.fn.extend({

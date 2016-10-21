@@ -1,6 +1,6 @@
 var inLevel = false,alreadyClosing=false;; //是否进入游戏关卡
 var starsGet = 0;
-var bubbleArray = [],pumpArray=[];
+var bubbleArray = [],pumpArray=[],magicSpecialObjArray=[];
 
 var CUT_THE_ROPE_STATIC = {
 	sweetRadius: engine_static.worldWidth * 0.065,
@@ -26,6 +26,7 @@ var CUT_THE_ROPE_STATIC = {
 }
 
 function doSpecialAction() {
+	magicSpecialAction();
 	sweetTouchStar();
 	drawLineRope();
 	eatCandy();
@@ -33,6 +34,15 @@ function doSpecialAction() {
 	winOrLost();
 	sweetTouchBubble();
 	bubbleArrayRend();
+}
+
+//一些特殊物体需要进行移动
+function magicSpecialAction(){
+	for(var i=0;i<magicSpecialObjArray.length;i++){
+		if(magicSpecialObjArray[i]&&magicSpecialObjArray[i].specialAction){
+			magicSpecialObjArray[i].specialAction();
+		}
+	}
 }
 
 function bubbleArrayRend() {
@@ -518,6 +528,7 @@ function sweetTouchStar() {
 				world.vWorld.removeChild(stars[i].light);
 
 				world.vWorld.addChild(stars[i].disappear);
+				magicSpecialObjArray.deleteChild(stars[i]);
 				stars[i].disappear.gotoAndPlay(0);
 				stars.remove(i);
 				starsGet++;
@@ -902,4 +913,28 @@ function createPump(x,y,r){
 	pump.loop=false;
 	world.vWorld.addChild(pump);
 	return pump;
+}
+
+
+function createKillerDZ(x,y,r){
+	return createBoxObject({
+		position: {
+			x: x,
+			y: y
+		},
+		texture: "../assets/killerDz.png",
+		width: engine_static.worldWidth/7.4,
+		height:engine_static.worldWidth/25,
+		density: 0.5,
+		touchFilter: {
+			self: 1,
+			other: 1
+		},
+		isStatic:true,
+		restitution: 0.7,
+		rotation:r,
+		scaleX:scaleXPic2Real("killerDz",engine_static.worldWidth/7.2),
+		scaleY:scaleYPic2Real("killerDz",engine_static.worldWidth/24),
+		name: "killerDz"
+	});
 }

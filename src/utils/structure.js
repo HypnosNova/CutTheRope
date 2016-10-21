@@ -6,6 +6,20 @@ Array.prototype.remove = function(dx) {
 		}
 		this.splice(dx, 1);
 	}
+
+Array.prototype.removeChild = function(obj) {
+		var index=this.getIndex(obj);
+		if(index>-1){
+			this.remove(index);
+		}
+	}
+
+Array.prototype.deleteChild = function(obj) {
+		var index=this.getIndex(obj);
+		if(index>-1){
+			this[index]=null;
+		}
+	}
 	//将数组按照index分成2个数组
 Array.prototype.sperate = function(dx) {
 		if(isNaN(dx) || dx > this.length) {
