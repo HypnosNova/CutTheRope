@@ -1,0 +1,283 @@
+html,
+body {
+	position: relative;
+	height: 100%;
+	background: #000;
+	background-image: url(../assets/tilebg.jpg);
+	/*background-size: auto 100%;
+	background-repeat: no-repeat;*/
+}
+
+#pauseDiv{
+	position: fixed;
+	display:none;
+	top: 0;
+	left: 0;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+}
+
+#loadingText {
+	position: fixed;
+	top: 60%;
+	color: white;
+	text-shadow: 0 0 15px #000;
+	font-size: 42px;
+	text-align: center;
+	font-family: "微软雅黑";
+	 font-weight: bold;
+}
+
+* {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-touch-select: none;
+	-ms-user-select: none;
+}
+
+body {
+	margin: 0px;
+	padding: 0;
+	overflow: hidden;
+}
+
+.swiper-container {
+	width: 100%;
+	height: 100%;
+	left: 0;
+	margin-left: 0;
+	visibility: hidden;
+}
+
+.scoreContainer {
+	left: 0;
+	top: 0;
+	position: fixed;
+	display: none;
+	z-index: 70;
+}
+
+.btnContainer {
+	position: absolute;
+	top: 55%;
+	text-align: center;
+	width: 100%;
+}
+
+.actionBtn {
+	width: 20%;
+	margin: 0 2%;
+}
+
+.starContainer {
+	position: absolute;
+	top: 20%;
+	text-align: center;
+	width: 100%;
+}
+
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: transparent;
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.swiper-button-prev {
+	background-image: url(../assets/leftBtn.png);
+}
+
+.swiper-button-next {
+	background-image: url(../assets/rightBtn.png);
+}
+
+#backImg {
+	position: fixed;
+	background-image: url(../assets/backBtn.png);
+	background-size: cover;
+	z-index: 50;
+}
+
+#backImg:hover {
+	background-image: url(../assets/backBtn2.png);
+}
+
+canvas {
+	position: absolute;
+	top: 0;
+}
+
+.row {
+	width: 80%;
+	height: 70%;
+	margin: 15% 10%;
+}
+
+.column {
+	text-shadow: 0 0 10px #333;
+	float: left;
+	margin: 1%;
+	width: 23%;
+	height: 19%;
+	color: #fff;
+	background-image: url(../assets/levelBg.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	font-family: 微软雅黑;
+}
+
+.animateUp2down {
+	animation: Up2down 1;
+	transition-duration: 0.5s;
+	-webkit-animation: Up2down 1;
+	-webkit-animation-duration: 0.5s;
+}
+
+@keyframes Up2down {
+	from {
+		top: -50%;
+	}
+	to {
+		top: 0px;
+	}
+}
+
+@-webkit-keyframes Up2down {
+	from {
+		top: -50%;
+	}
+	to {
+		top: 0px;
+	}
+}
+
+.animateUp2up {
+	animation: Up2up 1;
+	transition-duration: 0.5s;
+	-webkit-animation: Up2up 1;
+	-webkit-animation-duration: 0.5s;
+}
+
+@keyframes Up2up {
+	from {
+		top: 0%;
+	}
+	to {
+		top: -50%;
+	}
+}
+
+@-webkit-keyframes Up2up {
+	from {
+		top: 0%;
+	}
+	to {
+		top: -50%;
+	}
+}
+
+.animateDown2up {
+	animation: Down2up 1;
+	transition-duration: 0.5s;
+	-webkit-animation: Down2up 1;
+	-webkit-animation-duration: 0.5s;
+}
+
+@keyframes Down2up {
+	from {
+		top: 100%;
+	}
+	to {
+		top: 50%;
+	}
+}
+
+@-webkit-keyframes Down2up {
+	from {
+		top: 100%;
+	}
+	to {
+		top: 50%;
+	}
+}
+
+.animateDown2down {
+	animation: Down2down 1;
+	transition-duration: 0.5s;
+	-webkit-animation: Down2down 1;
+	-webkit-animation-duration: 0.5s;
+}
+
+@keyframes Down2down {
+	from {
+		top: 50%;
+	}
+	to {
+		top: 100%;
+	}
+}
+
+@-webkit-keyframes Down2down {
+	from {
+		top: 50%;
+	}
+	to {
+		top: 100%;
+	}
+}
+
+.coverUp {
+	position: fixed;
+	left: 0;
+	height: 50%;
+	z-index: 60;
+	display: none;
+	top: 0;
+	background-image: url(../assets/coverCard2.jpg);
+	background-size: cover;
+}
+
+.coverDown {
+	position: fixed;
+	left: 0;
+	height: 50%;
+	z-index: 60;
+	display: none;
+	top: 50%;
+	background-image: url(../assets/coverCard.jpg);
+	background-size: cover;
+}
+
+.coverUp2 {
+	position: fixed;
+	left: 0;
+	height: 50%;
+	z-index: 60;
+	display: none;
+	top: -50%;
+	background-image: url(../assets/coverCard2.jpg);
+	background-size: cover;
+}
+
+.coverDown2 {
+	position: fixed;
+	left: 0;
+	height: 50%;
+	z-index: 60;
+	display: none;
+	top: 100%;
+	background-image: url(../assets/coverCard.jpg);
+	background-size: cover;
+}

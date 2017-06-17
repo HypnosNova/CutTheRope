@@ -1,0 +1,52 @@
+{"frames": {
+"normal0.png":
+{
+    "frame": {"x":0,"y":0,"w":82,"h":85},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {"x":1,"y":7,"w":82,"h":85},
+    "sourceSize": {"w":84,"h":92}
+},
+"normal1.png":
+{
+    "frame": {"x":0,"y":85,"w":82,"h":84},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {"x":1,"y":7,"w":82,"h":84},
+    "sourceSize": {"w":84,"h":92}
+},
+"normal2.png":
+{
+    "frame": {"x":0,"y":339,"w":82,"h":87},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {"x":1,"y":7,"w":82,"h":87},
+    "sourceSize": {"w":84,"h":92}
+},
+"normal3.png":
+{
+    "frame": {"x":0,"y":424,"w":82,"h":89},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {"x":1,"y":3,"w":82,"h":89},
+    "sourceSize": {"w":84,"h":92}
+},
+"normal4.png":
+{
+    "frame": {"x":0,"y":691,"w":82,"h":90},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {"x":1,"y":2,"w":82,"h":90},
+    "sourceSize": {"w":84,"h":92}
+}
+},
+"meta": {
+    "app": "",
+    "version": "1.0",
+    "image": "char_animations.png",
+    "format": "RGBA8888",
+    "size": {"w":1024,"h":2048},
+    "scale": "1",
+    "smartupdate": "$TexturePacker:SmartUpdate:17e4a2d92ff3e27832c3f4938cec7c85$"
+}
+}

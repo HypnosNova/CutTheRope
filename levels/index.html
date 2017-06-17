@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<title>CutTheRope</title>
+		<link rel="stylesheet" type="text/css" href="../css/animate.min.css" />
+		<link rel="stylesheet" type="text/css" href="../lib/swiper/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/style.css" />
+
+	</head>
+
+	<body>
+		<script src="../lib/jquery-2.1.0.js"></script>
+		<script src="../src/storage.js"></script>
+		<script src="../lib/curve_calc.min.js"></script>
+		<script src="../lib/swiper/swiper.min.js"></script>
+		<script src="../src/utils/structure.js"></script>
+		<script src="../src/utils/MathUtil.js"></script>
+		<script src="../lib/ion.sound.min.js"></script>
+		<script src="../src/sound.js"></script>
+		<script src="../lib/Box2D.js"></script>
+		<script src="../lib/pixi.min.js"></script>
+		<script src="../lib/Stats.js"></script>
+		<script src="../src/utils/engineUtil.js"></script>
+		<script src="../src/cutTheRope.js"></script>
+		<script src="js/index.js"></script>
+		<script src="js/levels.js"></script>
+		<script src="js/testLevel.js"></script>
+		<script src="../src/init.js"></script>
+		<p id="loadingText"></p>
+		<script id="loadingTextS">
+			$("#loadingText").css("width", (window.innerHeight / 16 * 9) + "px").text("LOADING...");
+		</script>
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<div class="row">
+						<div class="column">1</div>
+						<div class="column">2</div>
+						<div class="column">3</div>
+						<div class="column">4</div>
+						<div class="column">5</div>
+						<div class="column">6</div>
+						<div class="column">7</div>
+						<div class="column">8</div>
+						<div class="column">9</div>
+						<div class="column">10</div>
+						<div class="column">11</div>
+						<div class="column">12</div>
+						<div class="column">13</div>
+						<div class="column">14</div>
+						<div class="column">15</div>
+						<div class="column">16</div>
+						<div class="column">17</div>
+						<div class="column">18</div>
+						<div class="column">19</div>
+						<div class="column">20</div>
+					</div>
+				</div>
+				<div class="swiper-slide">Slide 2</div>
+				<div class="swiper-slide">Slide 3</div>
+				<div class="swiper-slide">Slide 4</div>
+				<div class="swiper-slide">Slide 5</div>
+				<div class="swiper-slide">Slide 6</div>
+			</div>
+			<!-- Add Pagination -->
+			<div class="swiper-pagination"></div>
+			<!-- Add Arrows -->
+			<div class="swiper-button-next"></div>
+			<div class="swiper-button-prev"></div>
+			<div id="backImg"></div>
+		</div>
+		<div class="coverUp2"></div>
+		<div class="coverDown2"></div>
+		<div class="scoreContainer">
+			<div class="starContainer"></div>
+			<div class="btnContainer">
+				<img id="menuBtn" class="menuBtn actionBtn" src="../assets/menuBtn.png" />
+				<img id="replayBtn" class="replayBtn actionBtn" src="../assets/replayBtn.png" />
+				<img id="nextlevelBtn" class="nextlevelBtn actionBtn" src="../assets/nextlevelBtn.png" />
+			</div>
+		</div>
+		<div id="pauseDiv">
+			<div class="btnContainer">
+				<img id="menuBtn2" class="menuBtn2 actionBtn" src="../assets/menuBtn.png" />
+				<img id="replayBtn" class="replayBtn actionBtn" src="../assets/replayBtn.png" />
+				<img id="continueBtn" class="continueBtn actionBtn" src="../assets/continueBtn1.png" />
+			</div>
+		</div>
+	</body>
+	<script>
+		$(".coverDown2").css("height", (engine_static.worldHeight / 2) + "px");
+		$(".coverUp2").css("height", (engine_static.worldHeight / 2) + "px");
+		$(".swiper-container").css("width", engine_static.worldWidth + "px");
+		$("#pauseDiv").css("width", engine_static.worldWidth + "px");
+		$(".scoreContainer").css("width", engine_static.worldWidth + "px").css("height", engine_static.worldHeight + "px");
+		$("#backImg").css({
+			"width": engine_static.worldWidth / 6 + "px",
+			"height": engine_static.worldWidth / 6 + "px",
+			"left": engine_static.worldWidth / 20 + "px",
+			"bottom": engine_static.worldWidth / 20 + "px",
+		});
+		$(".swiper-button-next,.swiper-button-prev").bind("mousedown", function(event) {
+			try{
+				ion.sound.play("tap");
+			}catch(e){}
+			$(event.target).animateCss("rubberBand");
+			(function(e) {
+				setTimeout(function() {
+					$(e.target).removeClass("rubberBand");
+				}, 1500);
+			})(event);
+		}).bind("touchstart", function(event) {
+			try{
+				ion.sound.play("tap");
+			}catch(e){}
+			$(event.target).animateCss("rubberBand");
+			(function(e) {
+				setTimeout(function() {
+					$(e.target).removeClass("rubberBand");
+				}, 1500);
+			})(event);
+		});
+		$(".coverDown2,.coverUp2").css({
+			"width": engine_static.worldWidth + "px"
+		});
+		var swiper = new Swiper('.swiper-container', {
+			pagination: '.swiper-pagination',
+			paginationClickable: '.swiper-pagination',
+			nextButton: '.swiper-button-next',
+			prevButton: '.swiper-button-prev',
+			spaceBetween: 30
+		});
+		$(".column").css("line-height", $(".column").width() + "px");
+		$(".column").css("font-size", ($(".column").width() * 0.4 + 2) + "px");
+		$(".swiper-container").hide();
+		$(".column").bind("mouseup", function(e) {
+			startLevel(parseInt($(e.target).text()) - 1);
+		}).bind("touchend", function(e) {
+			startLevel(parseInt($(e.target).text()) - 1);
+		}).bind("mousedown", function(e) {
+			ion.sound.play("tap");
+			$(e.target).animateCss("rubberBand");
+			(function(e) {
+				setTimeout(function() {
+					$(e.target).removeClass("rubberBand");
+				}, 1500);
+			})(e);
+		}).bind("touchstart", function(e) {
+			ion.sound.play("tap");
+			$(e.target).animateCss("rubberBand");
+			(function(e) {
+				setTimeout(function() {
+					$(e.target).removeClass("rubberBand");
+				}, 1500);
+			})(e);
+		});
+
+		$(".menuBtn").bind("click", function() {
+			try {
+				ion.sound.play("tap");
+			} catch(e) {}
+			$("#pauseDiv").hide();
+			engine_static.renderPause=false;
+			$(".scoreContainer").fadeOut(500);
+			setTimeout(function() {
+				coverOpen();
+				try {
+					ion.sound.play("menu_music", {
+						loop: true
+					});
+				} catch(e) {}
+				try {
+					ion.sound.stop("game_music");
+				} catch(e) {}
+				clearAllGameThings();
+				inLevel = false;
+				var bg = new PIXI.Sprite(PIXI.Texture.fromFrame("../assets/levelSelect.jpg"));
+				world.vWorld.addChild(bg);
+				bg.anchor.x = bg.anchor.y = 0;
+				bg.scale.x = bg.scale.y = engine_static.worldHeight / 576;
+				setTimeout(function() {
+					$(".swiper-container").fadeIn(500);
+				}, 300);
+			}, 500);
+		})
+		$(".menuBtn2").bind("click", function() {
+			try {
+				ion.sound.play("tap");
+			} catch(e) {}
+			$("#pauseDiv").hide();
+			engine_static.renderPause=false;
+			coverClose();
+			setTimeout(function() {
+				coverOpen();
+				try {
+					ion.sound.play("menu_music", {
+						loop: true
+					});
+				} catch(e) {}
+				try {
+					ion.sound.stop("game_music");
+				} catch(e) {}
+				clearAllGameThings();
+				inLevel = false;
+				var bg = new PIXI.Sprite(PIXI.Texture.fromFrame("../assets/levelSelect.jpg"));
+				world.vWorld.addChild(bg);
+				bg.anchor.x = bg.anchor.y = 0;
+				bg.scale.x = bg.scale.y = engine_static.worldHeight / 576;
+				setTimeout(function() {
+					$(".swiper-container").fadeIn(500);
+				}, 300);
+			}, 500);
+		})
+		$(".replayBtn").bind("click", function() {
+			engine_static.renderPause=false;
+			$("#pauseDiv").hide();
+			$(".scoreContainer").fadeOut(500);
+			restartGameLevel();
+		})
+		$(".continueBtn").bind("click", function() {
+			engine_static.renderPause=false;
+			$("#pauseDiv").hide();
+		})
+		$(".nextlevelBtn").bind("click", function() {
+			engine_static.renderPause=false;
+			$("#pauseDiv").hide();
+			currentLevel++;
+			$(".scoreContainer").fadeOut(500);
+			setTimeout(function() {
+				clearAllGameThings();
+				$(".swiper-container").hide();
+				starsGet = 0;
+				ropes = [];
+				levelScript[currentLevel]();
+				addPauseAndRestartBtn();
+				setTimeout(function() {
+					coverOpen();
+					setTimeout(function() {
+						$(".coverDown").hide();
+						$(".coverUp").hide();
+						inLevel = true;
+					}, 500)
+				}, 100)
+			}, 500)
+		})
+		var isDomLoaded = false;
+		document.onreadystatechange = function() {
+			if(document.readyState == "complete") {
+				isDomLoaded = true;
+				$("#loadingText").remove();
+				$("#loadingTextS").remove();
+				$(".swiper-container").hide();
+				$(".swiper-container").css("visibility", "visible");
+			}
+		}
+		showStarRecord();
+	</script>
+
+</html>

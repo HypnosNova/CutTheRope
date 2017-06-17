@@ -1,0 +1,52 @@
+{"frames": {
+
+"rollSequence0000.png":
+{
+    "frame": {"x":483,"y":692,"w":169,"h":226},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":103,"y":4,"w":169,"h":226},
+    "sourceSize": {"w":175,"h":240}
+},
+"rollSequence0001.png":
+{
+    "frame": {"x":468,"y":2,"w":169,"h":226},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":200,"y":4,"w":169,"h":226},
+    "sourceSize": {"w":175,"h":240}
+},
+"rollSequence0002.png":
+{
+    "frame": {"x":639,"y":2,"w":167,"h":226},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":3,"y":5,"w":167,"h":226},
+    "sourceSize": {"w":175,"h":240}
+},
+"rollSequence0003.png":
+{
+    "frame": {"x":808,"y":2,"w":165,"h":226},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":3,"y":5,"w":165,"h":226},
+    "sourceSize": {"w":175,"h":240}
+},
+"rollSequence0004.png":
+{
+    "frame": {"x":654,"y":688,"w":161,"h":226},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":3,"y":5,"w":161,"h":226},
+    "sourceSize": {"w":175,"h":240}
+}},
+"meta": {
+    "app": "http://www.texturepacker.com",
+    "version": "1.0",
+    "image": "fighter.png",
+    "format": "RGBA8888",
+    "size": {"w":1024,"h":1024},
+    "scale": "1",
+    "smartupdate": "$TexturePacker:SmartUpdate:2f213a6b451f9f5719773418dfe80ae8$"
+}
+}

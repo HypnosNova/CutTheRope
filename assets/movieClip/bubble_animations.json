@@ -1,0 +1,110 @@
+{"frames": {
+"bubble0.png":
+{
+	"frame": {"x":0,"y":0,"w":62,"h":72},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":0,"w":62,"h":72},
+    "sourceSize": {"w":62,"h":72}
+},"bubble1.png":
+{
+	"frame": {"x":0,"y":71,"w":63,"h":71},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":1,"w":63,"h":71},
+    "sourceSize": {"w":63,"h":71}
+},"bubble2.png":
+{
+	"frame": {"x":0,"y":141,"w":66,"h":69},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":1,"w":62,"h":69},
+    "sourceSize": {"w":66,"h":69}
+},"bubble3.png":
+{
+	"frame": {"x":0,"y":210,"w":66,"h":68},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":3,"w":66,"h":68},
+    "sourceSize": {"w":66,"h":68}
+},"bubble4.png":
+{
+	"frame": {"x":63,"y":0,"w":72,"h":64},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":0,"w":72,"h":64},
+    "sourceSize": {"w":72,"h":64}
+},"bubble5.png":
+{
+	"frame": {"x":63,"y":62,"w":74,"h":61},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":0,"w":74,"h":61},
+    "sourceSize": {"w":74,"h":61}
+},"bubble6.png":
+{
+	"frame": {"x":63,"y":120,"w":74,"h":60},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":0,"w":74,"h":60},
+    "sourceSize": {"w":74,"h":61}
+},"bubble13.png":
+{
+	"frame": {"x":0,"y":0,"w":62,"h":72},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":0,"w":62,"h":72},
+    "sourceSize": {"w":62,"h":72}
+},"bubble12.png":
+{
+	"frame": {"x":0,"y":71,"w":63,"h":71},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":1,"w":63,"h":71},
+    "sourceSize": {"w":63,"h":71}
+},"bubble11.png":
+{
+	"frame": {"x":0,"y":141,"w":66,"h":69},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":1,"w":62,"h":69},
+    "sourceSize": {"w":66,"h":69}
+},"bubble10.png":
+{
+	"frame": {"x":0,"y":210,"w":66,"h":68},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":3,"w":66,"h":68},
+    "sourceSize": {"w":66,"h":68}
+},"bubble9.png":
+{
+	"frame": {"x":63,"y":0,"w":72,"h":64},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":0,"w":72,"h":64},
+    "sourceSize": {"w":72,"h":64}
+},"bubble8.png":
+{
+	"frame": {"x":63,"y":62,"w":74,"h":61},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":0,"w":74,"h":61},
+    "sourceSize": {"w":74,"h":61}
+},"bubble7.png":
+{
+	"frame": {"x":63,"y":120,"w":74,"h":60},
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": {"x":0,"y":0,"w":74,"h":60},
+    "sourceSize": {"w":74,"h":61}
+}},
+"meta": {
+    "app": "",
+    "version": "1.0",
+    "image": "obj_bubble_flight.png",
+    "format": "RGBA8888",
+    "size": {"w":256,"h":512},
+    "scale": "1",
+    "smartupdate": "$TexturePacker:SmartUpdate:2f213a6b451f9f5719773418dfe80ae8$"
+}
+}

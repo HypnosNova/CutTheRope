@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<title>CutTheRope</title>
+		<style>
+			body {
+				margin: 0px;
+				overflow: hidden;
+				background-image: url(assets/bg.jpg);
+				background-size: cover;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="levels/1.html">开始</a>
+		<a href="levels/2.html">开始</a>
+		<a href="levels/3.html">开始</a>
+		<a href="levels/4.html">开始</a>
+		<button onclick='ion.sound.play("main",{loop:true});'>asdddddd</button>
+		<script src="lib/jquery-2.1.0.js"></script>
+		<script src="lib/ion.sound.min.js"></script>
+		<script src="src/sound.js"></script>
+		<script type="text/javascript">
+			requestAnimationFrame(playSound);
+			function playSound(){
+				ion.sound.play("main");
+			}
+		</script>
+	</body>
+</html>
